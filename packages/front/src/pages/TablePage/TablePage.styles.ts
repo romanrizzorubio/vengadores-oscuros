@@ -6,10 +6,10 @@ export const Wrapper = styled.section`
 `;
 
 export const Heading = styled.h2`
-  color: ${({ theme }) => theme.colors.text.quaternary};
+  color: ${({ theme }) => theme.colors.text.secondary};
   margin: 0;
   font-size: ${({ theme }) => theme.typography.sizes.XXL};
-  text-shadow: ${({ theme }) => theme.shadows.primary};
+  text-shadow: ${({ theme }) => theme.shadows.secondary};
 `;
 
 export const Container = styled.div`

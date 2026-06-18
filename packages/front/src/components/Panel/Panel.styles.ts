@@ -22,12 +22,12 @@ export const Text = styled.p`
   line-height: 1.5;
   padding: 1rem;
   margin: 0;
-  color: ${({ theme }) => theme.colors.text.quaternary};
+  color: ${({ theme }) => theme.colors.text.secondary};
   width: 100%;
 
   @media (min-width: 769px) {
     width: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
   }
 `;
 

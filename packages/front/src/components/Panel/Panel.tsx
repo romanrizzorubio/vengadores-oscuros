@@ -15,6 +15,7 @@ import imgOsborn from '../../assets/osborn.jpg';
 import imgElcalaMal from '../../assets/elcalamal.png';
 import imgDarkReign from '../../assets/reinado-oscuro.jpg';
 import imgDarkAvengers from '../../assets/vengadores-oscuros.jpg';
+import imgKingdomDefeated from '../../assets/reinado-derrotado.jpg';
 import { PanelType, PanelTypeDict } from '../../types/Dicts';
 import { Progress, ProgressProps } from '../../ui/Progress/Progress';
 import { Controls, ControlsProps } from '../Controls/Controls';
@@ -56,6 +57,7 @@ export const Panel = ({
       [PanelTypeDict.ELCALA_MAL]: imgElcalaMal,
       [PanelTypeDict.DARK_REIGN]: imgDarkReign,
       [PanelTypeDict.DARK_AVENGERS]: imgDarkAvengers,
+      [PanelTypeDict.KINGDOM_DEFEATED]: imgKingdomDefeated,
     };
     return imgMap[type];
   }, [type]);

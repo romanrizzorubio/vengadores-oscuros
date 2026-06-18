@@ -18,7 +18,7 @@ export function updateDarkAvengersThreat(value: number, tableNumber: number): Ga
 
     if (isDarkAvengersThreatDefeated(data)) {
       // Fase de derrota
-      data.phase = PhaseDict.KINGDOM_DEFEAT;
+      data.phase = PhaseDict.KINGDOM_DEFEATED;
     }
   });
 

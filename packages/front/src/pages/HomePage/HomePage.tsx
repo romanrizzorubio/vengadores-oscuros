@@ -14,6 +14,7 @@ import { useGameContext } from '../../contexts/GameContext';
 import { SpiderWomanPhase } from '../../phases/SpiderWomanPhase/SpiderWomanPhase';
 import { ElcalaMal } from '../../components/ElcalaMal/ElcalaMal';
 import { useMemo } from 'react';
+import { KingdomDefeatedPhase } from '../../phases/KingdomDefeatedPhase/KingdomDefeatedPhase';
 
 const HomePage = () => {
   const {
@@ -51,6 +52,7 @@ const HomePage = () => {
         {phase === PhaseDict.OSBORN_REVEAL && <OsbornChangePhase />}
         {phase === PhaseDict.VERANKE_LOSE && <OsbornPhase />}
         {phase === PhaseDict.VERANKE_WIN && <OsbornPhase hasWin />}
+        {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase />}
       </Container>
     </Wrapper>
   );

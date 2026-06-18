@@ -15,7 +15,7 @@ export function updateMinions(value: number, tableNumber: number): GameData {
 
       if (isMinionsCompleted(data)) {
         // Avanzar a la siguiente fase
-        data.phase = PhaseDict.SPIDER_WOMAN_LEAVES;
+        data.phase = PhaseDict.KINGDOM_DEFEATED;
       }
     }
   });

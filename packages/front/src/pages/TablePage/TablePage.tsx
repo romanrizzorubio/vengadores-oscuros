@@ -16,6 +16,7 @@ import { useGameContext } from '../../contexts/GameContext';
 import { SetTable } from '../../components/SetTable/SetTable';
 import { getTableText } from '../../utils/utils';
 import { ElcalaMal } from '../../components/ElcalaMal/ElcalaMal';
+import { KingdomDefeatedPhase } from '../../phases/KingdomDefeatedPhase/KingdomDefeatedPhase';
 
 const TablePage = () => {
   const {
@@ -52,6 +53,7 @@ const TablePage = () => {
             {phase === PhaseDict.OSBORN_REVEAL && <OsbornChangePhase readOnly />}
             {phase === PhaseDict.VERANKE_LOSE && <OsbornPhase />}
             {phase === PhaseDict.VERANKE_WIN && <OsbornPhase hasWin />}
+            {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase readOnly />}
           </Container>
           {showElcalaMals && <ElcalaMal onlyDefeated />}
         </>
