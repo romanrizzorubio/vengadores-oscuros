@@ -38,8 +38,8 @@ const TablePage = () => {
       ) : (
         <>
           {tableText && <Heading>{tableText}</Heading>}
+          {showElcalaMals && <ElcalaMal />}
           <Container>
-            {showElcalaMals && <ElcalaMal />}
             {phase === PhaseDict.INIT && <WaitingPhase />}
             {phase === PhaseDict.TABLES && <CreateTablePhase />}
             {phase === PhaseDict.SUPER && <SuperPhase />}
@@ -53,6 +53,7 @@ const TablePage = () => {
             {phase === PhaseDict.VERANKE_LOSE && <OsbornPhase />}
             {phase === PhaseDict.VERANKE_WIN && <OsbornPhase hasWin />}
           </Container>
+          {showElcalaMals && <ElcalaMal onlyDefeated />}
         </>
       )}
     </Wrapper>

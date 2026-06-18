@@ -23,9 +23,10 @@ import imgElcalaMal from '../../assets/elcalamal.png';
 
 export type ElcalaMalProps = {
   readOnly?: boolean;
+  onlyDefeated?: boolean;
 };
 
-export const ElcalaMal = ({ readOnly = false }: ElcalaMalProps) => {
+export const ElcalaMal = ({ readOnly = false, onlyDefeated = false }: ElcalaMalProps) => {
   const { data, setData, currentTable } = useGameContext();
 
   const handleAddElcalaMal = useCallback(async () => {
@@ -111,48 +112,64 @@ export const ElcalaMal = ({ readOnly = false }: ElcalaMalProps) => {
     return a.table - b.table;
   });
 
+  // Filtrar según si queremos solo derrotados o solo activos
+  const filteredElcalas = sortedElcalas.filter((elcala) =>
+    onlyDefeated ? elcala.defeated : !elcala.defeated,
+  );
+
+  // Si pedimos solo derrotados y no hay ninguno, no mostrar nada
+  if (filteredElcalas.length === 0) {
+    // Solo mostrar el botón si no estamos mostrando derrotados
+    if (!onlyDefeated && !hasElcalaInCurrentTable && currentTable >= 0) {
+      return (
+        <Wrapper>
+          <Button label="Llega Elcala Mal" onClick={handleAddElcalaMal} size={SizeDict.L} />
+        </Wrapper>
+      );
+    }
+    return null;
+  }
+
   return (
     <Wrapper>
-      {!hasElcalaInCurrentTable && currentTable >= 0 && (
+      {!onlyDefeated && !hasElcalaInCurrentTable && currentTable >= 0 && (
         <Button label="Llega Elcala Mal" onClick={handleAddElcalaMal} size={SizeDict.L} />
       )}
-      {data.elcalaMal.length > 0 && (
-        <ListWrapper>
-          {sortedElcalas.map((elcala) => {
-            const tableText = getTableText(elcala.table);
-            const isOwnTable = elcala.table === currentTable;
+      <ListWrapper>
+        {filteredElcalas.map((elcala) => {
+          const isOwnTable = elcala.table === currentTable;
+          const tableText = isOwnTable ? 'Mesa propia' : getTableText(elcala.table);
 
-            if (elcala.defeated) {
-              return (
-                <CompactWrapper key={elcala.table} $highlighted={isOwnTable} $defeated>
-                  <CompactTitle $defeated>{tableText} - Elcala Mal derrotado</CompactTitle>
-                </CompactWrapper>
-              );
-            }
-
+          if (elcala.defeated) {
             return (
-              <CompactWrapper key={elcala.table} $highlighted={isOwnTable}>
-                <CompactImageWrapper>
-                  <CompactImage src={imgElcalaMal} alt="Elcala Mal" />
-                  <CompactTitle>{tableText}</CompactTitle>
-                </CompactImageWrapper>
-                <CompactProgressWrapper>
-                  <Progress
-                    percentage={(elcala.life * 100) / elcala.maxLife}
-                    value={elcala.life}
-                    label={`${elcala.life}/${elcala.maxLife}`}
-                    hasBackground={false}
-                    compact={!isOwnTable}
-                  />
-                </CompactProgressWrapper>
-                <CompactControlsWrapper>
-                  <Controls maxValue={elcala.maxLife} onChange={handleLifeChange(elcala)} />
-                </CompactControlsWrapper>
+              <CompactWrapper key={elcala.table} $highlighted={isOwnTable} $defeated>
+                <CompactTitle $defeated>{tableText} - Elcala Mal derrotado</CompactTitle>
               </CompactWrapper>
             );
-          })}
-        </ListWrapper>
-      )}
+          }
+
+          return (
+            <CompactWrapper key={elcala.table} $highlighted={isOwnTable}>
+              <CompactImageWrapper>
+                <CompactImage src={imgElcalaMal} alt="Elcala Mal" />
+                <CompactTitle>{tableText}</CompactTitle>
+              </CompactImageWrapper>
+              <CompactProgressWrapper>
+                <Progress
+                  percentage={(elcala.life * 100) / elcala.maxLife}
+                  value={elcala.life}
+                  label={`${elcala.life}/${elcala.maxLife}`}
+                  hasBackground={false}
+                  compact={!isOwnTable}
+                />
+              </CompactProgressWrapper>
+              <CompactControlsWrapper>
+                <Controls maxValue={elcala.maxLife} onChange={handleLifeChange(elcala)} />
+              </CompactControlsWrapper>
+            </CompactWrapper>
+          );
+        })}
+      </ListWrapper>
     </Wrapper>
   );
 };
