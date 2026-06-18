@@ -21,7 +21,9 @@ export function initTable(tableNumber: number, players: PlayerData[], expert: bo
         ship: 0,
         completeVeranke: false,
         enemy: 0,
-        exposed: 0
+        exposed: 0,
+        minions: 0,
+        darkAvengersThreat: 0
       };
 
       data.tables[tableNumber] = table;

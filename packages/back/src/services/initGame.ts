@@ -9,6 +9,9 @@ export function initGame(end: number): GameData {
     data.phase = PhaseDict.TABLES;
     data.end = end;
     data.elcalaMal = [];
+    data.minionsMax = 0;
+    data.darkAvengersThreatIni = 0;
+    data.darkAvengersThreatMax = 0;
   });
 
   broadcastGame();

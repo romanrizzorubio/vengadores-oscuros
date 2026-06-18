@@ -38,6 +38,10 @@ const initialData: Data = {
   exposedValue: 0,
   exposedMax: 0,
   elcalaMal: [],
+  minions: 0,
+  minionsValue: 0,
+  darkAvengersThreat: 0,
+  darkAvengersThreatValue: 0,
 };
 
 const GameContext = createContext<GameContextValue | undefined>(undefined);

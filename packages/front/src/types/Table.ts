@@ -13,6 +13,8 @@ export type TableService = {
   exposed: number;
   uatu: boolean;
   aron: boolean;
+  minions: number;
+  darkAvengersThreat: number;
 };
 
 export type Table = {

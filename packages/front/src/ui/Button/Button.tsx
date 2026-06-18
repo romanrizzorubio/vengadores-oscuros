@@ -19,7 +19,7 @@ export const Button = ({
   onClick,
 }: ButtonProps) => {
   const handleClick = useCallback(() => {
-    onChange && value && onChange(value);
+    onChange && value !== undefined && onChange(value);
     onClick && onClick();
   }, [value, onChange, onClick]);
 
@@ -28,7 +28,7 @@ export const Button = ({
       return label;
     }
 
-    if (value) {
+    if (value !== undefined) {
       if (value > 0) {
         return `+${value}`;
       }

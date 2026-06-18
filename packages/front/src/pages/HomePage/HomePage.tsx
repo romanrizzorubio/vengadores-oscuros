@@ -1,5 +1,5 @@
 import { Container, Wrapper } from './HomePage.styles';
-import { SuperPhase } from '../../phases/SuperPhase/SuperPhase';
+import { KingdomPhase } from '../../phases/KingdomPhase/KingdomPhase';
 import { PhaseDict } from '../../types/Dicts';
 import { SuperChangePhase } from '../../phases/SuperChangePhase/SuperChangePhase';
 import { ShipFallPhase } from '../../phases/ShipFallPhase/ShipFallPhase';
@@ -26,7 +26,7 @@ const HomePage = () => {
   const showElcalaMals = useMemo(
     () =>
       [
-        PhaseDict.SUPER,
+        PhaseDict.KINGDOM,
         PhaseDict.SHIP_FALL,
         PhaseDict.ENEMY,
         PhaseDict.OSBORN_REVEAL,
@@ -41,7 +41,7 @@ const HomePage = () => {
         {showElcalaMals && <ElcalaMal readOnly />}
         {phase === PhaseDict.INIT && <InitPhase />}
         {phase === PhaseDict.TABLES && <WaitingTablesPhase />}
-        {phase === PhaseDict.SUPER && <SuperPhase readOnly />}
+        {phase === PhaseDict.KINGDOM && <KingdomPhase readOnly />}
         {phase === PhaseDict.SUPER_DEFEATED && <SuperChangePhase />}
         {phase === PhaseDict.SUPER_WINER && <SuperChangePhase hasWin />}
         {phase === PhaseDict.SPIDER_WOMAN_LEAVES && <SpiderWomanPhase />}

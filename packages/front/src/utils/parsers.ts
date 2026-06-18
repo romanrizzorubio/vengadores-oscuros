@@ -30,6 +30,9 @@ export const parseData = (
     enemyInit,
     exposedMax,
     elcalaMal,
+    minionsMax,
+    darkAvengersThreatIni,
+    darkAvengersThreatMax,
   }: DataService,
   currentTable?: number,
 ): Data => {
@@ -41,6 +44,8 @@ export const parseData = (
   const sumShip = tables.reduce((acc, table) => (table ? acc + table.ship : acc), 0);
   const sumExposed = tables.reduce((acc, table) => (table ? acc + table.exposed : acc), 0);
   const sumEnemy = tables.reduce((acc, table) => (table ? acc + table.enemy : acc), 0);
+  const sumMinions = tables.reduce((acc, table) => (table ? acc + table.minions : acc), 0);
+  const sumDarkAvengersThreat = tables.reduce((acc, table) => (table ? acc + table.darkAvengersThreat : acc), 0);
 
   const spiderWoman = spiderWomanMax - sumSpiderWoman;
   const spiderWomanOwn = ownSpiderWoman !== undefined ? spiderWomanMax - ownSpiderWoman : undefined;
@@ -49,6 +54,8 @@ export const parseData = (
   const ship = shipMax - sumShip;
   const exposed = sumExposed;
   const enemy = enemyInit - sumEnemy;
+  const minions = sumMinions;
+  const darkAvengersThreat = darkAvengersThreatIni + sumDarkAvengersThreat;
 
   return {
     tables: tables.map((table, index) => (table ? parseTable(table, index) : undefined)),
@@ -71,5 +78,9 @@ export const parseData = (
     exposedValue: exposed,
     exposedMax,
     elcalaMal,
+    minions: (minions * 100) / minionsMax,
+    minionsValue: minions,
+    darkAvengersThreat: (darkAvengersThreat * 100) / darkAvengersThreatMax,
+    darkAvengersThreatValue: darkAvengersThreat,
   };
 };

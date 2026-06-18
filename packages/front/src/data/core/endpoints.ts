@@ -17,6 +17,8 @@ export const endpoints = {
   startTables: '/start-tables',
   superLife: '/super-life',
   superPlan: '/super-plan',
+  minions: '/minions',
+  darkAvengersThreat: '/dark-avengers-threat',
   reset: '/reset',
   resetTable: '/reset-table',
 } as const;

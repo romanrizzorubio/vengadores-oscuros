@@ -1,5 +1,5 @@
 import { Container, Heading, Wrapper } from './TablePage.styles';
-import { SuperPhase } from '../../phases/SuperPhase/SuperPhase';
+import { KingdomPhase } from '../../phases/KingdomPhase/KingdomPhase';
 import { PhaseDict } from '../../types/Dicts';
 import { SuperChangePhase } from '../../phases/SuperChangePhase/SuperChangePhase';
 import { ShipFallPhase } from '../../phases/ShipFallPhase/ShipFallPhase';
@@ -26,7 +26,7 @@ const TablePage = () => {
   const tableText = useMemo(() => getTableText(currentTable), [currentTable]);
 
   const showElcalaMals = useMemo(
-    () => [PhaseDict.SUPER, PhaseDict.SHIP_FALL, PhaseDict.ENEMY].some((p) => p === phase),
+    () => [PhaseDict.KINGDOM, PhaseDict.SHIP_FALL, PhaseDict.ENEMY].some((p) => p === phase),
     [phase],
   );
 
@@ -42,7 +42,7 @@ const TablePage = () => {
           <Container>
             {phase === PhaseDict.INIT && <WaitingPhase />}
             {phase === PhaseDict.TABLES && <CreateTablePhase />}
-            {phase === PhaseDict.SUPER && <SuperPhase />}
+            {phase === PhaseDict.KINGDOM && <KingdomPhase />}
             {phase === PhaseDict.SUPER_DEFEATED && <SuperChangePhase readOnly />}
             {phase === PhaseDict.SUPER_WINER && <SuperChangePhase readOnly hasWin />}
             {phase === PhaseDict.SPIDER_WOMAN_LEAVES && <SpiderWomanPhase readOnly />}

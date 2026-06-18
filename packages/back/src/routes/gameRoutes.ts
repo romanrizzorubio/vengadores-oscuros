@@ -17,6 +17,8 @@ import { completeVeranke } from "../services/completeVeranke";
 import { endGame } from "../services/endGame";
 import { addElcalaMal, updateElcalaMalLife } from "../services/changeElcalaMal";
 import { resetTable } from "../services/resetTable";
+import { updateMinions } from "../services/updateMinions";
+import { updateDarkAvengersThreat } from "../services/updateDarkAvengersThreat";
 
 interface InitBody {
   players: number;
@@ -189,6 +191,28 @@ router.post("/exposed", (req: Request<TableNumberBody, ValueBody>, res: Response
 
   try {
     res.send(updateExposed(value, table));
+  } catch (error) {
+    console.error(error);
+    res.status(400).send({ error: "Invalid table number" });
+  }
+});
+
+router.post("/minions", (req: Request<TableNumberBody, ValueBody>, res: Response) => {
+  const { value, table } = req.body;
+
+  try {
+    res.send(updateMinions(value, table));
+  } catch (error) {
+    console.error(error);
+    res.status(400).send({ error: "Invalid table number" });
+  }
+});
+
+router.post("/dark-avengers-threat", (req: Request<TableNumberBody, ValueBody>, res: Response) => {
+  const { value, table } = req.body;
+
+  try {
+    res.send(updateDarkAvengersThreat(value, table));
   } catch (error) {
     console.error(error);
     res.status(400).send({ error: "Invalid table number" });

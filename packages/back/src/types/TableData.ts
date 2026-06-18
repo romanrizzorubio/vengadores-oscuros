@@ -11,4 +11,6 @@ export type TableData = {
   completeVeranke: boolean;
   enemy: number;
   exposed: number;
+  minions: number;
+  darkAvengersThreat: number;
 };

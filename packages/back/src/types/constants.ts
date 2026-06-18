@@ -8,3 +8,6 @@ export const ENEMY_INIT = 10;
 export const ENEMY_COMP = 10;
 export const EXPOSED_MAX = 12;
 export const WATCHER_TABLE = 4;
+export const MINIONS_MAX_PER_PLAYER = 1;
+export const DARK_AVENGERS_THREAT_INI_PER_PLAYER = 2;
+export const DARK_AVENGERS_THREAT_MAX_PER_PLAYER = 10;

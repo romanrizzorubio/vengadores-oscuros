@@ -13,6 +13,8 @@ import imgQueen from '../../assets/queen.jpg';
 import imgExposed from '../../assets/exposed.jpg';
 import imgOsborn from '../../assets/osborn.jpg';
 import imgElcalaMal from '../../assets/elcalamal.png';
+import imgDarkReign from '../../assets/reinado-oscuro.jpg';
+import imgDarkAvengers from '../../assets/vengadores-oscuros.jpg';
 import { PanelType, PanelTypeDict } from '../../types/Dicts';
 import { Progress, ProgressProps } from '../../ui/Progress/Progress';
 import { Controls, ControlsProps } from '../Controls/Controls';
@@ -52,6 +54,8 @@ export const Panel = ({
       [PanelTypeDict.EXPOSED]: imgExposed,
       [PanelTypeDict.OSBORN]: imgOsborn,
       [PanelTypeDict.ELCALA_MAL]: imgElcalaMal,
+      [PanelTypeDict.DARK_REIGN]: imgDarkReign,
+      [PanelTypeDict.DARK_AVENGERS]: imgDarkAvengers,
     };
     return imgMap[type];
   }, [type]);

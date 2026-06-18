@@ -21,6 +21,9 @@ export type DataService = {
   enemyInit: number;
   exposedMax: number;
   elcalaMal: ElcalaMalData[];
+  minionsMax: number;
+  darkAvengersThreatIni: number;
+  darkAvengersThreatMax: number;
 };
 
 export type Data = {
@@ -43,4 +46,8 @@ export type Data = {
   exposedValue: number;
   exposedMax: number;
   elcalaMal: ElcalaMalData[];
+  minions: number;
+  minionsValue: number;
+  darkAvengersThreat: number;
+  darkAvengersThreatValue: number;
 };

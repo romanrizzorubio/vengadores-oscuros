@@ -12,7 +12,10 @@ const INITIAL: GameData = {
   enemyInit: 0,
   exposedMax: 0,
   end: Date.now(),
-  elcalaMal: []
+  elcalaMal: [],
+  minionsMax: 0,
+  darkAvengersThreatIni: 0,
+  darkAvengersThreatMax: 0
 };
 
 let gameState: GameData = {

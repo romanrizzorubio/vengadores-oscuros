@@ -9,6 +9,8 @@ import { spiderWomanService } from '../data/services/spiderWoman';
 import { completeService } from '../data/services/complete';
 import { exposedService } from '../data/services/exposed';
 import { endTimeService } from '../data/services/endTime';
+import { minionsService } from '../data/services/minions';
+import { darkAvengersThreatService } from '../data/services/darkAvengersThreat';
 
 export const useSendData = () => {
   const { currentTable } = useGameContext();
@@ -109,6 +111,30 @@ export const useSendData = () => {
     [currentTable],
   );
 
+  const sendMinions = useCallback(
+    async (value: number) => {
+      try {
+        return await minionsService(value, currentTable);
+      } catch (error) {
+        console.error('Error al cargar los datos', error);
+        return false;
+      }
+    },
+    [currentTable],
+  );
+
+  const sendDarkAvengersThreat = useCallback(
+    async (value: number) => {
+      try {
+        return await darkAvengersThreatService(value, currentTable);
+      } catch (error) {
+        console.error('Error al cargar los datos', error);
+        return false;
+      }
+    },
+    [currentTable],
+  );
+
   return {
     sendAdvance,
     sendEndTime,
@@ -119,5 +145,7 @@ export const useSendData = () => {
     sendComplete,
     sendExposed,
     sendEnemy,
+    sendMinions,
+    sendDarkAvengersThreat,
   };
 };

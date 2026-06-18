@@ -20,4 +20,7 @@ export type GameData = {
   exposedMax: number;
   end: number;
   elcalaMal: ElcalaMalData[];
+  minionsMax: number;
+  darkAvengersThreatIni: number;
+  darkAvengersThreatMax: number;
 };
