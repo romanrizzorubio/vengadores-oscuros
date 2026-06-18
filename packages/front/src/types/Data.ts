@@ -1,6 +1,13 @@
 import { Phase } from './Dicts';
 import { Table, TableService } from './Table';
 
+export type ElcalaMalData = {
+  table: number;
+  life: number;
+  maxLife: number;
+  defeated: boolean;
+};
+
 export type DataService = {
   phase: Phase;
   tables: TableService[];
@@ -13,8 +20,7 @@ export type DataService = {
   shipMax: number;
   enemyInit: number;
   exposedMax: number;
-  uatu?: number;
-  aron?: number;
+  elcalaMal: ElcalaMalData[];
 };
 
 export type Data = {
@@ -36,6 +42,5 @@ export type Data = {
   exposed: number;
   exposedValue: number;
   exposedMax: number;
-  uatu?: number;
-  aron?: number;
+  elcalaMal: ElcalaMalData[];
 };

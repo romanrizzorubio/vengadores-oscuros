@@ -2,8 +2,9 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import TablePage from '../../../src/pages/TablePage/TablePage';
-import {Phase, PhaseDict} from '../../../src/types/Dicts';
+import { Phase, PhaseDict } from '../../../src/types/Dicts';
 import { theme } from '../../../src/styles/theme';
+import { useGameContext } from '../../../src/contexts/GameContext';
 
 const mockGameData = {
   phase: PhaseDict.INIT,
@@ -88,26 +89,14 @@ jest.mock('../../../src/hooks/useVeranke', () => ({
   useVeranke: () => ({}),
 }));
 
-jest.mock('../../../src/hooks/useWatchers', () => ({
-  useWatchers: () => ({
-    currentTable: 1,
-    uatu: undefined,
-    aron: undefined,
-    uatuDisabled: false,
-    changeUatu: jest.fn(),
-    changeAron: jest.fn(),
-  }),
-}));
-
-jest.mock('../../../src/hooks/useAdvance', () => ({
-  useAdvance: () => ({ advance: jest.fn() }),
-}));
-
-const renderWithProviders = (phase: Phase, currentTable: number = 1) => {
-  const { useGameContext } = require('../../../src/contexts/GameContext');
-  useGameContext.mockReturnValue({
-    data: { ...mockGameData, phase },
+const renderWithProviders = (phase: Phase, currentTable: number = -1) => {
+  (useGameContext as jest.Mock).mockReturnValue({
+    data: {
+      ...mockGameData,
+      phase,
+    },
     currentTable,
+    setCurrentTable: jest.fn(),
   });
 
   return render(

@@ -15,8 +15,6 @@ describe('advanceService', () => {
     shipMax: 15,
     enemyInit: 10,
     exposedMax: 10,
-    uatu: false,
-    aron: false,
   };
 
   beforeEach(() => {
@@ -40,8 +38,6 @@ describe('advanceService', () => {
     expect(result.phase).toBe('PLAYING');
     expect(result.superLife).toBe(100);
     expect(result.superPlan).toBe(0);
-    expect(result.uatu).toBe(false);
-    expect(result.aron).toBe(false);
   });
 
   it('should handle errors', async () => {

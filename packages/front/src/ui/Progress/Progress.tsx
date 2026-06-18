@@ -8,6 +8,7 @@ export type ProgressProps = {
   invert?: boolean;
   label?: string;
   hasBackground?: boolean;
+  compact?: boolean;
 };
 
 export const Progress = ({
@@ -16,6 +17,7 @@ export const Progress = ({
   label,
   invert = false,
   hasBackground = false,
+  compact = false,
 }: ProgressProps) => {
   const status = useMemo(() => {
     if (invert) {
@@ -36,9 +38,9 @@ export const Progress = ({
   }, [percentage, invert]);
 
   return (
-    <Container $hasBackground={hasBackground}>
+    <Container $hasBackground={hasBackground} $compact={compact}>
       <Bar $percentage={percentage} $status={status} />
-      <Content>
+      <Content $compact={compact}>
         <Value>
           {value !== undefined ? value : percentage}
           {label && ` (${label})`}

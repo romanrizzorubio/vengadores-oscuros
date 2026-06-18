@@ -15,8 +15,7 @@ import { getHeroes } from "../services/getHeroes";
 import { PlayerData } from "../types/PlayerData";
 import { completeVeranke } from "../services/completeVeranke";
 import { endGame } from "../services/endGame";
-import { changeUatu } from "../services/changeUatu";
-import { changeAron } from "../services/changeAron";
+import { addElcalaMal, updateElcalaMalLife } from "../services/changeElcalaMal";
 import { resetTable } from "../services/resetTable";
 
 interface InitBody {
@@ -99,14 +98,24 @@ router.post("/end", (_req: Request, res: Response) => {
   res.send(endGame());
 });
 
-router.post("/uatu", (req: Request<TableWatcherBody>, res: Response) => {
-  const { next } = req.body;
-  res.send(changeUatu(next));
+router.post("/elcala-mal/add", (req: Request<TableNumberBody>, res: Response) => {
+  const { table } = req.body;
+  try {
+    res.send(addElcalaMal(table));
+  } catch (error) {
+    console.error(error);
+    res.status(400).send({ error: "Invalid table number" });
+  }
 });
 
-router.post("/aron", (req: Request<TableWatcherBody>, res: Response) => {
-  const { next } = req.body;
-  res.send(changeAron(next));
+router.post("/elcala-mal/life", (req: Request<TableNumberBody, ValueBody>, res: Response) => {
+  const { table, value } = req.body;
+  try {
+    res.send(updateElcalaMalLife(table, value));
+  } catch (error) {
+    console.error(error);
+    res.status(400).send({ error: "Invalid table number" });
+  }
 });
 
 router.post("/super-life", (req: Request<TableNumberBody, ValueBody>, res: Response) => {

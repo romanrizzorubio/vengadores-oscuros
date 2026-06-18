@@ -75,7 +75,7 @@ export const StyledTable = styled.table`
 `;
 
 export const StyledTableHead = styled.thead`
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: ${({ theme }) => theme.colors.text.tertiary};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border.tertiary};
 `;
 

@@ -161,8 +161,6 @@ describe('loadSocket', () => {
       shipMax: 15,
       enemyInit: 10,
       exposedMax: 10,
-      uatu: false,
-      aron: false,
     };
 
     gameUpdateHandler(mockDataService);

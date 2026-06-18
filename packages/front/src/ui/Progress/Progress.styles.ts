@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { StatusBar, StatusBarDict } from '../../types/Dicts';
 
-export const Container = styled.div<{ $hasBackground?: boolean }>`
+export const Container = styled.div<{ $hasBackground?: boolean; $compact?: boolean }>`
   position: relative;
   width: 100%;
-  min-height: 2rem;
+  min-height: ${({ $compact }) => ($compact ? '1.5rem' : '3rem')};
   background-color: ${({ $hasBackground }) => ($hasBackground ? 'rgba(0, 0, 0, 0.5)' : 'transparent')};
   border: 2px solid ${({ theme }) => theme.colors.border};
   box-sizing: border-box;
@@ -29,7 +29,7 @@ export const Bar = styled.div<{ $percentage: number; $status: StatusBar }>`
   z-index: 1;
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<{ $compact?: boolean }>`
   position: relative;
   z-index: 2;
   width: 100%;
@@ -37,7 +37,7 @@ export const Content = styled.div`
   justify-content: flex-start;
   align-items: center;
   color: ${({ theme }) => theme.colors.text.secondary};
-  font-size: ${({ theme }) => theme.typography.sizes.XXL};
+  font-size: ${({ theme, $compact }) => ($compact ? theme.typography.sizes.M : theme.typography.sizes.XL)};
   white-space: nowrap;
   padding: 0 8px;
   pointer-events: none;

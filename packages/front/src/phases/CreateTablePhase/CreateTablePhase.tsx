@@ -42,7 +42,7 @@ export const CreateTablePhase = () => {
               heroes={heroes}
               onChangePlayer={changePlayer(0)}
             />
-            {players.length > 0 && (
+            {players[0] && (
               <CreatePlayer
                 name="Jugador 2"
                 player={players[1]}
@@ -50,7 +50,7 @@ export const CreateTablePhase = () => {
                 onChangePlayer={changePlayer(1)}
               />
             )}
-            {players.length > 1 && (
+            {players[1] && (
               <CreatePlayer
                 name="Jugador 3"
                 player={players[2]}
@@ -58,7 +58,7 @@ export const CreateTablePhase = () => {
                 onChangePlayer={changePlayer(2)}
               />
             )}
-            {players.length > 2 && (
+            {players[2] && (
               <CreatePlayer
                 name="Jugador 4"
                 player={players[3]}

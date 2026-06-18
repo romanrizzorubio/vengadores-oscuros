@@ -29,8 +29,7 @@ export const parseData = (
     shipMax,
     enemyInit,
     exposedMax,
-    uatu,
-    aron,
+    elcalaMal,
   }: DataService,
   currentTable?: number,
 ): Data => {
@@ -71,7 +70,6 @@ export const parseData = (
     exposed: (exposed * 100) / exposedMax,
     exposedValue: exposed,
     exposedMax,
-    uatu,
-    aron,
+    elcalaMal,
   };
 };

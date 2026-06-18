@@ -30,11 +30,7 @@ export function startTables(): GameData {
     data.exposedMax = EXPOSED_MAX * numPlayers;
     data.enemyInit = ENEMY_INIT * data.tables.length + ENEMY_COMP * numPlayers;
 
-    if (data.tables.length >= WATCHER_TABLE) {
-      data.uatu = Math.ceil(Math.random() * data.tables.length - 1);
-      data.aron = data.uatu + Math.floor(data.tables.length / 2);
-      data.aron = data.aron >= data.tables.length ? data.aron - data.tables.length : data.aron;
-    }
+    // Elcala Mal will be added manually via API when needed
   });
 
   broadcastGame();

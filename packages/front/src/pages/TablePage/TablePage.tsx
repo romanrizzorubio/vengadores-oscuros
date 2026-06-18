@@ -15,7 +15,7 @@ import { SpiderWomanPhase } from '../../phases/SpiderWomanPhase/SpiderWomanPhase
 import { useGameContext } from '../../contexts/GameContext';
 import { SetTable } from '../../components/SetTable/SetTable';
 import { getTableText } from '../../utils/utils';
-import { Watchers } from '../../components/Watchers/Watchers';
+import { ElcalaMal } from '../../components/ElcalaMal/ElcalaMal';
 
 const TablePage = () => {
   const {
@@ -25,7 +25,7 @@ const TablePage = () => {
 
   const tableText = useMemo(() => getTableText(currentTable), [currentTable]);
 
-  const showWatchers = useMemo(
+  const showElcalaMals = useMemo(
     () => [PhaseDict.SUPER, PhaseDict.SHIP_FALL, PhaseDict.ENEMY].some((p) => p === phase),
     [phase],
   );
@@ -39,7 +39,7 @@ const TablePage = () => {
         <>
           {tableText && <Heading>{tableText}</Heading>}
           <Container>
-            {showWatchers && <Watchers />}
+            {showElcalaMals && <ElcalaMal />}
             {phase === PhaseDict.INIT && <WaitingPhase />}
             {phase === PhaseDict.TABLES && <CreateTablePhase />}
             {phase === PhaseDict.SUPER && <SuperPhase />}

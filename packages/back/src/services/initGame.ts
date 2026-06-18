@@ -8,6 +8,7 @@ export function initGame(end: number): GameData {
     data.tables = [];
     data.phase = PhaseDict.TABLES;
     data.end = end;
+    data.elcalaMal = [];
   });
 
   broadcastGame();

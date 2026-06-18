@@ -45,8 +45,6 @@ describe('Parsers', () => {
         completeVeranke: true,
         enemy: 4,
         exposed: 6,
-        uatu: false,
-        aron: true,
       };
 
       const result = parseTable(tableService, 1);
@@ -73,8 +71,6 @@ describe('Parsers', () => {
         completeVeranke: false,
         enemy: 0,
         exposed: 0,
-        uatu: false,
-        aron: false,
       };
 
       const result = parseTable(tableService, 0);
@@ -105,8 +101,6 @@ describe('Parsers', () => {
             ship: 0,
             enemy: 0,
             exposed: 0,
-            uatu: false,
-            aron: false,
           },
         ],
         end: 1704067200000,
@@ -118,8 +112,6 @@ describe('Parsers', () => {
         shipMax: 15,
         enemyInit: 10,
         exposedMax: 10,
-        uatu: 1,
-        aron: 2,
       };
 
       const result = parseData(mockServiceData);
@@ -132,8 +124,6 @@ describe('Parsers', () => {
       expect(result.superPlan).toBe(0);
       expect(result.enemy).toBe(100);
       expect(result.exposed).toBe(0);
-      expect(result.uatu).toBe(1);
-      expect(result.aron).toBe(2);
       expect(result.end).toBeInstanceOf(Date);
     });
 
@@ -171,8 +161,6 @@ describe('Parsers', () => {
             ship: 5,
             enemy: 2,
             exposed: 3,
-            uatu: false,
-            aron: false,
           },
         ],
         end: 1704067200000,
@@ -210,8 +198,6 @@ describe('Parsers', () => {
             ship: 0,
             enemy: 0,
             exposed: 0,
-            uatu: false,
-            aron: false,
           },
         ],
         end: 1704067200000,
@@ -244,8 +230,6 @@ describe('Parsers', () => {
             ship: 3,
             enemy: 1,
             exposed: 2,
-            uatu: false,
-            aron: false,
           },
           {
             players: [],
@@ -258,8 +242,6 @@ describe('Parsers', () => {
             ship: 2,
             enemy: 3,
             exposed: 1,
-            uatu: false,
-            aron: false,
           },
         ],
         end: 1704067200000,

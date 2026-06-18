@@ -9,8 +9,6 @@ import { spiderWomanService } from '../../../src/data/services/spiderWoman';
 import { completeService } from '../../../src/data/services/complete';
 import { exposedService } from '../../../src/data/services/exposed';
 import { endTimeService } from '../../../src/data/services/endTime';
-import { uatuService } from '../../../src/data/services/uatu';
-import { aronService } from '../../../src/data/services/aron';
 import { useGameContext } from '../../../src/contexts/GameContext';
 
 jest.mock('../../../src/data/services/superLife');
@@ -22,8 +20,6 @@ jest.mock('../../../src/data/services/spiderWoman');
 jest.mock('../../../src/data/services/complete');
 jest.mock('../../../src/data/services/exposed');
 jest.mock('../../../src/data/services/endTime');
-jest.mock('../../../src/data/services/uatu');
-jest.mock('../../../src/data/services/aron');
 jest.mock('../../../src/contexts/GameContext');
 
 describe('useSendData', () => {
@@ -171,35 +167,7 @@ describe('useSendData', () => {
     expect(returnValue).toEqual(mockData);
   });
 
-  it('should send uatu successfully', async () => {
-    const mockData = { uatu: 2 };
-    (uatuService as jest.Mock).mockResolvedValue(mockData);
 
-    const { result } = renderHook(() => useSendData());
-
-    let returnValue;
-    await act(async () => {
-      returnValue = await result.current.sendUatu(true);
-    });
-
-    expect(uatuService).toHaveBeenCalledWith(true, mockCurrentTable);
-    expect(returnValue).toEqual(mockData);
-  });
-
-  it('should send aron successfully', async () => {
-    const mockData = { aron: 3 };
-    (aronService as jest.Mock).mockResolvedValue(mockData);
-
-    const { result } = renderHook(() => useSendData());
-
-    let returnValue;
-    await act(async () => {
-      returnValue = await result.current.sendAron(false);
-    });
-
-    expect(aronService).toHaveBeenCalledWith(false, mockCurrentTable);
-    expect(returnValue).toEqual(mockData);
-  });
 
   it('should return false and log error on failure', async () => {
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();

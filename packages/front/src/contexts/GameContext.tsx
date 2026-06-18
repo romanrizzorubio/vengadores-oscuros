@@ -37,6 +37,7 @@ const initialData: Data = {
   exposed: 0,
   exposedValue: 0,
   exposedMax: 0,
+  elcalaMal: [],
 };
 
 const GameContext = createContext<GameContextValue | undefined>(undefined);

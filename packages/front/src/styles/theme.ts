@@ -11,18 +11,18 @@ export const theme = {
     background: {
       primary: '#ffffff',
       secondary: '#000000',
-      tertiary: '#57e851',
+      tertiary: '#931425',
     },
     text: {
       primary: '#000000',
       secondary: '#ffffff',
-      tertiary: '#204c1f',
-      quaternary: '#57e851',
+      tertiary: '#ffffff',
+      quaternary: '#6b0d1a',
     },
     border: {
       primary: '#000000',
       secondary: '#ffffff',
-      tertiary: '#204c1f',
+      tertiary: '#27070c',
     },
   },
   shadows: {
@@ -31,9 +31,20 @@ export const theme = {
     tertiary: '2px 2px 0 #204c1f',
   },
   progress: {
-    low: '#45a341',
-    medium: '#f59e0b',
-    high: '#e74c3c',
+    low: '#2d6b2a',
+    medium: '#b87400',
+    high: '#b8301f',
+  },
+  spacing: {
+    s: '0.5rem',
+    m: '1rem',
+    l: '2rem',
+    xl: '4rem',
+  },
+  borderRadius: {
+    s: '4px',
+    m: '8px',
+    l: '12px',
   },
   typography: {
     sizes: {

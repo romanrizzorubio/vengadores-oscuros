@@ -1,6 +1,13 @@
 import { Phase } from "./dicts";
 import { TableData } from "./TableData";
 
+export type ElcalaMalData = {
+  table: number;
+  life: number;
+  maxLife: number;
+  defeated: boolean;
+};
+
 export type GameData = {
   tables: TableData[];
   phase: Phase;
@@ -12,6 +19,5 @@ export type GameData = {
   enemyInit: number;
   exposedMax: number;
   end: number;
-  uatu?: number;
-  aron?: number;
+  elcalaMal: ElcalaMalData[];
 };

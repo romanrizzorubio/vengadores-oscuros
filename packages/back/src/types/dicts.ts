@@ -39,6 +39,7 @@ export const HeroesDict = {
   GHOST_SPIDER: "Ghost Spider",
   GROOT: "Groot",
   HAWKEYE: "Ojo de Halcón",
+  HERCULES: "Hércules",
   HULK: "Hulk",
   HULKLING: "Hulkling",
   HUMAN_TORCH: "Antorcha Humana",
@@ -87,7 +88,8 @@ export const HeroesDict = {
   WASP: "Avispa",
   WINTER_SOLDIER: "Soldado de Invierno",
   WOLVERINE: "Lobezno",
+  WONDER_MAN: "Wonder Man",
   X_23: "X-23"
 } as const satisfies Record<string, string>;
 export type Hero = (typeof HeroesDict)[keyof typeof HeroesDict];
-export const BannedHeroes: Hero[] = [HeroesDict.SPIDER_WOMAN];
+export const BannedHeroes: Hero[] = [];

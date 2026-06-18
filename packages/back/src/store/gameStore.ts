@@ -11,7 +11,8 @@ const INITIAL: GameData = {
   shipMax: 0,
   enemyInit: 0,
   exposedMax: 0,
-  end: Date.now()
+  end: Date.now(),
+  elcalaMal: []
 };
 
 let gameState: GameData = {

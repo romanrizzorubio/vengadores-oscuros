@@ -12,7 +12,7 @@ import { Timer } from '../../components/Timer/Timer';
 import { WaitingTablesPhase } from '../../phases/WaitingTablesPhase/WaitingTablesPhase';
 import { useGameContext } from '../../contexts/GameContext';
 import { SpiderWomanPhase } from '../../phases/SpiderWomanPhase/SpiderWomanPhase';
-import { Watchers } from '../../components/Watchers/Watchers';
+import { ElcalaMal } from '../../components/ElcalaMal/ElcalaMal';
 import { useMemo } from 'react';
 
 const HomePage = () => {
@@ -23,7 +23,7 @@ const HomePage = () => {
 
   console.log('HomePage render, phase:', phase);
 
-  const showWatchers = useMemo(
+  const showElcalaMals = useMemo(
     () =>
       [
         PhaseDict.SUPER,
@@ -38,7 +38,7 @@ const HomePage = () => {
     <Wrapper>
       {phase !== PhaseDict.INIT && <Timer />}
       <Container>
-        {showWatchers && <Watchers readOnly />}
+        {showElcalaMals && <ElcalaMal readOnly />}
         {phase === PhaseDict.INIT && <InitPhase />}
         {phase === PhaseDict.TABLES && <WaitingTablesPhase />}
         {phase === PhaseDict.SUPER && <SuperPhase readOnly />}

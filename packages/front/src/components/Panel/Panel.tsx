@@ -12,8 +12,7 @@ import imgEnemy from '../../assets/enemy.jpg';
 import imgQueen from '../../assets/queen.jpg';
 import imgExposed from '../../assets/exposed.jpg';
 import imgOsborn from '../../assets/osborn.jpg';
-import imgUatu from '../../assets/uatu.jpg';
-import imgAron from '../../assets/aron.jpg';
+import imgElcalaMal from '../../assets/elcalamal.png';
 import { PanelType, PanelTypeDict } from '../../types/Dicts';
 import { Progress, ProgressProps } from '../../ui/Progress/Progress';
 import { Controls, ControlsProps } from '../Controls/Controls';
@@ -52,8 +51,7 @@ export const Panel = ({
       [PanelTypeDict.QUEEN]: imgQueen,
       [PanelTypeDict.EXPOSED]: imgExposed,
       [PanelTypeDict.OSBORN]: imgOsborn,
-      [PanelTypeDict.UATU]: imgUatu,
-      [PanelTypeDict.ARON]: imgAron,
+      [PanelTypeDict.ELCALA_MAL]: imgElcalaMal,
     };
     return imgMap[type];
   }, [type]);

@@ -26,8 +26,6 @@ describe('superLifeService', () => {
     shipMax: 15,
     enemyInit: 10,
     exposedMax: 10,
-    uatu: false,
-    aron: false,
   };
 
   beforeEach(() => {
@@ -80,8 +78,6 @@ describe('superLifeService', () => {
     expect(result.ship).toBe(100);
     expect(result.enemy).toBe(100);
     expect(result.exposed).toBe(0);
-    expect(result.uatu).toBe(false);
-    expect(result.aron).toBe(false);
   });
 
   it('should handle errors', async () => {

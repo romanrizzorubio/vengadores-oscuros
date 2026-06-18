@@ -9,8 +9,6 @@ import { spiderWomanService } from '../data/services/spiderWoman';
 import { completeService } from '../data/services/complete';
 import { exposedService } from '../data/services/exposed';
 import { endTimeService } from '../data/services/endTime';
-import { uatuService } from '../data/services/uatu';
-import { aronService } from '../data/services/aron';
 
 export const useSendData = () => {
   const { currentTable } = useGameContext();
@@ -111,30 +109,6 @@ export const useSendData = () => {
     [currentTable],
   );
 
-  const sendUatu = useCallback(
-    async (next: boolean) => {
-      try {
-        return await uatuService(next, currentTable);
-      } catch (error) {
-        console.error('Error al cargar los datos', error);
-        return false;
-      }
-    },
-    [currentTable],
-  );
-
-  const sendAron = useCallback(
-    async (next: boolean) => {
-      try {
-        return await aronService(next, currentTable);
-      } catch (error) {
-        console.error('Error al cargar los datos', error);
-        return false;
-      }
-    },
-    [currentTable],
-  );
-
   return {
     sendAdvance,
     sendEndTime,
@@ -145,7 +119,5 @@ export const useSendData = () => {
     sendComplete,
     sendExposed,
     sendEnemy,
-    sendUatu,
-    sendAron,
   };
 };

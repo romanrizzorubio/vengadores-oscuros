@@ -27,8 +27,7 @@ export const PanelTypeDict = {
   QUEEN: 9,
   EXPOSED: 10,
   OSBORN: 11,
-  UATU: 12,
-  ARON: 13,
+  ELCALA_MAL: 12,
 } as const;
 export type PanelType = (typeof PanelTypeDict)[keyof typeof PanelTypeDict];
 

@@ -1,10 +1,11 @@
 export const endpoints = {
   socket: 'game:update',
   advance: '/advance',
-  aron: '/aron',
   aspects: '/aspects',
   complete: '/complete',
   data: '/data',
+  elcalaMalAdd: '/elcala-mal/add',
+  elcalaMalLife: '/elcala-mal/life',
   endTime: '/end',
   enemy: '/enemy',
   exposed: '/exposed',
@@ -18,5 +19,4 @@ export const endpoints = {
   superPlan: '/super-plan',
   reset: '/reset',
   resetTable: '/reset-table',
-  uatu: '/uatu',
 } as const;
