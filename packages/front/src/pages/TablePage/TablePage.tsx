@@ -44,6 +44,7 @@ const TablePage = () => {
             {phase === PhaseDict.INIT && <WaitingPhase />}
             {phase === PhaseDict.TABLES && <CreateTablePhase />}
             {phase === PhaseDict.KINGDOM && <KingdomPhase />}
+            {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase readOnly />}
             {phase === PhaseDict.SUPER_DEFEATED && <SuperChangePhase readOnly />}
             {phase === PhaseDict.SUPER_WINER && <SuperChangePhase readOnly hasWin />}
             {phase === PhaseDict.SPIDER_WOMAN_LEAVES && <SpiderWomanPhase readOnly />}
@@ -53,7 +54,6 @@ const TablePage = () => {
             {phase === PhaseDict.OSBORN_REVEAL && <OsbornChangePhase readOnly />}
             {phase === PhaseDict.VERANKE_LOSE && <OsbornPhase />}
             {phase === PhaseDict.VERANKE_WIN && <OsbornPhase hasWin />}
-            {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase readOnly />}
           </Container>
           {showElcalaMals && <ElcalaMal onlyDefeated />}
         </>

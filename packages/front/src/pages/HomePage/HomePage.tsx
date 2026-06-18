@@ -43,6 +43,7 @@ const HomePage = () => {
         {phase === PhaseDict.INIT && <InitPhase />}
         {phase === PhaseDict.TABLES && <WaitingTablesPhase />}
         {phase === PhaseDict.KINGDOM && <KingdomPhase readOnly />}
+        {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase />}
         {phase === PhaseDict.SUPER_DEFEATED && <SuperChangePhase />}
         {phase === PhaseDict.SUPER_WINER && <SuperChangePhase hasWin />}
         {phase === PhaseDict.SPIDER_WOMAN_LEAVES && <SpiderWomanPhase />}
@@ -52,7 +53,6 @@ const HomePage = () => {
         {phase === PhaseDict.OSBORN_REVEAL && <OsbornChangePhase />}
         {phase === PhaseDict.VERANKE_LOSE && <OsbornPhase />}
         {phase === PhaseDict.VERANKE_WIN && <OsbornPhase hasWin />}
-        {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase />}
       </Container>
     </Wrapper>
   );
