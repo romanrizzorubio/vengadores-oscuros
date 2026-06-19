@@ -24,6 +24,10 @@ export type DataService = {
   minionsMax: number;
   darkAvengersThreatIni: number;
   darkAvengersThreatMax: number;
+  ironPatriotLife: number;
+  ironPatriotMaxLife: number;
+  exposedThreatIni: number;
+  exposedThreatMax: number;
 };
 
 export type Data = {
@@ -50,4 +54,10 @@ export type Data = {
   minionsValue: number;
   darkAvengersThreat: number;
   darkAvengersThreatValue: number;
+  ironPatriotLife?: number;
+  ironPatriotLifeValue?: number;
+  ironPatriotMaxLife?: number;
+  exposedThreat?: number;
+  exposedThreatValue?: number;
+  exposedThreatMax?: number;
 };

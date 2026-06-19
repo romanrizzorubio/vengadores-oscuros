@@ -10,12 +10,13 @@ import imgShipFall from '../../assets/ship-fall.jpg';
 import imgShipOpen from '../../assets/ship-open.jpg';
 import imgEnemy from '../../assets/enemy.jpg';
 import imgQueen from '../../assets/queen.jpg';
-import imgExposed from '../../assets/exposed.jpg';
 import imgOsborn from '../../assets/osborn.jpg';
 import imgElcalaMal from '../../assets/elcalamal.png';
 import imgDarkReign from '../../assets/reinado-oscuro.jpg';
 import imgDarkAvengers from '../../assets/vengadores-oscuros.jpg';
 import imgKingdomDefeated from '../../assets/reinado-derrotado.jpg';
+import imgIronPatriot from '../../assets/iron-patriot.jpg';
+import imgDescubiertos from '../../assets/descubiertos.jpg';
 import { PanelType, PanelTypeDict } from '../../types/Dicts';
 import { Progress, ProgressProps } from '../../ui/Progress/Progress';
 import { Controls, ControlsProps } from '../Controls/Controls';
@@ -52,12 +53,13 @@ export const Panel = ({
       [PanelTypeDict.SHIP_OPEN]: imgShipOpen,
       [PanelTypeDict.ENEMY]: imgEnemy,
       [PanelTypeDict.QUEEN]: imgQueen,
-      [PanelTypeDict.EXPOSED]: imgExposed,
       [PanelTypeDict.OSBORN]: imgOsborn,
       [PanelTypeDict.ELCALA_MAL]: imgElcalaMal,
       [PanelTypeDict.DARK_REIGN]: imgDarkReign,
       [PanelTypeDict.DARK_AVENGERS]: imgDarkAvengers,
       [PanelTypeDict.KINGDOM_DEFEATED]: imgKingdomDefeated,
+      [PanelTypeDict.IRON_PATRIOT]: imgIronPatriot,
+      [PanelTypeDict.EXPOSED]: imgDescubiertos,
     };
     return imgMap[type];
   }, [type]);

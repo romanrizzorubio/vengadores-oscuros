@@ -15,6 +15,7 @@ export type TableService = {
   aron: boolean;
   minions: number;
   darkAvengersThreat: number;
+  exposedThreat: number;
 };
 
 export type Table = {

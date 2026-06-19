@@ -29,6 +29,8 @@ export function advanceGame(): GameData {
       }
     } else if (data.phase === PhaseDict.OSBORN_REVEAL) {
         data.phase = PhaseDict.VERANKE_LOSE;
+    } else if (data.phase === PhaseDict.KINGDOM_DEFEATED) {
+      data.phase = PhaseDict.EXPOSED;
     } else {
       console.log("No transition defined for phase:", data.phase);
     }

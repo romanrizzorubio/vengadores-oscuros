@@ -23,4 +23,8 @@ export type GameData = {
   minionsMax: number;
   darkAvengersThreatIni: number;
   darkAvengersThreatMax: number;
+  ironPatriotLife: number;
+  ironPatriotMaxLife: number;
+  exposedThreatIni: number;
+  exposedThreatMax: number;
 };

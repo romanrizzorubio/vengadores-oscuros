@@ -13,4 +13,5 @@ export type TableData = {
   exposed: number;
   minions: number;
   darkAvengersThreat: number;
+  exposedThreat: number;
 };

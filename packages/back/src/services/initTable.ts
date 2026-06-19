@@ -23,7 +23,8 @@ export function initTable(tableNumber: number, players: PlayerData[], expert: bo
         enemy: 0,
         exposed: 0,
         minions: 0,
-        darkAvengersThreat: 0
+        darkAvengersThreat: 0,
+        exposedThreat: 0
       };
 
       data.tables[tableNumber] = table;

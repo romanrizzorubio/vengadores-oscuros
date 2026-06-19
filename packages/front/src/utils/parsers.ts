@@ -33,6 +33,10 @@ export const parseData = (
     minionsMax,
     darkAvengersThreatIni,
     darkAvengersThreatMax,
+    ironPatriotLife,
+    ironPatriotMaxLife,
+    exposedThreatIni,
+    exposedThreatMax,
   }: DataService,
   currentTable?: number,
 ): Data => {
@@ -46,6 +50,7 @@ export const parseData = (
   const sumEnemy = tables.reduce((acc, table) => (table ? acc + table.enemy : acc), 0);
   const sumMinions = tables.reduce((acc, table) => (table ? acc + table.minions : acc), 0);
   const sumDarkAvengersThreat = tables.reduce((acc, table) => (table ? acc + table.darkAvengersThreat : acc), 0);
+  const sumExposedThreat = tables.reduce((acc, table) => (table ? acc + table.exposedThreat : acc), 0);
 
   const spiderWoman = spiderWomanMax - sumSpiderWoman;
   const spiderWomanOwn = ownSpiderWoman !== undefined ? spiderWomanMax - ownSpiderWoman : undefined;
@@ -56,6 +61,7 @@ export const parseData = (
   const enemy = enemyInit - sumEnemy;
   const minions = sumMinions;
   const darkAvengersThreat = darkAvengersThreatIni + sumDarkAvengersThreat;
+  const exposedThreat = exposedThreatIni + sumExposedThreat;
 
   return {
     tables: tables.map((table, index) => (table ? parseTable(table, index) : undefined)),
@@ -82,5 +88,11 @@ export const parseData = (
     minionsValue: minions,
     darkAvengersThreat: (darkAvengersThreat * 100) / darkAvengersThreatMax,
     darkAvengersThreatValue: darkAvengersThreat,
+    ironPatriotLife: ironPatriotMaxLife > 0 ? (ironPatriotLife * 100) / ironPatriotMaxLife : 0,
+    ironPatriotLifeValue: ironPatriotLife,
+    ironPatriotMaxLife,
+    exposedThreat: exposedThreatMax > 0 ? (exposedThreat * 100) / exposedThreatMax : 0,
+    exposedThreatValue: exposedThreat,
+    exposedThreatMax,
   };
 };

@@ -13,6 +13,7 @@ export const PhaseDict = {
   VERANKE_WIN: 11,
   KINGDOM: 12,
   KINGDOM_DEFEATED: 13,
+  EXPOSED: 14,
 } as const;
 export type Phase = (typeof PhaseDict)[keyof typeof PhaseDict];
 
@@ -27,12 +28,13 @@ export const PanelTypeDict = {
   SHIP_OPEN: 7,
   ENEMY: 8,
   QUEEN: 9,
-  EXPOSED: 10,
   OSBORN: 11,
   ELCALA_MAL: 12,
   DARK_REIGN: 13,
   DARK_AVENGERS: 14,
   KINGDOM_DEFEATED: 15,
+  IRON_PATRIOT: 16,
+  EXPOSED: 17,
 } as const;
 export type PanelType = (typeof PanelTypeDict)[keyof typeof PanelTypeDict];
 

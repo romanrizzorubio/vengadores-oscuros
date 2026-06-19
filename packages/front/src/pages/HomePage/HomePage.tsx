@@ -15,6 +15,7 @@ import { SpiderWomanPhase } from '../../phases/SpiderWomanPhase/SpiderWomanPhase
 import { ElcalaMal } from '../../components/ElcalaMal/ElcalaMal';
 import { useMemo } from 'react';
 import { KingdomDefeatedPhase } from '../../phases/KingdomDefeatedPhase/KingdomDefeatedPhase';
+import { ExposedPhase } from '../../phases/ExposedPhase/ExposedPhase';
 
 const HomePage = () => {
   const {
@@ -44,6 +45,7 @@ const HomePage = () => {
         {phase === PhaseDict.TABLES && <WaitingTablesPhase />}
         {phase === PhaseDict.KINGDOM && <KingdomPhase readOnly />}
         {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase />}
+        {phase === PhaseDict.EXPOSED && <ExposedPhase readOnly />}
         {phase === PhaseDict.SUPER_DEFEATED && <SuperChangePhase />}
         {phase === PhaseDict.SUPER_WINER && <SuperChangePhase hasWin />}
         {phase === PhaseDict.SPIDER_WOMAN_LEAVES && <SpiderWomanPhase />}

@@ -19,6 +19,8 @@ import { addElcalaMal, updateElcalaMalLife } from "../services/changeElcalaMal";
 import { resetTable } from "../services/resetTable";
 import { updateMinions } from "../services/updateMinions";
 import { updateDarkAvengersThreat } from "../services/updateDarkAvengersThreat";
+import { updateIronPatriotLife } from "../services/updateIronPatriotLife";
+import { updateExposedThreat } from "../services/updateExposedThreat";
 
 interface InitBody {
   players: number;
@@ -213,6 +215,28 @@ router.post("/dark-avengers-threat", (req: Request<TableNumberBody, ValueBody>, 
 
   try {
     res.send(updateDarkAvengersThreat(value, table));
+  } catch (error) {
+    console.error(error);
+    res.status(400).send({ error: "Invalid table number" });
+  }
+});
+
+router.post("/iron-patriot-life", (req: Request<TableNumberBody, ValueBody>, res: Response) => {
+  const { value, table } = req.body;
+
+  try {
+    res.send(updateIronPatriotLife(value, table));
+  } catch (error) {
+    console.error(error);
+    res.status(400).send({ error: "Invalid table number" });
+  }
+});
+
+router.post("/exposed-threat", (req: Request<TableNumberBody, ValueBody>, res: Response) => {
+  const { value, table } = req.body;
+
+  try {
+    res.send(updateExposedThreat(value, table));
   } catch (error) {
     console.error(error);
     res.status(400).send({ error: "Invalid table number" });

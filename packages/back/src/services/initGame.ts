@@ -12,6 +12,10 @@ export function initGame(end: number): GameData {
     data.minionsMax = 0;
     data.darkAvengersThreatIni = 0;
     data.darkAvengersThreatMax = 0;
+    data.ironPatriotLife = 0;
+    data.ironPatriotMaxLife = 0;
+    data.exposedThreatIni = 0;
+    data.exposedThreatMax = 0;
   });
 
   broadcastGame();

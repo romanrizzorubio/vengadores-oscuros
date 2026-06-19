@@ -17,6 +17,7 @@ import { SetTable } from '../../components/SetTable/SetTable';
 import { getTableText } from '../../utils/utils';
 import { ElcalaMal } from '../../components/ElcalaMal/ElcalaMal';
 import { KingdomDefeatedPhase } from '../../phases/KingdomDefeatedPhase/KingdomDefeatedPhase';
+import { ExposedPhase } from '../../phases/ExposedPhase/ExposedPhase';
 
 const TablePage = () => {
   const {
@@ -27,7 +28,7 @@ const TablePage = () => {
   const tableText = useMemo(() => getTableText(currentTable), [currentTable]);
 
   const showElcalaMals = useMemo(
-    () => [PhaseDict.KINGDOM, PhaseDict.SHIP_FALL, PhaseDict.ENEMY].some((p) => p === phase),
+    () => [PhaseDict.KINGDOM, PhaseDict.SHIP_FALL, PhaseDict.ENEMY, PhaseDict.EXPOSED].some((p) => p === phase),
     [phase],
   );
 
@@ -45,6 +46,7 @@ const TablePage = () => {
             {phase === PhaseDict.TABLES && <CreateTablePhase />}
             {phase === PhaseDict.KINGDOM && <KingdomPhase />}
             {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase readOnly />}
+            {phase === PhaseDict.EXPOSED && <ExposedPhase />}
             {phase === PhaseDict.SUPER_DEFEATED && <SuperChangePhase readOnly />}
             {phase === PhaseDict.SUPER_WINER && <SuperChangePhase readOnly hasWin />}
             {phase === PhaseDict.SPIDER_WOMAN_LEAVES && <SpiderWomanPhase readOnly />}

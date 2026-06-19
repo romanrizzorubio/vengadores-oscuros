@@ -11,6 +11,8 @@ import { exposedService } from '../data/services/exposed';
 import { endTimeService } from '../data/services/endTime';
 import { minionsService } from '../data/services/minions';
 import { darkAvengersThreatService } from '../data/services/darkAvengersThreat';
+import { ironPatriotLifeService } from '../data/services/ironPatriotLife';
+import { exposedThreatService } from '../data/services/exposedThreat';
 
 export const useSendData = () => {
   const { currentTable } = useGameContext();
@@ -135,6 +137,30 @@ export const useSendData = () => {
     [currentTable],
   );
 
+  const sendIronPatriotLife = useCallback(
+    async (value: number) => {
+      try {
+        return await ironPatriotLifeService(value, currentTable);
+      } catch (error) {
+        console.error('Error al cargar los datos', error);
+        return false;
+      }
+    },
+    [currentTable],
+  );
+
+  const sendExposedThreat = useCallback(
+    async (value: number) => {
+      try {
+        return await exposedThreatService(value, currentTable);
+      } catch (error) {
+        console.error('Error al cargar los datos', error);
+        return false;
+      }
+    },
+    [currentTable],
+  );
+
   return {
     sendAdvance,
     sendEndTime,
@@ -147,5 +173,7 @@ export const useSendData = () => {
     sendEnemy,
     sendMinions,
     sendDarkAvengersThreat,
+    sendIronPatriotLife,
+    sendExposedThreat,
   };
 };
