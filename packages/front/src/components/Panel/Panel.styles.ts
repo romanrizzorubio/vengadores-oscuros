@@ -6,6 +6,7 @@ export const Wrapper = styled.div<{ $img: string }>`
   @media (min-width: 769px) {
     background-image: url(${({ $img }) => $img});
     background-size: cover;
+    background-position: center;
     padding: 1rem;
   }
 `;
@@ -34,6 +35,8 @@ export const Text = styled.p`
 export const Img = styled.img<{ disabled: boolean }>`
   height: auto;
   width: 100%;
+  display: block;
+  margin: 0 auto;
 
   ${({ disabled }) =>
     disabled &&

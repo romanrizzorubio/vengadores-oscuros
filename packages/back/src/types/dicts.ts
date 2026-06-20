@@ -13,7 +13,10 @@ export const PhaseDict = {
   VERANKE_WIN: 11,
   KINGDOM: 12,
   KINGDOM_DEFEATED: 13,
-  EXPOSED: 14
+  EXPOSED: 14,
+  CAPTAIN_LOSE: 15,
+  CAPTAIN_WIN: 16,
+  KINGDOM_WIN: 17
 } as const;
 export type Phase = (typeof PhaseDict)[keyof typeof PhaseDict];
 

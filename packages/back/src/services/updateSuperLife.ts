@@ -13,7 +13,7 @@ export function updateSuperLife(value: number, tableNumber: number): GameData {
     if (value > 0) {
       table.superDamage += value;
 
-      if (isDefeated(data)) {
+      if (data.phase === PhaseDict.SUPER && isDefeated(data)) {
         data.phase = PhaseDict.SUPER_DEFEATED;
       }
     } else {

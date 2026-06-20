@@ -23,9 +23,8 @@ export function updateExposedThreat(value: number, tableNumber: number): GameDat
 
     table.exposedThreat += actualValue;
 
-    if (isExposedThreatDefeated(data)) {
-      // TODO: Crear y avanzar a la siguiente fase
-      console.log("Exposed threat limit reached - advance to next phase");
+    if (isExposedThreatDefeated(data) && data.phase === PhaseDict.EXPOSED) {
+      data.phase = PhaseDict.CAPTAIN_LOSE;
     }
   });
 

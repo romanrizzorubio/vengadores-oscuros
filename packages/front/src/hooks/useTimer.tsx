@@ -25,11 +25,7 @@ export const useTimer = () => {
   useEffect(() => {
     const time = end ? new Date(end) : new Date();
 
-    if (
-      phase >= PhaseDict.SUPER &&
-      phase < PhaseDict.OSBORN_REVEAL &&
-      time.getTime() < now.getTime()
-    ) {
+    if (time.getTime() < now.getTime()) {
       sendEndTime();
       interval.current && window.clearInterval(interval.current);
     }

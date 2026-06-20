@@ -15,10 +15,10 @@ export function updateDarkAvengersThreat(value: number, tableNumber: number): Ga
     const actualValue = currentThreat + value < 0 ? -currentThreat : value;
 
     table.darkAvengersThreat += actualValue;
-
-    if (isDarkAvengersThreatDefeated(data)) {
-      // Fase de derrota
-      data.phase = PhaseDict.KINGDOM_DEFEATED;
+    
+    if (data.phase === PhaseDict.KINGDOM && isDarkAvengersThreatDefeated(data)) {
+      // Fase de victoria de Norman Osborn
+      data.phase = PhaseDict.KINGDOM_WIN;
     }
   });
 

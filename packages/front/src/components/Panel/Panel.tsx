@@ -17,6 +17,8 @@ import imgDarkAvengers from '../../assets/vengadores-oscuros.jpg';
 import imgKingdomDefeated from '../../assets/reinado-derrotado.jpg';
 import imgIronPatriot from '../../assets/iron-patriot.jpg';
 import imgDescubiertos from '../../assets/descubiertos.jpg';
+import imgCapitanAmerica from '../../assets/capitan-america.jpg';
+import imgNormanOsborn from '../../assets/norman-osborn.jpg';
 import { PanelType, PanelTypeDict } from '../../types/Dicts';
 import { Progress, ProgressProps } from '../../ui/Progress/Progress';
 import { Controls, ControlsProps } from '../Controls/Controls';
@@ -60,6 +62,8 @@ export const Panel = ({
       [PanelTypeDict.KINGDOM_DEFEATED]: imgKingdomDefeated,
       [PanelTypeDict.IRON_PATRIOT]: imgIronPatriot,
       [PanelTypeDict.EXPOSED]: imgDescubiertos,
+      [PanelTypeDict.CAPTAIN_AMERICA]: imgCapitanAmerica,
+      [PanelTypeDict.NORMAN_OSBORN]: imgNormanOsborn,
     };
     return imgMap[type];
   }, [type]);

@@ -65,14 +65,14 @@ describe('useTimer', () => {
     });
   });
 
-  it('should call sendEndTime when time expires in valid phase', async () => {
+  it('should call sendEndTime when time expires in any phase', async () => {
     const pastDate = new Date();
     pastDate.setHours(pastDate.getHours() - 1);
 
     (useGameContext as jest.Mock).mockReturnValue({
       data: {
         end: pastDate,
-        phase: PhaseDict.SUPER,
+        phase: PhaseDict.INIT,
       },
     });
 
@@ -87,45 +87,7 @@ describe('useTimer', () => {
     });
   });
 
-  it('should not call sendEndTime when phase is below SUPER', () => {
-    const pastDate = new Date();
-    pastDate.setHours(pastDate.getHours() - 1);
 
-    (useGameContext as jest.Mock).mockReturnValue({
-      data: {
-        end: pastDate,
-        phase: PhaseDict.SUPER - 1,
-      },
-    });
-
-    renderHook(() => useTimer());
-
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
-
-    expect(mockSendEndTime).not.toHaveBeenCalled();
-  });
-
-  it('should not call sendEndTime when phase is VERANKE_WIN or above', () => {
-    const pastDate = new Date();
-    pastDate.setHours(pastDate.getHours() - 1);
-
-    (useGameContext as jest.Mock).mockReturnValue({
-      data: {
-        end: pastDate,
-        phase: PhaseDict.VERANKE_WIN,
-      },
-    });
-
-    renderHook(() => useTimer());
-
-    act(() => {
-      jest.advanceTimersByTime(1000);
-    });
-
-    expect(mockSendEndTime).not.toHaveBeenCalled();
-  });
 
   it('should format minutes and seconds with leading zeros', () => {
     const futureDate = new Date();

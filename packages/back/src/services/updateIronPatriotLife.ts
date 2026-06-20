@@ -11,22 +11,17 @@ export function updateIronPatriotLife(value: number, tableNumber: number): GameD
 
     const newLife = data.ironPatriotLife + value;
 
-    // No puede bajar de 0
-    if (newLife < 0) {
-      return;
-    }
-
     // No puede superar el máximo
     if (newLife > data.ironPatriotMaxLife) {
       return;
     }
 
-    data.ironPatriotLife = newLife;
+    // Si baja de 0, lo dejamos en 0
+    data.ironPatriotLife = newLife < 0 ? 0 : newLife;
 
-    // Si llega a 0, avanzamos a una fase futura (placeholder)
-    if (data.ironPatriotLife === 0) {
-      // TODO: Crear y avanzar a la siguiente fase
-      console.log("Iron Patriot defeated - advance to next phase");
+    // Si llega a 0, avanzamos a CAPTAIN_WIN
+    if (data.ironPatriotLife === 0 && data.phase === PhaseDict.EXPOSED) {
+      data.phase = PhaseDict.CAPTAIN_WIN;
     }
   });
 

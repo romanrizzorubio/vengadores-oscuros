@@ -15,7 +15,7 @@ export function updateSuperPlan(value: number, tableNumber: number): GameData {
 
     table.superThreat += actualThreat;
 
-    if (isCompleted(data)) {
+    if (data.phase === PhaseDict.SUPER && isCompleted(data)) {
       data.phase = PhaseDict.SUPER_WINER;
     }
   });

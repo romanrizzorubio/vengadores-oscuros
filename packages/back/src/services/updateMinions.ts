@@ -13,7 +13,7 @@ export function updateMinions(value: number, tableNumber: number): GameData {
     if (value > 0) {
       table.minions += value;
 
-      if (isMinionsCompleted(data)) {
+      if (data.phase === PhaseDict.KINGDOM && isMinionsCompleted(data)) {
         // Avanzar a la siguiente fase
         data.phase = PhaseDict.KINGDOM_DEFEATED;
       }

@@ -31,6 +31,8 @@ export function advanceGame(): GameData {
         data.phase = PhaseDict.VERANKE_LOSE;
     } else if (data.phase === PhaseDict.KINGDOM_DEFEATED) {
       data.phase = PhaseDict.EXPOSED;
+    } else if (data.phase === PhaseDict.KINGDOM_WIN) {
+      data.phase = PhaseDict.EXPOSED;
     } else {
       console.log("No transition defined for phase:", data.phase);
     }
