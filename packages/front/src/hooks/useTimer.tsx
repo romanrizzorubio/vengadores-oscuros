@@ -23,6 +23,10 @@ export const useTimer = () => {
   }, []);
 
   useEffect(() => {
+    if (phase === PhaseDict.FINAL) {
+      interval.current && window.clearInterval(interval.current);
+      return;
+    }
     const time = end ? new Date(end) : new Date();
 
     if (time.getTime() < now.getTime()) {

@@ -19,6 +19,7 @@ import imgIronPatriot from '../../assets/iron-patriot.jpg';
 import imgDescubiertos from '../../assets/descubiertos.jpg';
 import imgCapitanAmerica from '../../assets/capitan-america.jpg';
 import imgNormanOsborn from '../../assets/norman-osborn.jpg';
+import imgBackground from '../../assets/background.jpg';
 import { PanelType, PanelTypeDict } from '../../types/Dicts';
 import { Progress, ProgressProps } from '../../ui/Progress/Progress';
 import { Controls, ControlsProps } from '../Controls/Controls';
