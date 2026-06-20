@@ -30,16 +30,26 @@ Este skill describe cómo implementar la gestión de vida de los Villanos en el 
         ```
 
 4.  **Servicio de Actualización**:
-    *   Crear `packages/back/src/services/update[Villain]Life.ts` para manejar la lógica de límites (0 a maxLife).
-    *   Asegurar que si el incremento supera la vida máxima, se establezca en `[villain]MaxLife`.
-    *   Cuando la vida llega a 0, se suele avanzar de fase en `advanceGame.ts`.
+    *   Crear `packages/back/src/services/update[Villain]Life.ts`.
+    *   **Lógica de Límites**: Al actualizar el valor, se debe asegurar que la vida no exceda el máximo ni sea inferior a cero:
+        ```typescript
+        let actualValue = value;
+        if (data.[villain]Life + value > data.[villain]MaxLife) {
+          actualValue = data.[villain]MaxLife - data.[villain]Life;
+        } else if (data.[villain]Life + value < 0) {
+          actualValue = -data.[villain]Life;
+        }
+        data.[villain]Life += actualValue;
+        ```
+    *   El servicio debe recibir el `value` y el `tableNumber` (aunque la vida del villano suele ser global, se sigue el patrón de recibir la mesa que reporta el cambio).
+    *   Cuando la vida llega a 0 (`data.[villain]Life === 0`), se suele avanzar de fase en `advanceGame.ts` o dentro del mismo servicio si es un evento crítico.
 
 5.  **Rutas API**:
     *   Registrar el nuevo endpoint en `packages/back/src/routes/gameRoutes.ts`:
         ```typescript
-        router.post("/[villain]-life", (req: Request<ValueBody>, res: Response) => {
-          const { value } = req.body;
-          res.send(update[Villain]Life(value));
+        router.post("/[villain]-life", (req: Request<TableNumberBody, ValueBody>, res: Response) => {
+          const { value, table } = req.body;
+          res.send(update[Villain]Life(value, table));
         });
         ```
 
