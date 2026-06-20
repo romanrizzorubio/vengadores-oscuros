@@ -50,14 +50,14 @@ export const useExposed = () => {
   useEffect(() => {
     setIronPatriotLife(data.ironPatriotLife || 0);
     setIronPatriotLifeValue(data.ironPatriotLifeValue || 0);
-    setIronPatriotMaxLife(data.ironPatriotMaxLife || 0);
+    setIronPatriotMaxLife(data.ironPatriotMaxLifeValue || 0);
     setExposedThreat(data.exposedThreat || 0);
     setExposedThreatValue(data.exposedThreatValue || 0);
     setExposedThreatMax(data.exposedThreatMax || 0);
   }, [
     data.ironPatriotLife,
     data.ironPatriotLifeValue,
-    data.ironPatriotMaxLife,
+    data.ironPatriotMaxLifeValue,
     data.exposedThreat,
     data.exposedThreatValue,
     data.exposedThreatMax,

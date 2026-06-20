@@ -17,7 +17,6 @@ import { useMemo } from 'react';
 import { KingdomDefeatedPhase } from '../../phases/KingdomDefeatedPhase/KingdomDefeatedPhase';
 import { ExposedPhase } from '../../phases/ExposedPhase/ExposedPhase';
 import { CaptainPhase } from '../../phases/CaptainPhase/CaptainPhase';
-import { KingdomWinPhase } from '../../phases/KingdomWinPhase/KingdomWinPhase';
 
 const HomePage = () => {
   const {
@@ -59,7 +58,6 @@ const HomePage = () => {
         {phase === PhaseDict.VERANKE_WIN && <OsbornPhase hasWin />}
         {phase === PhaseDict.CAPTAIN_LOSE && <CaptainPhase />}
         {phase === PhaseDict.CAPTAIN_WIN && <CaptainPhase hasWin />}
-        {phase === PhaseDict.KINGDOM_WIN && <KingdomWinPhase />}
       </Container>
     </Wrapper>
   );

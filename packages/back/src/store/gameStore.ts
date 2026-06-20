@@ -15,7 +15,11 @@ const INITIAL: GameData = {
   elcalaMal: [],
   minionsMax: 0,
   darkAvengersThreatIni: 0,
-  darkAvengersThreatMax: 0
+  darkAvengersThreatMax: 0,
+  ironPatriotLife: 0,
+  ironPatriotMaxLife: 0,
+  exposedThreatIni: 0,
+  exposedThreatMax: 0
 };
 
 let gameState: GameData = {

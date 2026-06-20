@@ -44,7 +44,7 @@ const initialData: Data = {
   darkAvengersThreatValue: 0,
   ironPatriotLife: 0,
   ironPatriotLifeValue: 0,
-  ironPatriotMaxLife: 0,
+  ironPatriotMaxLifeValue: 0,
   exposedThreat: 0,
   exposedThreatValue: 0,
   exposedThreatMax: 0,

@@ -17,8 +17,8 @@ export function updateDarkAvengersThreat(value: number, tableNumber: number): Ga
     table.darkAvengersThreat += actualValue;
     
     if (data.phase === PhaseDict.KINGDOM && isDarkAvengersThreatDefeated(data)) {
-      // Fase de victoria de Norman Osborn
-      data.phase = PhaseDict.KINGDOM_WIN;
+      // Fase de derrota de los Vengadores (Capitán América pierde)
+      data.phase = PhaseDict.CAPTAIN_LOSE;
     }
   });
 

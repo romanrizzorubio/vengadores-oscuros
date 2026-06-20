@@ -16,8 +16,8 @@ import {
   MINIONS_MAX_PER_PLAYER,
   DARK_AVENGERS_THREAT_INI_PER_PLAYER,
   DARK_AVENGERS_THREAT_MAX_PER_PLAYER,
-  IRON_PATRIOT_LIFE_MAX_PER_PLAYER,
-  IRON_PATRIOT_LIFE_EXP_MAX_PER_PLAYER,
+  IRON_PATRIOT_LIFE_PER_PLAYER,
+  IRON_PATRIOT_LIFE_EXP_PER_PLAYER,
   EXPOSED_THREAT_INI_PER_PLAYER,
   EXPOSED_THREAT_MAX_PER_PLAYER
 } from "../types/constants";
@@ -39,8 +39,8 @@ export function startTables(): GameData {
     data.minionsMax = MINIONS_MAX_PER_PLAYER * numPlayers;
     data.darkAvengersThreatIni = DARK_AVENGERS_THREAT_INI_PER_PLAYER * numPlayers;
     data.darkAvengersThreatMax = DARK_AVENGERS_THREAT_MAX_PER_PLAYER * numPlayers;
-    data.ironPatriotLife = IRON_PATRIOT_LIFE_MAX_PER_PLAYER * normal + IRON_PATRIOT_LIFE_EXP_MAX_PER_PLAYER * expert;
-    data.ironPatriotMaxLife = IRON_PATRIOT_LIFE_MAX_PER_PLAYER * normal + IRON_PATRIOT_LIFE_EXP_MAX_PER_PLAYER * expert;
+    data.ironPatriotLife = IRON_PATRIOT_LIFE_PER_PLAYER * normal + IRON_PATRIOT_LIFE_EXP_PER_PLAYER * expert;
+    data.ironPatriotMaxLife = IRON_PATRIOT_LIFE_PER_PLAYER * normal + IRON_PATRIOT_LIFE_EXP_PER_PLAYER * expert;
     data.exposedThreatIni = EXPOSED_THREAT_INI_PER_PLAYER * numPlayers;
     data.exposedThreatMax = EXPOSED_THREAT_MAX_PER_PLAYER * numPlayers;
 

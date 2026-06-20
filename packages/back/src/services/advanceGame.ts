@@ -19,19 +19,15 @@ export function advanceGame(): GameData {
     } else if (data.phase === PhaseDict.SHIP_OPEN) {
       data.phase = PhaseDict.ENEMY;
     } else if (data.phase === PhaseDict.ENEMY) {
-      console.log(`Transitioning from ENEMY to OSBORN_REVEAL.`);
+      data.phase = PhaseDict.OSBORN_REVEAL;
+    } else if (data.phase === PhaseDict.OSBORN_REVEAL) {
       const threat = isCompleted(data);
-      console.log(`Transitioning from OSBORN_REVEAL. Threat completed: ${threat}. Total exposed: ${data.tables.reduce((acc, table) => acc + table.exposed, 0)}, Required: ${data.exposedMax}`);
       if (threat) {
         data.phase = PhaseDict.VERANKE_WIN;
       } else {
-        data.phase = PhaseDict.OSBORN_REVEAL;
-      }
-    } else if (data.phase === PhaseDict.OSBORN_REVEAL) {
         data.phase = PhaseDict.VERANKE_LOSE;
+      }
     } else if (data.phase === PhaseDict.KINGDOM_DEFEATED) {
-      data.phase = PhaseDict.EXPOSED;
-    } else if (data.phase === PhaseDict.KINGDOM_WIN) {
       data.phase = PhaseDict.EXPOSED;
     } else {
       console.log("No transition defined for phase:", data.phase);

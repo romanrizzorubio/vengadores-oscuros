@@ -90,7 +90,7 @@ export const parseData = (
     darkAvengersThreatValue: darkAvengersThreat,
     ironPatriotLife: ironPatriotMaxLife > 0 ? (ironPatriotLife * 100) / ironPatriotMaxLife : 0,
     ironPatriotLifeValue: ironPatriotLife,
-    ironPatriotMaxLife,
+    ironPatriotMaxLifeValue: ironPatriotMaxLife,
     exposedThreat: exposedThreatMax > 0 ? (exposedThreat * 100) / exposedThreatMax : 0,
     exposedThreatValue: exposedThreat,
     exposedThreatMax,

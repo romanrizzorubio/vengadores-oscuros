@@ -56,7 +56,7 @@ export type Data = {
   darkAvengersThreatValue: number;
   ironPatriotLife?: number;
   ironPatriotLifeValue?: number;
-  ironPatriotMaxLife?: number;
+  ironPatriotMaxLifeValue?: number;
   exposedThreat?: number;
   exposedThreatValue?: number;
   exposedThreatMax?: number;
