@@ -23,7 +23,7 @@ export const useTimer = () => {
   }, []);
 
   useEffect(() => {
-    if (phase === PhaseDict.FINAL) {
+    if (phase === PhaseDict.CAPTAIN_WIN || phase === PhaseDict.CAPTAIN_LOSE) {
       interval.current && window.clearInterval(interval.current);
       return;
     }

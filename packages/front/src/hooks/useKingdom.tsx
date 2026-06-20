@@ -5,8 +5,10 @@ import { useGameContext } from '../contexts/GameContext';
 export const useKingdom = () => {
   const [minions, setMinions] = useState(0);
   const [minionsValue, setMinionsValue] = useState(0);
+  const [minionsMax, setMinionsMax] = useState(0);
   const [darkAvengersThreat, setDarkAvengersThreat] = useState(0);
   const [darkAvengersThreatValue, setDarkAvengersThreatValue] = useState(0);
+  const [darkAvengersThreatMax, setDarkAvengersThreatMax] = useState(0);
 
   const { data } = useGameContext();
   const { sendMinions, sendDarkAvengersThreat } = useSendData();
@@ -48,20 +50,26 @@ export const useKingdom = () => {
   useEffect(() => {
     setMinions(data.minions);
     setMinionsValue(data.minionsValue);
+    setMinionsMax(data.minionsMax);
     setDarkAvengersThreat(data.darkAvengersThreat);
     setDarkAvengersThreatValue(data.darkAvengersThreatValue);
+    setDarkAvengersThreatMax(data.darkAvengersThreatMax);
   }, [
     data.minions,
     data.minionsValue,
+    data.minionsMax,
     data.darkAvengersThreat,
     data.darkAvengersThreatValue,
+    data.darkAvengersThreatMax,
   ]);
 
   return {
     minions,
     minionsValue,
+    minionsMax,
     darkAvengersThreat,
     darkAvengersThreatValue,
+    darkAvengersThreatMax,
     addMinion,
     changeDarkAvengersThreat,
   };

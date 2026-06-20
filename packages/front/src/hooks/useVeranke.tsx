@@ -6,6 +6,7 @@ export const useVeranke = () => {
   const [completed, setCompleted] = useState(false);
   const [exposed, setExposed] = useState(0);
   const [exposedValue, setExposedValue] = useState(0);
+  const [exposedMax, setExposedMax] = useState(0);
 
   const { data, currentTable } = useGameContext();
   const { sendComplete, sendExposed } = useSendData();
@@ -51,12 +52,14 @@ export const useVeranke = () => {
   useEffect(() => {
     setExposed(data.exposed);
     setExposedValue(data.exposedValue);
-  }, [data.exposed, data.exposedValue, setExposed]);
+    setExposedMax(data.exposedMax);
+  }, [data.exposed, data.exposedValue, data.exposedMax, setExposed, setExposedMax]);
 
   return {
     completed,
     exposed,
     exposedValue,
+    exposedMax,
     complete,
     changeExposed,
   };

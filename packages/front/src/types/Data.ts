@@ -52,8 +52,10 @@ export type Data = {
   elcalaMal: ElcalaMalData[];
   minions: number;
   minionsValue: number;
+  minionsMax: number;
   darkAvengersThreat: number;
   darkAvengersThreatValue: number;
+  darkAvengersThreatMax: number;
   ironPatriotLife?: number;
   ironPatriotLifeValue?: number;
   ironPatriotMaxLifeValue?: number;

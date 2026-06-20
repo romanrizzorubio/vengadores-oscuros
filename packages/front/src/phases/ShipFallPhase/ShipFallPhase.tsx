@@ -10,12 +10,12 @@ export type ShipFallPhaseProps = {
 
 export const ShipFallPhase = ({ readOnly }: ShipFallPhaseProps) => {
   const { ship, shipValue, addShipCounter } = useShip();
-  const { completed, complete, exposed, exposedValue, changeExposed } = useVeranke();
+  const { completed, complete, exposed, exposedValue, exposedMax, changeExposed } = useVeranke();
   return (
     <Wrapper>
       <Panel
         type={PanelTypeDict.SHIP_FALL}
-        progress={{ percentage: ship, value: shipValue, label: 'Tiempo' }}
+        progress={{ percentage: ship, value: shipValue, maxValue: 1, label: 'Tiempo' }}
         hasBackground={readOnly}
         buttons={
           readOnly
@@ -40,13 +40,14 @@ export const ShipFallPhase = ({ readOnly }: ShipFallPhaseProps) => {
       {completed && (
         <Panel
           type={PanelTypeDict.EXPOSED}
-          progress={{ percentage: exposed, value: exposedValue, label: 'Amenaza' }}
+          progress={{ percentage: exposed, value: exposedValue, maxValue: exposedMax, label: 'Amenaza' }}
           hasBackground={readOnly}
           controls={
             readOnly
               ? undefined
               : {
                   onChange: changeExposed,
+                  maxValue: exposedMax,
                 }
           }
         />

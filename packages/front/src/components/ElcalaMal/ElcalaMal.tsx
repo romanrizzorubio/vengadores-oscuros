@@ -91,7 +91,7 @@ export const ElcalaMal = ({ readOnly = false, onlyDefeated = false }: ElcalaMalP
                   <Progress
                     percentage={(elcala.life * 100) / elcala.maxLife}
                     value={elcala.life}
-                    label={`${elcala.life}/${elcala.maxLife}`}
+                    maxValue={elcala.maxLife}
                     hasBackground={false}
                     compact
                   />
@@ -158,7 +158,7 @@ export const ElcalaMal = ({ readOnly = false, onlyDefeated = false }: ElcalaMalP
                 <Progress
                   percentage={(elcala.life * 100) / elcala.maxLife}
                   value={elcala.life}
-                  label={`${elcala.life}/${elcala.maxLife}`}
+                  maxValue={elcala.maxLife}
                   hasBackground={false}
                   compact={!isOwnTable}
                 />

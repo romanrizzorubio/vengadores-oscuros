@@ -69,13 +69,31 @@ Este skill describe cómo implementar la gestión de un **Plan** (Scheme) cuya *
     *   Actualizar `DataService` y `Data` en `packages/front/src/types/Data.ts` con los nuevos campos de amenaza.
 
 2.  **Parsers**:
-    *   Actualizar `packages/front/src/utils/parsers.ts` para calcular el total:
+    *   Actualizar `packages/front/src/utils/parsers.ts` para calcular el total y pasar el máximo:
         ```typescript
         const sum[Scheme]Threat = tables.reduce((acc, table) => (table ? acc + table.[scheme]Threat : acc), 0);
         const [scheme]Threat = [scheme]ThreatIni + sum[Scheme]Threat;
+        
+        // En el retorno de parseData:
+        [scheme]Threat: ([scheme]Threat * 100) / [scheme]ThreatMax,
+        [scheme]ThreatValue: [scheme]Threat,
+        [scheme]ThreatMax,
         ```
 
 3.  **Integración**:
     *   Mapear la imagen del plan en `Panel.tsx`.
     *   Añadir el componente `Panel` en la fase correspondiente.
     *   Usar el hook `useSendData` para llamar al endpoint `/[scheme]-threat`.
+    *   Al mostrar la amenaza, pasar el valor máximo al componente `Progress`:
+        ```typescript
+        <Panel
+          type={PanelTypeDict.[SCHEME]}
+          progress={{ 
+            percentage: [scheme]Threat, 
+            value: [scheme]ThreatValue, 
+            maxValue: [scheme]ThreatMax, 
+            label: 'Amenaza' 
+          }}
+          controls={readOnly ? undefined : { onChange: change[Scheme]Threat, maxValue: [scheme]ThreatMax }}
+        />
+        ```

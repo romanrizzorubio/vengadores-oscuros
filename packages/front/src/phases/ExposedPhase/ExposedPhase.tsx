@@ -23,13 +23,23 @@ export const ExposedPhase = ({ readOnly = false }: ExposedPhaseProps) => {
     <Wrapper>
       <Panel
         type={PanelTypeDict.IRON_PATRIOT}
-        progress={{ percentage: ironPatriotLife, value: ironPatriotLifeValue, label: 'Vida' }}
+        progress={{
+          percentage: ironPatriotLife,
+          value: ironPatriotLifeValue,
+          maxValue: ironPatriotMaxLife,
+          label: 'Vida',
+        }}
         controls={readOnly ? undefined : { onChange: changeIronPatriotLife, maxValue: ironPatriotMaxLife }}
         hasBackground={readOnly}
       />
       <Panel
         type={PanelTypeDict.EXPOSED}
-        progress={{ percentage: exposedThreat, value: exposedThreatValue, label: 'Amenaza' }}
+        progress={{
+          percentage: exposedThreat,
+          value: exposedThreatValue,
+          maxValue: exposedThreatMax,
+          label: 'Amenaza',
+        }}
         controls={readOnly ? undefined : { onChange: changeExposedThreat, maxValue: exposedThreatMax }}
         hasBackground={readOnly}
       />

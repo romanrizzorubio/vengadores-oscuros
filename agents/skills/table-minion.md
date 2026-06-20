@@ -84,8 +84,9 @@ Este skill describe cómo implementar la gestión de un **Esbirro** o **Enemigo*
         - **Mesa (TablePage)**: Botón para añadir si no existe, y panel de control si existe.
     *   **Lógica de Visualización**:
         - Si está derrotado, mostrar un estilo visual distinto (ej. texto "Derrotado").
-        - Si es la mesa propia, mostrar controles de vida (`Controls`) y barra de progreso completa.
+        - Si es la mesa propia, mostrar controles de vida (`Controls`) y barra de progreso completa con valor máximo.
         - Si es otra mesa, mostrar solo barra de progreso compacta.
+        - Ejemplo de `Progress`: `progress={{ percentage: item.life, value: item.life, maxValue: item.maxLife, label: 'Vida' }}`
 
 3.  **Integración**:
     *   Añadir el ID en `PanelTypeDict` (`packages/front/src/types/Dicts.ts`).

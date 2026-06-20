@@ -11,8 +11,10 @@ export const KingdomPhase = ({ readOnly = false }: KingdomPhaseProps) => {
   const {
     minions,
     minionsValue,
+    minionsMax,
     darkAvengersThreat,
     darkAvengersThreatValue,
+    darkAvengersThreatMax,
     addMinion,
     changeDarkAvengersThreat,
   } = useKingdom();
@@ -21,7 +23,7 @@ export const KingdomPhase = ({ readOnly = false }: KingdomPhaseProps) => {
     <Wrapper>
       <Panel
         type={PanelTypeDict.DARK_REIGN}
-        progress={{ percentage: minions, value: minionsValue, label: 'Esbirros' }}
+        progress={{ percentage: minions, value: minionsValue, maxValue: minionsMax, label: 'Esbirros' }}
         hasBackground={readOnly}
         buttons={
           readOnly
@@ -35,8 +37,13 @@ export const KingdomPhase = ({ readOnly = false }: KingdomPhaseProps) => {
       />
       <Panel
         type={PanelTypeDict.DARK_AVENGERS}
-        progress={{ percentage: darkAvengersThreat, value: darkAvengersThreatValue, label: 'Amenaza' }}
-        controls={readOnly ? undefined : { onChange: changeDarkAvengersThreat }}
+        progress={{
+          percentage: darkAvengersThreat,
+          value: darkAvengersThreatValue,
+          maxValue: darkAvengersThreatMax,
+          label: 'Amenaza',
+        }}
+        controls={readOnly ? undefined : { onChange: changeDarkAvengersThreat, maxValue: darkAvengersThreatMax }}
         hasBackground={readOnly}
       />
     </Wrapper>

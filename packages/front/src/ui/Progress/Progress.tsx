@@ -5,6 +5,7 @@ import { StatusBarDict } from '../../types/Dicts';
 export type ProgressProps = {
   percentage: number;
   value?: number;
+  maxValue?: number;
   invert?: boolean;
   label?: string;
   hasBackground?: boolean;
@@ -14,6 +15,7 @@ export type ProgressProps = {
 export const Progress = ({
   percentage,
   value,
+  maxValue,
   label,
   invert = false,
   hasBackground = false,
@@ -42,7 +44,7 @@ export const Progress = ({
       <Bar $percentage={percentage} $status={status} />
       <Content $compact={compact}>
         <Value>
-          {value !== undefined ? value : percentage}
+          {value !== undefined ? (maxValue !== undefined ? `${value} / ${maxValue}` : value) : percentage}
           {label && ` (${label})`}
         </Value>
       </Content>
