@@ -12,12 +12,12 @@ export function updateIronPatriotLife(value: number, tableNumber: number): GameD
     const newLife = data.ironPatriotLife + value;
 
     // No puede superar el máximo
-    if (newLife > data.ironPatriotMaxLife) {
-      return;
-    }
+    data.ironPatriotLife = newLife > data.ironPatriotMaxLife ? data.ironPatriotMaxLife : newLife;
 
     // Si baja de 0, lo dejamos en 0
-    data.ironPatriotLife = newLife < 0 ? 0 : newLife;
+    if (data.ironPatriotLife < 0) {
+      data.ironPatriotLife = 0;
+    }
 
     // Si llega a 0, avanzamos a CAPTAIN_WIN
     if (data.ironPatriotLife === 0 && data.phase === PhaseDict.EXPOSED) {

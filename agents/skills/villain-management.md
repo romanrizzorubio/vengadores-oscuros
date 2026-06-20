@@ -29,6 +29,7 @@ Este skill describe cómo implementar la gestión de vida de los Villanos en el 
 
 4.  **Servicio de Actualización**:
     *   Crear `packages/back/src/services/updateVillainLife.ts` para manejar la lógica de límites (0 a maxLife).
+    *   Asegurar que si el incremento supera la vida máxima, se establezca en `villainMaxLife`.
     *   Cuando la vida llega a 0, se suele avanzar de fase en `advanceGame.ts`.
 
 5.  **Rutas API**:
