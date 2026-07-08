@@ -8,15 +8,7 @@ export function advanceGame(): GameData {
   const currentPhase = getGameState().phase;
   console.log("advanceGame called. Current phase:", currentPhase);
   const state = updateGameState((data) => {
-    if (
-      data.phase === PhaseDict.SUPER_WINER ||
-      data.phase === PhaseDict.SUPER_DEFEATED ||
-      data.phase === PhaseDict.SPIDER_WOMAN_LEAVES
-    ) {
-      data.phase = PhaseDict.SHIP_FALL;
-    } else if (data.phase === PhaseDict.SHIP_FALL) {
-      data.phase = PhaseDict.SHIP_OPEN;
-    } else if (data.phase === PhaseDict.SHIP_OPEN) {
+    if (data.phase === PhaseDict.SHIP_FALL) {
       data.phase = PhaseDict.ENEMY;
     } else if (data.phase === PhaseDict.ENEMY) {
       data.phase = PhaseDict.OSBORN_REVEAL;

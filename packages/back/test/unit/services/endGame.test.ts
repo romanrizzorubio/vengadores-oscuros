@@ -20,7 +20,7 @@ describe("endGame service", () => {
 
   it("should change phase to CAPTAIN_LOSE regardless of current phase", () => {
     const state = getGameState();
-    state.phase = PhaseDict.SUPER;
+    state.phase = PhaseDict.SHIP_FALL;
     
     endGame();
     

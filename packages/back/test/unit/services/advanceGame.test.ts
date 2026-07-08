@@ -19,43 +19,7 @@ describe("advanceGame", () => {
     vi.clearAllMocks();
   });
 
-  it("should advance from SUPER_WINER to SHIP_FALL", () => {
-    updateGameState((data) => {
-      data.phase = PhaseDict.SUPER_WINER;
-    });
-
-    const result = advanceGame();
-    expect(result.phase).toBe(PhaseDict.SHIP_FALL);
-  });
-
-  it("should advance from SUPER_DEFEATED to SHIP_FALL", () => {
-    updateGameState((data) => {
-      data.phase = PhaseDict.SUPER_DEFEATED;
-    });
-
-    const result = advanceGame();
-    expect(result.phase).toBe(PhaseDict.SHIP_FALL);
-  });
-
-  it("should advance from SPIDER_WOMAN_LEAVES to SHIP_FALL", () => {
-    updateGameState((data) => {
-      data.phase = PhaseDict.SPIDER_WOMAN_LEAVES;
-    });
-
-    const result = advanceGame();
-    expect(result.phase).toBe(PhaseDict.SHIP_FALL);
-  });
-
-  it("should advance from SHIP_OPEN to ENEMY", () => {
-    updateGameState((data) => {
-      data.phase = PhaseDict.SHIP_OPEN;
-    });
-
-    const result = advanceGame();
-    expect(result.phase).toBe(PhaseDict.ENEMY);
-  });
-
-  it("should not change phase for other phases", () => {
+  it("should not change phase for INIT and TABLES", () => {
     const phases = [
       PhaseDict.INIT,
       PhaseDict.TABLES,
@@ -72,13 +36,13 @@ describe("advanceGame", () => {
     });
   });
 
-  it("should advance from SHIP_FALL to SHIP_OPEN", () => {
+  it("should advance from SHIP_FALL to ENEMY", () => {
     updateGameState((data) => {
       data.phase = PhaseDict.SHIP_FALL;
     });
 
     const result = advanceGame();
-    expect(result.phase).toBe(PhaseDict.SHIP_OPEN);
+    expect(result.phase).toBe(PhaseDict.ENEMY);
   });
 
   it("should advance from ENEMY to OSBORN_REVEAL (multiple tables)", () => {
@@ -125,7 +89,7 @@ describe("advanceGame", () => {
 
   it("should call broadcastGame", () => {
     updateGameState((data) => {
-      data.phase = PhaseDict.SHIP_OPEN;
+      data.phase = PhaseDict.ENEMY;
     });
 
     advanceGame();

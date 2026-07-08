@@ -116,23 +116,13 @@ describe('HomePage Component', () => {
   });
 
   it('should render Timer when phase is not INIT', () => {
-    renderWithProviders(PhaseDict.SUPER);
+    renderWithProviders(PhaseDict.SHIP_FALL);
     expect(screen.getByText('00:00')).toBeInTheDocument();
   });
 
   it('should render WaitingTablesPhase when phase is TABLES', () => {
     renderWithProviders(PhaseDict.TABLES);
     expect(screen.getByText('Iniciar')).toBeInTheDocument();
-  });
-
-  it('should render SuperPhase when phase is SUPER', () => {
-    renderWithProviders(PhaseDict.SUPER);
-    expect(screen.getByText(/Vida/)).toBeInTheDocument();
-  });
-
-  it('should render SuperPhase components when phase is SUPER', () => {
-    renderWithProviders(PhaseDict.SUPER);
-    expect(document.querySelector('section')).toBeInTheDocument();
   });
 
   it('should render ShipFallPhase when phase is SHIP_FALL', () => {
@@ -145,23 +135,23 @@ describe('HomePage Component', () => {
     expect(document.querySelector('section')).toBeInTheDocument();
   });
 
-  it('should render SuperChangePhase when phase is SUPER_DEFEATED', () => {
-    renderWithProviders(PhaseDict.SUPER_DEFEATED);
+  it('should render KingdomDefeatedPhase when phase is KINGDOM_DEFEATED', () => {
+    renderWithProviders(PhaseDict.KINGDOM_DEFEATED);
     expect(document.querySelector('section')).toBeInTheDocument();
   });
 
-  it('should render SuperChangePhase with hasWin when phase is SUPER_WINER', () => {
-    renderWithProviders(PhaseDict.SUPER_WINER);
+  it('should render OsbornPhase with hasWin when phase is VERANKE_WIN', () => {
+    renderWithProviders(PhaseDict.VERANKE_WIN);
     expect(document.querySelector('section')).toBeInTheDocument();
   });
 
-  it('should render SpiderWomanPhase when phase is SPIDER_WOMAN_LEAVES', () => {
-    renderWithProviders(PhaseDict.SPIDER_WOMAN_LEAVES);
+  it('should render ExposedPhase when phase is EXPOSED', () => {
+    renderWithProviders(PhaseDict.EXPOSED);
     expect(screen.getByText(/Spiderwoman/i)).toBeInTheDocument();
   });
 
-  it('should render ShipOpenPhase when phase is SHIP_OPEN', () => {
-    renderWithProviders(PhaseDict.SHIP_OPEN);
+  it('should render EnemyPhase when phase is ENEMY (continued)', () => {
+    renderWithProviders(PhaseDict.ENEMY);
     expect(screen.getByText(/nave/i)).toBeInTheDocument();
   });
 

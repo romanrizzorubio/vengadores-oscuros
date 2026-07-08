@@ -2,9 +2,6 @@ import { Router, Request, Response } from "express";
 import { getData } from "../services/getData";
 import { initGame } from "../services/initGame";
 import { advanceGame } from "../services/advanceGame";
-import { updateSuperLife } from "../services/updateSuperLife";
-import { updateSuperPlan } from "../services/updateSuperPlan";
-import { updateSpiderWoman } from "../services/updateSpiderWoman";
 import { updateShip } from "../services/updateShip";
 import { updateEnemy } from "../services/updateEnemy";
 import { updateExposed } from "../services/updateExposed";
@@ -116,39 +113,6 @@ router.post("/elcala-mal/life", (req: Request<TableNumberBody, ValueBody>, res: 
   const { table, value } = req.body;
   try {
     res.send(updateElcalaMalLife(table, value));
-  } catch (error) {
-    console.error(error);
-    res.status(400).send({ error: "Invalid table number" });
-  }
-});
-
-router.post("/super-life", (req: Request<TableNumberBody, ValueBody>, res: Response) => {
-  const { value, table } = req.body;
-
-  try {
-    res.send(updateSuperLife(value, table));
-  } catch (error) {
-    console.error(error);
-    res.status(400).send({ error: "Invalid table number" });
-  }
-});
-
-router.post("/super-plan", (req: Request<TableNumberBody, ValueBody>, res: Response) => {
-  const { value, table } = req.body;
-
-  try {
-    res.send(updateSuperPlan(value, table));
-  } catch (error) {
-    console.error(error);
-    res.status(400).send({ error: "Invalid table number" });
-  }
-});
-
-router.post("/spider-woman", (req: Request<TableNumberBody, ValueBody>, res: Response) => {
-  const { table, value } = req.body;
-
-  try {
-    res.send(updateSpiderWoman(value, table));
   } catch (error) {
     console.error(error);
     res.status(400).send({ error: "Invalid table number" });

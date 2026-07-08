@@ -31,7 +31,7 @@ describe('useTimer', () => {
     (useGameContext as jest.Mock).mockReturnValue({
       data: {
         end: futureDate,
-        phase: PhaseDict.SUPER,
+        phase: PhaseDict.SHIP_FALL,
       },
     });
 
@@ -49,7 +49,7 @@ describe('useTimer', () => {
     (useGameContext as jest.Mock).mockReturnValue({
       data: {
         end: futureDate,
-        phase: PhaseDict.SUPER,
+        phase: PhaseDict.SHIP_FALL,
       },
     });
 
@@ -98,7 +98,7 @@ describe('useTimer', () => {
     (useGameContext as jest.Mock).mockReturnValue({
       data: {
         end: futureDate,
-        phase: PhaseDict.SUPER,
+        phase: PhaseDict.SHIP_FALL,
       },
     });
 
@@ -113,7 +113,7 @@ describe('useTimer', () => {
     (useGameContext as jest.Mock).mockReturnValue({
       data: {
         end: new Date(),
-        phase: PhaseDict.SUPER,
+        phase: PhaseDict.SHIP_FALL,
       },
     });
 

@@ -14,7 +14,7 @@ const mockSetData = jest.fn();
 
 const mockGameData = {
   tables: [{}, {}, {}],
-  phase: PhaseDict.SUPER,
+  phase: PhaseDict.SHIP_FALL,
   elcalaMal: [],
   superLife: 100,
   superLifeValue: 10,

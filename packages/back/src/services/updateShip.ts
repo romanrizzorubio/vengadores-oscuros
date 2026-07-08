@@ -13,7 +13,7 @@ export function updateShip(tableNumber: number): GameData {
     table.ship++;
 
     if (data.phase === PhaseDict.SHIP_FALL && isOpen(data)) {
-      data.phase = PhaseDict.SHIP_OPEN;
+      data.phase = PhaseDict.ENEMY;
     }
   });
 

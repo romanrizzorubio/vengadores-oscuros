@@ -74,26 +74,15 @@ describe("gameRoutes - Integration Tests", () => {
   });
 
   describe("POST /advance", () => {
-    it("should advance game phase from SHIP_OPEN to ENEMY", async () => {
+    it("should advance game phase from SHIP_FALL to ENEMY", async () => {
       updateGameState((data) => {
-        data.phase = PhaseDict.SHIP_OPEN;
+        data.phase = PhaseDict.SHIP_FALL;
       });
 
       const response = await request(app).post("/advance");
 
       expect(response.status).toBe(200);
       expect(response.body.phase).toBe(PhaseDict.ENEMY);
-    });
-
-    it("should advance game phase from SUPER_WINER to SHIP_FALL", async () => {
-      updateGameState((data) => {
-        data.phase = PhaseDict.SUPER_WINER;
-      });
-
-      const response = await request(app).post("/advance");
-
-      expect(response.status).toBe(200);
-      expect(response.body.phase).toBe(PhaseDict.SHIP_FALL);
     });
   });
 
@@ -118,37 +107,6 @@ describe("gameRoutes - Integration Tests", () => {
   describe("POST /end", () => {
     it("should end game", async () => {
       const response = await request(app).post("/end");
-
-      expect(response.status).toBe(200);
-      expect(response.body).toHaveProperty("phase");
-    });
-  });
-
-  describe("POST /uatu", () => {
-    it("should change Uatu state with next=true", async () => {
-      const response = await request(app)
-        .post("/uatu")
-        .send({ next: true });
-
-      expect(response.status).toBe(200);
-      expect(response.body).toHaveProperty("phase");
-    });
-
-    it("should change Uatu state with next=false", async () => {
-      const response = await request(app)
-        .post("/uatu")
-        .send({ next: false });
-
-      expect(response.status).toBe(200);
-      expect(response.body).toHaveProperty("phase");
-    });
-  });
-
-  describe("POST /aron", () => {
-    it("should change Aron state with next=true", async () => {
-      const response = await request(app)
-        .post("/aron")
-        .send({ next: true });
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty("phase");
@@ -225,88 +183,10 @@ describe("gameRoutes - Integration Tests", () => {
     });
   });
 
-  describe("POST /super-life", () => {
-    it("should update super life for a table", async () => {
-      updateGameState((data) => {
-        data.phase = PhaseDict.SUPER_LIFE;
-        data.tables[0] = {
-          players: [],
-          expert: false,
-          superLife: 0,
-          superPlan: 0,
-          spiderWoman: 0,
-          ship: false,
-          enemy: 0,
-          exposed: 0,
-          complete: false
-        };
-      });
-
-      const response = await request(app)
-        .post("/super-life")
-        .send({ value: 5, table: 0 });
-
-      expect(response.status).toBe(200);
-      expect(response.body.tables[0].superLife).toBe(5);
-    });
-  });
-
-  describe("POST /super-plan", () => {
-    it("should update super plan for a table", async () => {
-      updateGameState((data) => {
-        data.phase = PhaseDict.SUPER_PLAN;
-        data.tables[0] = {
-          players: [],
-          expert: false,
-          superLife: 0,
-          superPlan: 0,
-          spiderWoman: 0,
-          ship: false,
-          enemy: 0,
-          exposed: 0,
-          complete: false
-        };
-      });
-
-      const response = await request(app)
-        .post("/super-plan")
-        .send({ value: 3, table: 0 });
-
-      expect(response.status).toBe(200);
-      expect(response.body.tables[0].superPlan).toBe(3);
-    });
-  });
-
-  describe("POST /spider-woman", () => {
-    it("should update spider woman for a table", async () => {
-      updateGameState((data) => {
-        data.phase = PhaseDict.SPIDER_WOMAN;
-        data.tables[0] = {
-          players: [],
-          expert: false,
-          superLife: 0,
-          superPlan: 0,
-          spiderWoman: 0,
-          ship: false,
-          enemy: 0,
-          exposed: 0,
-          complete: false
-        };
-      });
-
-      const response = await request(app)
-        .post("/spider-woman")
-        .send({ value: 2, table: 0 });
-
-      expect(response.status).toBe(200);
-      expect(response.body.tables[0].spiderWoman).toBe(2);
-    });
-  });
-
   describe("POST /ship", () => {
     it("should update ship status for a table", async () => {
       updateGameState((data) => {
-        data.phase = PhaseDict.SHIP_OPEN;
+        data.phase = PhaseDict.SHIP_FALL;
         data.tables[0] = {
           players: [],
           expert: false,
@@ -408,33 +288,6 @@ describe("gameRoutes - Integration Tests", () => {
   });
 
   describe("Error handling", () => {
-    it("should return 400 for invalid table number in /super-life", async () => {
-      const response = await request(app)
-        .post("/super-life")
-        .send({ value: 5, table: 999 });
-
-      expect(response.status).toBe(400);
-      expect(response.body).toHaveProperty("error");
-    });
-
-    it("should return 400 for invalid table number in /super-plan", async () => {
-      const response = await request(app)
-        .post("/super-plan")
-        .send({ value: 5, table: 999 });
-
-      expect(response.status).toBe(400);
-      expect(response.body).toHaveProperty("error");
-    });
-
-    it("should return 400 for invalid table number in /spider-woman", async () => {
-      const response = await request(app)
-        .post("/spider-woman")
-        .send({ value: 5, table: 999 });
-
-      expect(response.status).toBe(400);
-      expect(response.body).toHaveProperty("error");
-    });
-
     it("should return 400 for invalid table number in /ship", async () => {
       const response = await request(app)
         .post("/ship")

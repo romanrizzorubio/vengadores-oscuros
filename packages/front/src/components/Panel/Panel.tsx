@@ -1,15 +1,5 @@
 import { HTMLAttributes, useMemo } from 'react';
 import { Img, Wrapper, Text, ProgressPanel } from './Panel.styles';
-import imgSuperLife from '../../assets/super-life.jpg';
-import imgSuperPlan from '../../assets/super-plan.jpg';
-import imgSpiderWoman from '../../assets/spiderwoman.jpg';
-import imgSuperLose from '../../assets/super-lose.jpg';
-import imgSuperWin from '../../assets/super-win.jpg';
-import imgVeranke from '../../assets/veranke.jpg';
-import imgShipFall from '../../assets/ship-fall.jpg';
-import imgShipOpen from '../../assets/ship-open.jpg';
-import imgEnemy from '../../assets/enemy.jpg';
-import imgQueen from '../../assets/queen.jpg';
 import imgOsborn from '../../assets/osborn.jpg';
 import imgElcalaMal from '../../assets/elcalamal.png';
 import imgDarkReign from '../../assets/reinado-oscuro.jpg';
@@ -19,7 +9,6 @@ import imgIronPatriot from '../../assets/iron-patriot.jpg';
 import imgDescubiertos from '../../assets/descubiertos.jpg';
 import imgCapitanAmerica from '../../assets/capitan-america.jpg';
 import imgNormanOsborn from '../../assets/norman-osborn.jpg';
-import imgBackground from '../../assets/background.jpg';
 import { PanelType, PanelTypeDict } from '../../types/Dicts';
 import { Progress, ProgressProps } from '../../ui/Progress/Progress';
 import { Controls, ControlsProps } from '../Controls/Controls';
@@ -46,16 +35,6 @@ export const Panel = ({
 }: PanelProps) => {
   const img = useMemo(() => {
     const imgMap = {
-      [PanelTypeDict.SUPER]: imgSuperLife,
-      [PanelTypeDict.SUPER_PLAN]: imgSuperPlan,
-      [PanelTypeDict.SPIDER_WOMAN_LEAVES]: imgSpiderWoman,
-      [PanelTypeDict.SUPER_DEFEATED]: imgSuperLose,
-      [PanelTypeDict.SUPER_WINER]: imgSuperWin,
-      [PanelTypeDict.VERANKE]: imgVeranke,
-      [PanelTypeDict.SHIP_FALL]: imgShipFall,
-      [PanelTypeDict.SHIP_OPEN]: imgShipOpen,
-      [PanelTypeDict.ENEMY]: imgEnemy,
-      [PanelTypeDict.QUEEN]: imgQueen,
       [PanelTypeDict.OSBORN]: imgOsborn,
       [PanelTypeDict.ELCALA_MAL]: imgElcalaMal,
       [PanelTypeDict.DARK_REIGN]: imgDarkReign,

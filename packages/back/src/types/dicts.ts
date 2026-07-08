@@ -1,21 +1,16 @@
 export const PhaseDict = {
   INIT: 0,
   TABLES: 1,
-  SUPER: 2,
-  SUPER_DEFEATED: 3,
-  SUPER_WINER: 4,
-  SPIDER_WOMAN_LEAVES: 5,
-  SHIP_FALL: 6,
-  SHIP_OPEN: 7,
-  ENEMY: 8,
-  OSBORN_REVEAL: 9,
-  VERANKE_LOSE: 10,
-  VERANKE_WIN: 11,
-  KINGDOM: 12,
-  KINGDOM_DEFEATED: 13,
-  EXPOSED: 14,
-  CAPTAIN_LOSE: 15,
-  CAPTAIN_WIN: 16
+  SHIP_FALL: 2,
+  ENEMY: 3,
+  OSBORN_REVEAL: 4,
+  VERANKE_LOSE: 5,
+  VERANKE_WIN: 6,
+  KINGDOM: 7,
+  KINGDOM_DEFEATED: 8,
+  EXPOSED: 9,
+  CAPTAIN_LOSE: 10,
+  CAPTAIN_WIN: 11
 } as const;
 export type Phase = (typeof PhaseDict)[keyof typeof PhaseDict];
 

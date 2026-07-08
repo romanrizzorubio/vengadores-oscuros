@@ -1,17 +1,12 @@
 import { Container, Heading, Wrapper } from './TablePage.styles';
 import { KingdomPhase } from '../../phases/KingdomPhase/KingdomPhase';
 import { PhaseDict } from '../../types/Dicts';
-import { SuperChangePhase } from '../../phases/SuperChangePhase/SuperChangePhase';
-import { ShipFallPhase } from '../../phases/ShipFallPhase/ShipFallPhase';
-import { ShipOpenPhase } from '../../phases/ShipOpenPhase/ShipOpenPhase';
 import { OsbornChangePhase } from '../../phases/OsbornChangePhase/OsbornChangePhase';
 import { OsbornPhase } from '../../phases/OsbornPhase/OsbornPhase';
-import { EnemyPhase } from '../../phases/EnemyPhase/EnemyPhase';
 import { Timer } from '../../components/Timer/Timer';
 import { WaitingPhase } from '../../phases/WaitingPhase/WaitingPhase';
 import { CreateTablePhase } from '../../phases/CreateTablePhase/CreateTablePhase';
 import { useMemo } from 'react';
-import { SpiderWomanPhase } from '../../phases/SpiderWomanPhase/SpiderWomanPhase';
 import { useGameContext } from '../../contexts/GameContext';
 import { SetTable } from '../../components/SetTable/SetTable';
 import { getTableText } from '../../utils/utils';
@@ -48,12 +43,6 @@ const TablePage = () => {
             {phase === PhaseDict.KINGDOM && <KingdomPhase />}
             {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase readOnly />}
             {phase === PhaseDict.EXPOSED && <ExposedPhase />}
-            {phase === PhaseDict.SUPER_DEFEATED && <SuperChangePhase readOnly />}
-            {phase === PhaseDict.SUPER_WINER && <SuperChangePhase readOnly hasWin />}
-            {phase === PhaseDict.SPIDER_WOMAN_LEAVES && <SpiderWomanPhase readOnly />}
-            {phase === PhaseDict.SHIP_FALL && <ShipFallPhase />}
-            {phase === PhaseDict.SHIP_OPEN && <ShipOpenPhase readOnly />}
-            {phase === PhaseDict.ENEMY && <EnemyPhase />}
             {phase === PhaseDict.OSBORN_REVEAL && <OsbornChangePhase readOnly />}
             {phase === PhaseDict.VERANKE_LOSE && <OsbornPhase />}
             {phase === PhaseDict.VERANKE_WIN && <OsbornPhase hasWin />}

@@ -104,7 +104,7 @@ describe('Parsers', () => {
           },
         ],
         end: 1704067200000,
-        phase: PhaseDict.SUPER,
+        phase: PhaseDict.SHIP_FALL,
         superLifeMax: 10,
         superPlanIni: 0,
         superPlanMax: 10,
@@ -116,7 +116,7 @@ describe('Parsers', () => {
 
       const result = parseData(mockServiceData);
 
-      expect(result.phase).toBe(PhaseDict.SUPER);
+      expect(result.phase).toBe(PhaseDict.SHIP_FALL);
       expect(result.tables).toHaveLength(1);
       expect(result.superLife).toBe(100);
       expect(result.ship).toBe(100);
@@ -164,7 +164,7 @@ describe('Parsers', () => {
           },
         ],
         end: 1704067200000,
-        phase: PhaseDict.SUPER,
+        phase: PhaseDict.SHIP_FALL,
         superLifeMax: 10,
         superPlanIni: 5,
         superPlanMax: 20,
@@ -201,7 +201,7 @@ describe('Parsers', () => {
           },
         ],
         end: 1704067200000,
-        phase: PhaseDict.SUPER,
+        phase: PhaseDict.SHIP_FALL,
         superLifeMax: 10,
         superPlanIni: 0,
         superPlanMax: 10,
