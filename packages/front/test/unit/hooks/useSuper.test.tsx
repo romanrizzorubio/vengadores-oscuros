@@ -7,23 +7,21 @@ jest.mock('../../../src/hooks/useSendData');
 jest.mock('../../../src/contexts/GameContext');
 
 describe('useSuper', () => {
-  const mockSendSpiderWoman = jest.fn();
   const mockSendSuperLife = jest.fn();
   const mockSendSuperPlan = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
     (useSendData as jest.Mock).mockReturnValue({
-      sendSpiderWoman: mockSendSpiderWoman,
       sendSuperLife: mockSendSuperLife,
       sendSuperPlan: mockSendSuperPlan,
     });
     (useGameContext as jest.Mock).mockReturnValue({
       data: {
-        spiderWomanTotal: 5,
-        spiderWomanOwn: 2,
         superLife: 3,
+        superLifeValue: 7,
         superPlan: 4,
+        superPlanValue: 8,
       },
     });
   });
@@ -32,10 +30,10 @@ describe('useSuper', () => {
     const { result } = renderHook(() => useSuper());
 
     waitFor(() => {
-      expect(result.current.spiderWomanTotal).toBe(5);
-      expect(result.current.spiderWomanOwn).toBe(2);
       expect(result.current.superLife).toBe(3);
+      expect(result.current.superLifeValue).toBe(7);
       expect(result.current.superPlan).toBe(4);
+      expect(result.current.superPlanValue).toBe(8);
     });
   });
 
@@ -44,71 +42,25 @@ describe('useSuper', () => {
 
     (useGameContext as jest.Mock).mockReturnValue({
       data: {
-        spiderWomanTotal: 10,
-        spiderWomanOwn: 5,
-        superLife: 7,
+        superLife: 10,
+        superLifeValue: 50,
         superPlan: 8,
+        superPlanValue: 16,
       },
     });
 
     rerender();
 
     waitFor(() => {
-      expect(result.current.spiderWomanTotal).toBe(10);
-      expect(result.current.spiderWomanOwn).toBe(5);
-      expect(result.current.superLife).toBe(7);
+      expect(result.current.superLife).toBe(10);
+      expect(result.current.superLifeValue).toBe(50);
       expect(result.current.superPlan).toBe(8);
+      expect(result.current.superPlanValue).toBe(16);
     });
-  });
-
-  it('should change spider woman and return true on success', async () => {
-    mockSendSpiderWoman.mockResolvedValue({ spiderWomanTotal: 8, spiderWomanOwn: 3 });
-
-    const { result } = renderHook(() => useSuper());
-
-    let returnValue;
-    await act(async () => {
-      returnValue = await result.current.changeSpiderWoman(8);
-    });
-
-    expect(mockSendSpiderWoman).toHaveBeenCalledWith(8);
-    expect(result.current.spiderWomanTotal).toBe(8);
-    expect(result.current.spiderWomanOwn).toBe(3);
-    expect(returnValue).toBe(true);
-  });
-
-  it('should change spider woman without spiderWomanOwn', async () => {
-    mockSendSpiderWoman.mockResolvedValue({ spiderWomanTotal: 6 });
-
-    const { result } = renderHook(() => useSuper());
-
-    await act(async () => {
-      await result.current.changeSpiderWoman(6);
-    });
-
-    expect(result.current.spiderWomanTotal).toBe(6);
-  });
-
-  it('should return false and log error on spider woman failure', async () => {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
-    const error = new Error('Test error');
-    mockSendSpiderWoman.mockRejectedValue(error);
-
-    const { result } = renderHook(() => useSuper());
-
-    let returnValue;
-    await act(async () => {
-      returnValue = await result.current.changeSpiderWoman(5);
-    });
-
-    expect(returnValue).toBe(false);
-    expect(consoleErrorSpy).toHaveBeenCalledWith('Error al cargar los datos', error);
-
-    consoleErrorSpy.mockRestore();
   });
 
   it('should change super life and return true on success', async () => {
-    mockSendSuperLife.mockResolvedValue({ superLife: 6 });
+    mockSendSuperLife.mockResolvedValue({ superLife: 6, superLifeValue: 30 });
 
     const { result } = renderHook(() => useSuper());
 
@@ -119,6 +71,7 @@ describe('useSuper', () => {
 
     expect(mockSendSuperLife).toHaveBeenCalledWith(6);
     expect(result.current.superLife).toBe(6);
+    expect(result.current.superLifeValue).toBe(30);
     expect(returnValue).toBe(true);
   });
 
@@ -141,7 +94,7 @@ describe('useSuper', () => {
   });
 
   it('should change super plan and return true on success', async () => {
-    mockSendSuperPlan.mockResolvedValue({ superPlan: 9 });
+    mockSendSuperPlan.mockResolvedValue({ superPlan: 9, superPlanValue: 18 });
 
     const { result } = renderHook(() => useSuper());
 
@@ -152,6 +105,7 @@ describe('useSuper', () => {
 
     expect(mockSendSuperPlan).toHaveBeenCalledWith(9);
     expect(result.current.superPlan).toBe(9);
+    expect(result.current.superPlanValue).toBe(18);
     expect(returnValue).toBe(true);
   });
 

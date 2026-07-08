@@ -144,23 +144,22 @@ describe('loadSocket', () => {
       players: [],
       expert: false,
       saved: false,
-      completeVeranke: false,
-      spiderWoman: 0,
-      superDamage: 0,
-      superThreat: 0,
-      ship: 0,
-      enemy: 0,
+      ironPatriotDamage: 0,
+      darkAvengersThreat: 0,
       exposed: 0,
+      minions: 0,
+      exposedThreat: 0,
     }],
       end: '2024-01-01T00:00:00.000Z',
       phase: 'PLAYING',
-      superLifeMax: 10,
-      superPlanIni: 0,
-      superPlanMax: 10,
-      spiderWomanMax: 10,
-      shipMax: 15,
-      enemyInit: 10,
-      exposedMax: 10,
+      elcalaMal: false,
+      minionsMax: 10,
+      darkAvengersThreatIni: 0,
+      darkAvengersThreatMax: 10,
+      ironPatriotLife: 10,
+      ironPatriotMaxLife: 10,
+      exposedThreatIni: 0,
+      exposedThreatMax: 10,
     };
 
     gameUpdateHandler(mockDataService);
@@ -172,12 +171,7 @@ describe('loadSocket', () => {
     expect(parsedData.phase).toBe('PLAYING');
     expect(parsedData.superLife).toBe(100);
     expect(parsedData.superPlan).toBe(0);
-    expect(parsedData.spiderWomanTotal).toBe(100);
-    expect(parsedData.ship).toBe(100);
-    expect(parsedData.enemy).toBe(100);
     expect(parsedData.exposed).toBe(0);
-    expect(parsedData.uatu).toBe(false);
-    expect(parsedData.aron).toBe(false);
   });
 
   it('should register disconnect event handler', () => {

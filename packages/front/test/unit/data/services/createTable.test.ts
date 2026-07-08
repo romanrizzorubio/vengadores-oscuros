@@ -11,13 +11,13 @@ describe('createTableService', () => {
     ],
     expert: true,
     saved: false,
-    completeVeranke: false,
-    spiderWoman: 0,
-    superDamage: 0,
-    superThreat: 0,
-    ship: 0,
-    enemy: 0,
+    ironPatriotDamage: 0,
     exposed: 0,
+    uatu: false,
+    aron: false,
+    minions: 0,
+    darkAvengersThreat: 0,
+    exposedThreat: 0,
   };
 
   const mockPlayers = [

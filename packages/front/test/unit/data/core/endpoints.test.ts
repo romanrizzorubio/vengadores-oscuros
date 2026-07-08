@@ -7,24 +7,24 @@ describe('Endpoints', () => {
 
   it('should have the correct HTTP endpoints', () => {
     expect(endpoints.advance).toBe('/advance');
-    expect(endpoints.aron).toBe('/aron');
     expect(endpoints.aspects).toBe('/aspects');
-    expect(endpoints.complete).toBe('/complete');
     expect(endpoints.data).toBe('/data');
+    expect(endpoints.elcalaMalAdd).toBe('/elcala-mal/add');
+    expect(endpoints.elcalaMalLife).toBe('/elcala-mal/life');
     expect(endpoints.endTime).toBe('/end');
-    expect(endpoints.enemy).toBe('/enemy');
     expect(endpoints.exposed).toBe('/exposed');
     expect(endpoints.heroes).toBe('/heroes');
     expect(endpoints.init).toBe('/init');
     expect(endpoints.initTable).toBe('/init-table');
-    expect(endpoints.ship).toBe('/ship');
-    expect(endpoints.spiderWoman).toBe('/spider-woman');
     expect(endpoints.startTables).toBe('/start-tables');
     expect(endpoints.superLife).toBe('/super-life');
     expect(endpoints.superPlan).toBe('/super-plan');
+    expect(endpoints.minions).toBe('/minions');
+    expect(endpoints.darkAvengersThreat).toBe('/dark-avengers-threat');
+    expect(endpoints.ironPatriotLife).toBe('/iron-patriot-life');
+    expect(endpoints.exposedThreat).toBe('/exposed-threat');
     expect(endpoints.reset).toBe('/reset');
     expect(endpoints.resetTable).toBe('/reset-table');
-    expect(endpoints.uatu).toBe('/uatu');
   });
 
   it('should be a const object', () => {
@@ -38,24 +38,24 @@ describe('Endpoints', () => {
     const expectedEndpoints = [
       'socket',
       'advance',
-      'aron',
       'aspects',
-      'complete',
       'data',
+      'elcalaMalAdd',
+      'elcalaMalLife',
       'endTime',
-      'enemy',
       'exposed',
       'heroes',
       'init',
       'initTable',
-      'ship',
-      'spiderWoman',
       'startTables',
       'superLife',
       'superPlan',
+      'minions',
+      'darkAvengersThreat',
+      'ironPatriotLife',
+      'exposedThreat',
       'reset',
       'resetTable',
-      'uatu',
     ];
 
     expectedEndpoints.forEach((endpoint) => {

@@ -36,60 +36,47 @@ describe("advanceGame", () => {
     });
   });
 
-  it("should advance from SHIP_FALL to ENEMY", () => {
+  it("should advance from KINGDOM_DEFEATED to EXPOSED", () => {
     updateGameState((data) => {
-      data.phase = PhaseDict.SHIP_FALL;
+      data.phase = PhaseDict.KINGDOM_DEFEATED;
     });
 
     const result = advanceGame();
-    expect(result.phase).toBe(PhaseDict.ENEMY);
+    expect(result.phase).toBe(PhaseDict.EXPOSED);
   });
 
-  it("should advance from ENEMY to OSBORN_REVEAL (multiple tables)", () => {
+  it("should advance from EXPOSED to CAPTAIN_LOSE if plan is completed", () => {
     updateGameState((data) => {
-      data.phase = PhaseDict.ENEMY;
-      data.exposedMax = 24; // 2 players
+      data.phase = PhaseDict.EXPOSED;
+      data.exposedThreatMax = 20;
       data.tables = [
-        { exposed: 12, enemy: 0, players: [] } as any,
-        { exposed: 12, enemy: 0, players: [] } as any
+        { exposed: 12, players: [] } as any,
+        { exposed: 12, players: [] } as any
       ];
     });
 
     const result = advanceGame();
-    expect(result.phase).toBe(PhaseDict.OSBORN_REVEAL);
+    expect(result.phase).toBe(PhaseDict.CAPTAIN_LOSE);
   });
 
-  it("should advance from OSBORN_REVEAL to VERANKE_WIN if completed", () => {
+  it("should advance from EXPOSED to CAPTAIN_WIN if iron patriot is defeated", () => {
     updateGameState((data) => {
-      data.phase = PhaseDict.OSBORN_REVEAL;
-      data.exposedMax = 24;
+      data.phase = PhaseDict.EXPOSED;
+      data.ironPatriotLife = 0;
+      data.exposedThreatMax = 30;
       data.tables = [
-        { exposed: 12, enemy: 0, players: [] } as any,
-        { exposed: 12, enemy: 0, players: [] } as any
+        { exposed: 10, players: [] } as any,
+        { exposed: 10, players: [] } as any
       ];
     });
 
     const result = advanceGame();
-    expect(result.phase).toBe(PhaseDict.VERANKE_WIN);
-  });
-
-  it("should advance from OSBORN_REVEAL to VERANKE_LOSE if not completed", () => {
-    updateGameState((data) => {
-      data.phase = PhaseDict.OSBORN_REVEAL;
-      data.exposedMax = 24;
-      data.tables = [
-        { exposed: 10, enemy: 0, players: [] } as any,
-        { exposed: 10, enemy: 0, players: [] } as any
-      ];
-    });
-
-    const result = advanceGame();
-    expect(result.phase).toBe(PhaseDict.VERANKE_LOSE);
+    expect(result.phase).toBe(PhaseDict.CAPTAIN_WIN);
   });
 
   it("should call broadcastGame", () => {
     updateGameState((data) => {
-      data.phase = PhaseDict.ENEMY;
+      data.phase = PhaseDict.KINGDOM_DEFEATED;
     });
 
     advanceGame();

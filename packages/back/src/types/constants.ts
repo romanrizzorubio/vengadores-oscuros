@@ -1,12 +1,3 @@
-export const SPIDER_WOMAN_MAX = 5;
-export const SUPER_LIFE_MAX = 12;
-export const SUPER_LIFE_EXP_MAX = 15;
-export const SUPER_PLAN_INI = 1;
-export const SUPER_PLAN_MAX = 7;
-export const SHIP_MAX = 1;
-export const ENEMY_INIT = 10;
-export const ENEMY_COMP = 10;
-export const EXPOSED_MAX = 10;
 export const WATCHER_TABLE = 4;
 export const MINIONS_MAX_PER_PLAYER = 1;
 export const DARK_AVENGERS_THREAT_INI_PER_PLAYER = 2;

@@ -63,7 +63,7 @@ describe("gameRoutes - Integration Tests", () => {
     it("should reset game to initial state", async () => {
       // First modify the state
       updateGameState((data) => {
-        data.phase = PhaseDict.ENEMY;
+        data.phase = PhaseDict.EXPOSED;
       });
 
       const response = await request(app).post("/reset");
@@ -74,15 +74,15 @@ describe("gameRoutes - Integration Tests", () => {
   });
 
   describe("POST /advance", () => {
-    it("should advance game phase from SHIP_FALL to ENEMY", async () => {
+    it("should advance game phase from KINGDOM_DEFEATED to EXPOSED", async () => {
       updateGameState((data) => {
-        data.phase = PhaseDict.SHIP_FALL;
+        data.phase = PhaseDict.KINGDOM_DEFEATED;
       });
 
       const response = await request(app).post("/advance");
 
       expect(response.status).toBe(200);
-      expect(response.body.phase).toBe(PhaseDict.ENEMY);
+      expect(response.body.phase).toBe(PhaseDict.EXPOSED);
     });
   });
 
@@ -162,13 +162,12 @@ describe("gameRoutes - Integration Tests", () => {
         data.tables[0] = {
           players: [{ name: "Player 1", hero: "Iron Man" }],
           expert: false,
-          superLife: 10,
-          superPlan: 5,
-          spiderWoman: 3,
-          ship: true,
-          enemy: 2,
+          ironPatriotDamage: 3,
           exposed: 1,
-          complete: false
+          saved: true,
+          minions: 0,
+          darkAvengersThreat: 5,
+          exposedThreat: 0
         };
       });
 
@@ -177,61 +176,7 @@ describe("gameRoutes - Integration Tests", () => {
         .send({ table: 0 });
 
       expect(response.status).toBe(200);
-      expect(response.body.tables[0].superLife).toBe(0);
-      expect(response.body.tables[0].superPlan).toBe(0);
-      expect(response.body.tables[0].ship).toBe(false);
-    });
-  });
-
-  describe("POST /ship", () => {
-    it("should update ship status for a table", async () => {
-      updateGameState((data) => {
-        data.phase = PhaseDict.SHIP_FALL;
-        data.tables[0] = {
-          players: [],
-          expert: false,
-          superLife: 0,
-          superPlan: 0,
-          spiderWoman: 0,
-          ship: false,
-          enemy: 0,
-          exposed: 0,
-          complete: false
-        };
-      });
-
-      const response = await request(app)
-        .post("/ship")
-        .send({ table: 0 });
-
-      expect(response.status).toBe(200);
-      expect(response.body.tables[0].ship).toBe(true);
-    });
-  });
-
-  describe("POST /enemy", () => {
-    it("should update enemy for a table", async () => {
-      updateGameState((data) => {
-        data.phase = PhaseDict.ENEMY;
-        data.tables[0] = {
-          players: [],
-          expert: false,
-          superLife: 0,
-          superPlan: 0,
-          spiderWoman: 0,
-          ship: false,
-          enemy: 0,
-          exposed: 0,
-          complete: false
-        };
-      });
-
-      const response = await request(app)
-        .post("/enemy")
-        .send({ value: 4, table: 0 });
-
-      expect(response.status).toBe(200);
-      expect(response.body.tables[0].enemy).toBe(4);
+      expect(response.body.tables[0].saved).toBe(false);
     });
   });
 
@@ -242,13 +187,12 @@ describe("gameRoutes - Integration Tests", () => {
         data.tables[0] = {
           players: [],
           expert: false,
-          superLife: 0,
-          superPlan: 0,
-          spiderWoman: 0,
-          ship: false,
-          enemy: 0,
+          ironPatriotDamage: 0,
           exposed: 0,
-          complete: false
+          saved: false,
+          minions: 0,
+          darkAvengersThreat: 0,
+          exposedThreat: 0
         };
       });
 
@@ -261,64 +205,11 @@ describe("gameRoutes - Integration Tests", () => {
     });
   });
 
-  describe("POST /complete", () => {
-    it("should complete Veranke for a table", async () => {
-      updateGameState((data) => {
-        data.phase = PhaseDict.VERANKE;
-        data.tables[0] = {
-          players: [],
-          expert: false,
-          superLife: 0,
-          superPlan: 0,
-          spiderWoman: 0,
-          ship: false,
-          enemy: 0,
-          exposed: 0,
-          complete: false
-        };
-      });
-
-      const response = await request(app)
-        .post("/complete")
-        .send({ table: 0 });
-
-      expect(response.status).toBe(200);
-      expect(response.body.tables[0].complete).toBe(true);
-    });
-  });
-
   describe("Error handling", () => {
-    it("should return 400 for invalid table number in /ship", async () => {
-      const response = await request(app)
-        .post("/ship")
-        .send({ table: 999 });
-
-      expect(response.status).toBe(400);
-      expect(response.body).toHaveProperty("error");
-    });
-
-    it("should return 400 for invalid table number in /enemy", async () => {
-      const response = await request(app)
-        .post("/enemy")
-        .send({ value: 5, table: 999 });
-
-      expect(response.status).toBe(400);
-      expect(response.body).toHaveProperty("error");
-    });
-
     it("should return 400 for invalid table number in /exposed", async () => {
       const response = await request(app)
         .post("/exposed")
         .send({ value: 5, table: 999 });
-
-      expect(response.status).toBe(400);
-      expect(response.body).toHaveProperty("error");
-    });
-
-    it("should return 400 for invalid table number in /complete", async () => {
-      const response = await request(app)
-        .post("/complete")
-        .send({ table: 999 });
 
       expect(response.status).toBe(400);
       expect(response.body).toHaveProperty("error");

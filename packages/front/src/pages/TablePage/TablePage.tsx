@@ -1,8 +1,6 @@
 import { Container, Heading, Wrapper } from './TablePage.styles';
 import { KingdomPhase } from '../../phases/KingdomPhase/KingdomPhase';
 import { PhaseDict } from '../../types/Dicts';
-import { OsbornChangePhase } from '../../phases/OsbornChangePhase/OsbornChangePhase';
-import { OsbornPhase } from '../../phases/OsbornPhase/OsbornPhase';
 import { Timer } from '../../components/Timer/Timer';
 import { WaitingPhase } from '../../phases/WaitingPhase/WaitingPhase';
 import { CreateTablePhase } from '../../phases/CreateTablePhase/CreateTablePhase';
@@ -24,7 +22,7 @@ const TablePage = () => {
   const tableText = useMemo(() => getTableText(currentTable), [currentTable]);
 
   const showElcalaMals = useMemo(
-    () => [PhaseDict.KINGDOM, PhaseDict.SHIP_FALL, PhaseDict.ENEMY, PhaseDict.EXPOSED].some((p) => p === phase),
+    () => [PhaseDict.KINGDOM, PhaseDict.KINGDOM_DEFEATED].some((p) => p === phase),
     [phase],
   );
 
@@ -43,9 +41,6 @@ const TablePage = () => {
             {phase === PhaseDict.KINGDOM && <KingdomPhase />}
             {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase readOnly />}
             {phase === PhaseDict.EXPOSED && <ExposedPhase />}
-            {phase === PhaseDict.OSBORN_REVEAL && <OsbornChangePhase readOnly />}
-            {phase === PhaseDict.VERANKE_LOSE && <OsbornPhase />}
-            {phase === PhaseDict.VERANKE_WIN && <OsbornPhase hasWin />}
             {phase === PhaseDict.CAPTAIN_LOSE && <CaptainPhase />}
             {phase === PhaseDict.CAPTAIN_WIN && <CaptainPhase hasWin />}
           </Container>

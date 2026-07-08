@@ -1,8 +1,9 @@
-import { PhaseDict } from "../types/dicts";
 import { updateGameState } from "../store/gameStore";
 import { broadcastGame } from "../sockets/socket";
 import type { GameData } from "../types/GameData";
-import { getThreat, isCompleted } from "../model/veranke";
+
+const getThreat = (data: GameData) =>
+  data.tables.reduce((acc, table) => acc + table.exposed, 0);
 
 export function updateExposed(value: number, tableNumber: number): GameData {
   const state = updateGameState((data) => {
@@ -14,10 +15,6 @@ export function updateExposed(value: number, tableNumber: number): GameData {
     const actualThreat = threat + value < 0 ? -threat : value;
 
     table.exposed += actualThreat;
-
-    if (data.phase === PhaseDict.ENEMY && isCompleted(data)) {
-      data.phase = PhaseDict.OSBORN_REVEAL;
-    }
   });
 
   broadcastGame();

@@ -1,8 +1,6 @@
 import { Container, Wrapper } from './HomePage.styles';
 import { KingdomPhase } from '../../phases/KingdomPhase/KingdomPhase';
 import { PhaseDict } from '../../types/Dicts';
-import { OsbornChangePhase } from '../../phases/OsbornChangePhase/OsbornChangePhase';
-import { OsbornPhase } from '../../phases/OsbornPhase/OsbornPhase';
 import { InitPhase } from '../../phases/InitPhase/InitPhase';
 import { Timer } from '../../components/Timer/Timer';
 import { WaitingTablesPhase } from '../../phases/WaitingTablesPhase/WaitingTablesPhase';
@@ -25,9 +23,7 @@ const HomePage = () => {
     () =>
       [
         PhaseDict.KINGDOM,
-        PhaseDict.SHIP_FALL,
-        PhaseDict.ENEMY,
-        PhaseDict.OSBORN_REVEAL,
+        PhaseDict.KINGDOM_DEFEATED,
       ].some((p) => p === phase),
     [phase],
   );
@@ -42,9 +38,6 @@ const HomePage = () => {
         {phase === PhaseDict.KINGDOM && <KingdomPhase readOnly />}
         {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase />}
         {phase === PhaseDict.EXPOSED && <ExposedPhase readOnly />}
-        {phase === PhaseDict.OSBORN_REVEAL && <OsbornChangePhase />}
-        {phase === PhaseDict.VERANKE_LOSE && <OsbornPhase />}
-        {phase === PhaseDict.VERANKE_WIN && <OsbornPhase hasWin />}
         {phase === PhaseDict.CAPTAIN_LOSE && <CaptainPhase />}
         {phase === PhaseDict.CAPTAIN_WIN && <CaptainPhase hasWin />}
       </Container>

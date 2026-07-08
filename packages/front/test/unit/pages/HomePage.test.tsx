@@ -16,13 +16,12 @@ const mockGameData = {
       players: [],
       saved: true,
       expert: false,
-      completeVeranke: true,
       exposed: 10,
     },
   ],
   enemies: { values: [], total: 0 },
   ship: { values: [], total: 0 },
-  spiderWoman: { values: [], total: 0 },
+  ironPatriotDamage: { values: [], total: 0 },
   aron: { values: [], total: 0 },
   uatu: { values: [], total: 0 },
   superLife: 0,
@@ -31,7 +30,6 @@ const mockGameData = {
   superPlan: 0,
   heroes: { values: [], total: 0 },
   exposed: 0,
-  exposedMax: 0,
 };
 
 jest.mock('../../../src/contexts/GameContext', () => ({
@@ -54,8 +52,8 @@ jest.mock('../../../src/hooks/useTimer', () => ({
 
 jest.mock('../../../src/hooks/useSuper', () => ({
   useSuper: () => ({
-    spiderWomanTotal: 0,
-    spiderWomanOwn: undefined,
+    ironPatriotDamageTotal: 0,
+    ironPatriotDamageOwn: undefined,
     superLife: 0,
     superPlan: 0,
     changeSpiderWoman: jest.fn(),
@@ -64,28 +62,6 @@ jest.mock('../../../src/hooks/useSuper', () => ({
   }),
 }));
 
-jest.mock('../../../src/hooks/useShip', () => ({
-  useShip: () => ({
-    ship: 0,
-    exposed: 0,
-    changeShip: jest.fn(),
-    changeExposed: jest.fn(),
-    completed: false,
-  }),
-}));
-
-jest.mock('../../../src/hooks/useEnemy', () => ({
-  useEnemy: () => ({
-    enemy: 0,
-    exposed: 0,
-    changeEnemy: jest.fn(),
-    changeExposed: jest.fn(),
-  }),
-}));
-
-jest.mock('../../../src/hooks/useVeranke', () => ({
-  useVeranke: () => ({}),
-}));
 
 const renderWithProviders = (phase: Phase) => {
   (useGameContext as jest.Mock).mockReturnValue({
@@ -116,7 +92,7 @@ describe('HomePage Component', () => {
   });
 
   it('should render Timer when phase is not INIT', () => {
-    renderWithProviders(PhaseDict.SHIP_FALL);
+    renderWithProviders(PhaseDict.TABLES);
     expect(screen.getByText('00:00')).toBeInTheDocument();
   });
 
@@ -125,13 +101,8 @@ describe('HomePage Component', () => {
     expect(screen.getByText('Iniciar')).toBeInTheDocument();
   });
 
-  it('should render ShipFallPhase when phase is SHIP_FALL', () => {
-    renderWithProviders(PhaseDict.SHIP_FALL);
-    expect(document.querySelector('section')).toBeInTheDocument();
-  });
-
-  it('should render EnemyPhase when phase is ENEMY', () => {
-    renderWithProviders(PhaseDict.ENEMY);
+  it('should render KingdomPhase when phase is KINGDOM', () => {
+    renderWithProviders(PhaseDict.KINGDOM);
     expect(document.querySelector('section')).toBeInTheDocument();
   });
 
@@ -140,33 +111,18 @@ describe('HomePage Component', () => {
     expect(document.querySelector('section')).toBeInTheDocument();
   });
 
-  it('should render OsbornPhase with hasWin when phase is VERANKE_WIN', () => {
-    renderWithProviders(PhaseDict.VERANKE_WIN);
-    expect(document.querySelector('section')).toBeInTheDocument();
-  });
-
   it('should render ExposedPhase when phase is EXPOSED', () => {
     renderWithProviders(PhaseDict.EXPOSED);
     expect(screen.getByText(/Spiderwoman/i)).toBeInTheDocument();
   });
 
-  it('should render EnemyPhase when phase is ENEMY (continued)', () => {
-    renderWithProviders(PhaseDict.ENEMY);
-    expect(screen.getByText(/nave/i)).toBeInTheDocument();
+  it('should render CaptainPhase when phase is CAPTAIN_LOSE', () => {
+    renderWithProviders(PhaseDict.CAPTAIN_LOSE);
+    expect(document.querySelector('section')).toBeInTheDocument();
   });
 
-  it('should render OsbornPhase when phase is VERANKE_LOSE', () => {
-    renderWithProviders(PhaseDict.VERANKE_LOSE);
-    expect(screen.getByText(/Norman Osborn/i)).toBeInTheDocument();
-  });
-
-  it('should render OsbornPhase with hasWin when phase is VERANKE_WIN', () => {
-    renderWithProviders(PhaseDict.VERANKE_WIN);
-    expect(screen.getByText(/Norman Osborn/i)).toBeInTheDocument();
-  });
-
-  it('should render OsbornChangePhase when phase is OSBORN_REVEAL', () => {
-    renderWithProviders(PhaseDict.OSBORN_REVEAL);
-    expect(screen.getByText(/¡Victoria! Muestra la carta de Norman Osborn/i)).toBeInTheDocument();
+  it('should render CaptainPhase with hasWin when phase is CAPTAIN_WIN', () => {
+    renderWithProviders(PhaseDict.CAPTAIN_WIN);
+    expect(document.querySelector('section')).toBeInTheDocument();
   });
 });

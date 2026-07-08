@@ -21,20 +21,20 @@ describe('theme', () => {
   it('should have background colors', () => {
     expect(theme.colors.background.primary).toBe('#ffffff');
     expect(theme.colors.background.secondary).toBe('#000000');
-    expect(theme.colors.background.tertiary).toBe('#57e851');
+    expect(theme.colors.background.tertiary).toBe('#931425');
   });
 
   it('should have text colors', () => {
     expect(theme.colors.text.primary).toBe('#000000');
     expect(theme.colors.text.secondary).toBe('#ffffff');
-    expect(theme.colors.text.tertiary).toBe('#204c1f');
-    expect(theme.colors.text.quaternary).toBe('#57e851');
+    expect(theme.colors.text.tertiary).toBe('#ffffff');
+    expect(theme.colors.text.quaternary).toBe('#6b0d1a');
   });
 
   it('should have border colors', () => {
     expect(theme.colors.border.primary).toBe('#000000');
     expect(theme.colors.border.secondary).toBe('#ffffff');
-    expect(theme.colors.border.tertiary).toBe('#204c1f');
+    expect(theme.colors.border.tertiary).toBe('#27070c');
   });
 
   it('should have shadows defined', () => {
@@ -44,9 +44,9 @@ describe('theme', () => {
   });
 
   it('should have progress colors', () => {
-    expect(theme.progress.low).toBe('#45a341');
-    expect(theme.progress.medium).toBe('#f59e0b');
-    expect(theme.progress.high).toBe('#e74c3c');
+    expect(theme.progress.low).toBe('#2d6b2a');
+    expect(theme.progress.medium).toBe('#b87400');
+    expect(theme.progress.high).toBe('#b8301f');
   });
 
   it('should have typography sizes', () => {

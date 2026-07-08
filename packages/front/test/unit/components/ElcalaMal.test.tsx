@@ -14,21 +14,16 @@ const mockSetData = jest.fn();
 
 const mockGameData = {
   tables: [{}, {}, {}],
-  phase: PhaseDict.SHIP_FALL,
+  phase: PhaseDict.KINGDOM,
   elcalaMal: [],
   superLife: 100,
   superLifeValue: 10,
   superPlan: 50,
   superPlanValue: 5,
-  spiderWomanTotal: 80,
-  spiderWomanTotalValue: 8,
-  ship: 60,
-  shipValue: 6,
-  enemy: 70,
-  enemyValue: 7,
+  ironPatriotDamageTotal: 80,
+  ironPatriotDamageTotalValue: 8,
   exposed: 40,
   exposedValue: 4,
-  exposedMax: 10,
 };
 
 describe('ElcalaMal', () => {

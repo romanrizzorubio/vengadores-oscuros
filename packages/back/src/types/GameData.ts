@@ -11,13 +11,6 @@ export type ElcalaMalData = {
 export type GameData = {
   tables: TableData[];
   phase: Phase;
-  spiderWomanMax: number;
-  superLifeMax: number;
-  superPlanIni: number;
-  superPlanMax: number;
-  shipMax: number;
-  enemyInit: number;
-  exposedMax: number;
   end: number;
   elcalaMal: ElcalaMalData[];
   minionsMax: number;

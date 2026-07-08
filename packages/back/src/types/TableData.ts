@@ -4,12 +4,7 @@ export type TableData = {
   players: PlayerData[];
   saved: boolean;
   expert: boolean;
-  spiderWoman: number;
-  superDamage: number;
-  superThreat: number;
-  ship: number;
-  completeVeranke: boolean;
-  enemy: number;
+  ironPatriotDamage: number;
   exposed: number;
   minions: number;
   darkAvengersThreat: number;

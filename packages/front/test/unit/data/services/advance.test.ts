@@ -8,13 +8,15 @@ describe('advanceService', () => {
     tables: [],
     end: '2024-01-01T00:00:00.000Z',
     phase: 'PLAYING',
-    superLifeMax: 10,
-    superPlanIni: 0,
-    superPlanMax: 10,
-    spiderWomanMax: 10,
-    shipMax: 15,
-    enemyInit: 10,
-    exposedMax: 10,
+    elcalaMal: [],
+    minionsMax: 10,
+    darkAvengersThreatIni: 0,
+    darkAvengersThreatMax: 10,
+    ironPatriotLife: 10,
+    ironPatriotMaxLife: 10,
+    exposedThreatIni: 0,
+    exposedThreatMax: 10,
+    currentTable: 0
   };
 
   beforeEach(() => {

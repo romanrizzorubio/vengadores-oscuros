@@ -27,14 +27,15 @@ describe("gameStore", () => {
       const newState: GameData = {
         tables: [],
         phase: PhaseDict.TABLES,
-        superLifeMax: 10,
-        superPlanIni: 5,
-        superPlanMax: 15,
-        spiderWomanMax: 8,
-        shipMax: 6,
-        enemyInit: 3,
-        exposedMax: 4,
-        end: Date.now()
+        end: Date.now(),
+        elcalaMal: [],
+        minionsMax: 0,
+        darkAvengersThreatIni: 0,
+        darkAvengersThreatMax: 10,
+        ironPatriotLife: 10,
+        ironPatriotMaxLife: 10,
+        exposedThreatIni: 0,
+        exposedThreatMax: 10
       };
 
       const result = setGameState(newState);
@@ -50,12 +51,12 @@ describe("gameStore", () => {
 
       updateGameState((state) => {
         state.phase = PhaseDict.TABLES;
-        state.superLifeMax = 20;
+        state.ironPatriotMaxLife = 20;
       });
 
       const updatedState = getGameState();
       expect(updatedState.phase).toBe(PhaseDict.TABLES);
-      expect(updatedState.superLifeMax).toBe(20);
+      expect(updatedState.ironPatriotMaxLife).toBe(20);
     });
 
     it("should mutate the state directly", () => {
@@ -73,14 +74,14 @@ describe("gameStore", () => {
       // First modify the state
       updateGameState((state) => {
         state.phase = PhaseDict.TABLES;
-        state.superLifeMax = 100;
+        state.ironPatriotMaxLife = 100;
         state.tables = [{ id: 1 } as any];
       });
 
       // Verify state was modified
       let state = getGameState();
       expect(state.phase).toBe(PhaseDict.TABLES);
-      expect(state.superLifeMax).toBe(100);
+      expect(state.ironPatriotMaxLife).toBe(100);
 
       // Reset
       resetGameState();
@@ -88,7 +89,7 @@ describe("gameStore", () => {
       // Verify state is reset
       state = getGameState();
       expect(state.phase).toBe(PhaseDict.INIT);
-      expect(state.superLifeMax).toBe(0);
+      expect(state.ironPatriotMaxLife).toBe(0);
       expect(state.tables).toEqual([]);
     });
   });

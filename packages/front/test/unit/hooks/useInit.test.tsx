@@ -23,7 +23,7 @@ describe('useInit', () => {
   });
 
   it('should reset data successfully', async () => {
-    const resetData = { phase: 1, enemy: 0 };
+    const resetData = { phase: 1 };
     (resetService as jest.Mock).mockResolvedValue(resetData);
 
     const { result } = renderHook(() => useInit());

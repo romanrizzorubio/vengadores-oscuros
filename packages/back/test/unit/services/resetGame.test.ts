@@ -22,7 +22,7 @@ describe("resetGame", () => {
     // Modify state first
     updateGameState((data) => {
       data.phase = PhaseDict.TABLES;
-      data.superLifeMax = 100;
+      data.ironPatriotMaxLife = 100;
       data.tables = [{ id: 1 } as any];
     });
 
@@ -30,7 +30,7 @@ describe("resetGame", () => {
     const result = resetGame();
 
     expect(result.phase).toBe(PhaseDict.INIT);
-    expect(result.superLifeMax).toBe(0);
+    expect(result.ironPatriotMaxLife).toBe(0);
     expect(result.tables).toEqual([]);
   });
 

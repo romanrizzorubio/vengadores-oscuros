@@ -13,9 +13,7 @@ describe('Game Flow Integration Tests', () => {
     phase: 'INIT',
     superLife: 0,
     superPlan: 0,
-    spiderWomanTotal: 0,
-    ship: 0,
-    enemy: 0,
+    ironPatriotDamageTotal: 0,
     exposed: 0,
   };
 
@@ -33,9 +31,7 @@ describe('Game Flow Integration Tests', () => {
     phase: 'PLAYING',
     superLife: 15,
     superPlan: 10,
-    spiderWomanTotal: 5,
-    ship: 20,
-    enemy: 12,
+    ironPatriotDamageTotal: 5,
     exposed: 3,
   };
 
@@ -83,7 +79,7 @@ describe('Game Flow Integration Tests', () => {
       return (
         <div>
           <div data-testid="phase">{data.phase}</div>
-          <div data-testid="ship">{data.ship}</div>
+          <div data-testid="exposed">{data.exposed}</div>
         </div>
       );
     };
@@ -96,7 +92,7 @@ describe('Game Flow Integration Tests', () => {
 
     await waitFor(() => {
       expect(getByTestId('phase')).toHaveTextContent('PLAYING');
-      expect(getByTestId('ship')).toHaveTextContent('20');
+      expect(getByTestId('exposed')).toHaveTextContent('3');
     });
   });
 

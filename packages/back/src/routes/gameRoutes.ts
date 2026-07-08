@@ -2,15 +2,12 @@ import { Router, Request, Response } from "express";
 import { getData } from "../services/getData";
 import { initGame } from "../services/initGame";
 import { advanceGame } from "../services/advanceGame";
-import { updateShip } from "../services/updateShip";
-import { updateEnemy } from "../services/updateEnemy";
 import { updateExposed } from "../services/updateExposed";
 import { initTable } from "../services/initTable";
 import { resetGame } from "../services/resetGame";
 import { startTables } from "../services/startTables";
 import { getHeroes } from "../services/getHeroes";
 import { PlayerData } from "../types/PlayerData";
-import { completeVeranke } from "../services/completeVeranke";
 import { endGame } from "../services/endGame";
 import { addElcalaMal, updateElcalaMalLife } from "../services/changeElcalaMal";
 import { resetTable } from "../services/resetTable";
@@ -68,7 +65,7 @@ router.post("/init-table", (req: Request<TableBody>, res: Response) => {
     const data = initTable(table, players, expert);
     res.send(data);
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({ error: "Invalid table initialization" });
   }
 });
 
@@ -79,7 +76,7 @@ router.post("/reset-table", (req: Request<TableNumberBody>, res: Response) => {
     const data = resetTable(table);
     res.send(data);
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({ error: "Invalid table number" });
   }
 });
 
@@ -113,39 +110,6 @@ router.post("/elcala-mal/life", (req: Request<TableNumberBody, ValueBody>, res: 
   const { table, value } = req.body;
   try {
     res.send(updateElcalaMalLife(table, value));
-  } catch (error) {
-    console.error(error);
-    res.status(400).send({ error: "Invalid table number" });
-  }
-});
-
-router.post("/ship", (req: Request<TableNumberBody>, res: Response) => {
-  const { table } = req.body;
-
-  try {
-    res.send(updateShip(table));
-  } catch (error) {
-    console.error(error);
-    res.status(400).send({ error: "Invalid table number" });
-  }
-});
-
-router.post("/complete", (req: Request<TableNumberBody>, res: Response) => {
-  const { table } = req.body;
-
-  try {
-    res.send(completeVeranke(table));
-  } catch (error) {
-    console.error(error);
-    res.status(400).send({ error: "Invalid table number" });
-  }
-});
-
-router.post("/enemy", (req: Request<TableNumberBody, ValueBody>, res: Response) => {
-  const { value, table } = req.body;
-
-  try {
-    res.send(updateEnemy(value, table));
   } catch (error) {
     console.error(error);
     res.status(400).send({ error: "Invalid table number" });

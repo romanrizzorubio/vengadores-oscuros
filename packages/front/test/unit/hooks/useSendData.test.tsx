@@ -3,10 +3,6 @@ import { useSendData } from '../../../src/hooks/useSendData';
 import { superLifeService } from '../../../src/data/services/superLife';
 import { superPlanService } from '../../../src/data/services/superPlan';
 import { advanceService } from '../../../src/data/services/advance';
-import { shipService } from '../../../src/data/services/ship';
-import { enemyService } from '../../../src/data/services/enemy';
-import { spiderWomanService } from '../../../src/data/services/spiderWoman';
-import { completeService } from '../../../src/data/services/complete';
 import { exposedService } from '../../../src/data/services/exposed';
 import { endTimeService } from '../../../src/data/services/endTime';
 import { useGameContext } from '../../../src/contexts/GameContext';
@@ -14,10 +10,6 @@ import { useGameContext } from '../../../src/contexts/GameContext';
 jest.mock('../../../src/data/services/superLife');
 jest.mock('../../../src/data/services/superPlan');
 jest.mock('../../../src/data/services/advance');
-jest.mock('../../../src/data/services/ship');
-jest.mock('../../../src/data/services/enemy');
-jest.mock('../../../src/data/services/spiderWoman');
-jest.mock('../../../src/data/services/complete');
 jest.mock('../../../src/data/services/exposed');
 jest.mock('../../../src/data/services/endTime');
 jest.mock('../../../src/contexts/GameContext');
@@ -58,22 +50,7 @@ describe('useSendData', () => {
       returnValue = await result.current.sendAdvance();
     });
 
-    expect(advanceService).toHaveBeenCalledTimes(1);
-    expect(returnValue).toEqual(mockData);
-  });
-
-  it('should send spider woman successfully', async () => {
-    const mockData = { spiderWomanTotal: 5 };
-    (spiderWomanService as jest.Mock).mockResolvedValue(mockData);
-
-    const { result } = renderHook(() => useSendData());
-
-    let returnValue;
-    await act(async () => {
-      returnValue = await result.current.sendSpiderWoman(5);
-    });
-
-    expect(spiderWomanService).toHaveBeenCalledWith(5, mockCurrentTable);
+    expect(advanceService).toHaveBeenCalledWith(mockCurrentTable);
     expect(returnValue).toEqual(mockData);
   });
 
@@ -107,36 +84,6 @@ describe('useSendData', () => {
     expect(returnValue).toEqual(mockData);
   });
 
-  it('should send ship successfully', async () => {
-    const mockData = { ship: 2 };
-    (shipService as jest.Mock).mockResolvedValue(mockData);
-
-    const { result } = renderHook(() => useSendData());
-
-    let returnValue;
-    await act(async () => {
-      returnValue = await result.current.sendShip();
-    });
-
-    expect(shipService).toHaveBeenCalledWith(mockCurrentTable);
-    expect(returnValue).toEqual(mockData);
-  });
-
-  it('should send complete successfully', async () => {
-    const mockData = { completeVeranke: true };
-    (completeService as jest.Mock).mockResolvedValue(mockData);
-
-    const { result } = renderHook(() => useSendData());
-
-    let returnValue;
-    await act(async () => {
-      returnValue = await result.current.sendComplete();
-    });
-
-    expect(completeService).toHaveBeenCalledWith(mockCurrentTable);
-    expect(returnValue).toEqual(mockData);
-  });
-
   it('should send exposed successfully', async () => {
     const mockData = { exposed: 4 };
     (exposedService as jest.Mock).mockResolvedValue(mockData);
@@ -149,21 +96,6 @@ describe('useSendData', () => {
     });
 
     expect(exposedService).toHaveBeenCalledWith(4, mockCurrentTable);
-    expect(returnValue).toEqual(mockData);
-  });
-
-  it('should send enemy successfully', async () => {
-    const mockData = { enemy: 6 };
-    (enemyService as jest.Mock).mockResolvedValue(mockData);
-
-    const { result } = renderHook(() => useSendData());
-
-    let returnValue;
-    await act(async () => {
-      returnValue = await result.current.sendEnemy(6);
-    });
-
-    expect(enemyService).toHaveBeenCalledWith(6, mockCurrentTable);
     expect(returnValue).toEqual(mockData);
   });
 

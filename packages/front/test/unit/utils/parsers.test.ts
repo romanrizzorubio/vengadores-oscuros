@@ -38,13 +38,11 @@ describe('Parsers', () => {
         players: [{ hero: { value: '1', label: 'Hero' } }],
         expert: true,
         saved: false,
-        spiderWoman: 5,
-        superDamage: 2,
-        superThreat: 3,
-        ship: 1,
-        completeVeranke: true,
-        enemy: 4,
+        ironPatriotDamage: 2,
         exposed: 6,
+        minions: 0,
+        darkAvengersThreat: 0,
+        exposedThreat: 0,
       };
 
       const result = parseTable(tableService, 1);
@@ -54,7 +52,6 @@ describe('Parsers', () => {
         players: [{ hero: { value: '1', label: 'Hero' } }],
         expert: true,
         saved: false,
-        completeVeranke: true,
         exposed: 6,
       });
     });
@@ -64,13 +61,11 @@ describe('Parsers', () => {
         players: [],
         expert: false,
         saved: true,
-        spiderWoman: 0,
-        superDamage: 0,
-        superThreat: 0,
-        ship: 0,
-        completeVeranke: false,
-        enemy: 0,
+        ironPatriotDamage: 0,
         exposed: 0,
+        minions: 0,
+        darkAvengersThreat: 0,
+        exposedThreat: 0,
       };
 
       const result = parseTable(tableService, 0);
@@ -80,7 +75,6 @@ describe('Parsers', () => {
         players: [],
         expert: false,
         saved: true,
-        completeVeranke: false,
         exposed: 0,
       });
     });
@@ -94,36 +88,32 @@ describe('Parsers', () => {
             players: [],
             expert: false,
             saved: false,
-            completeVeranke: false,
-            spiderWoman: 0,
-            superDamage: 0,
-            superThreat: 0,
-            ship: 0,
-            enemy: 0,
+            ironPatriotDamage: 0,
             exposed: 0,
+            minions: 0,
+            darkAvengersThreat: 0,
+            exposedThreat: 0,
           },
         ],
         end: 1704067200000,
-        phase: PhaseDict.SHIP_FALL,
-        superLifeMax: 10,
-        superPlanIni: 0,
-        superPlanMax: 10,
-        spiderWomanMax: 10,
-        shipMax: 15,
-        enemyInit: 10,
-        exposedMax: 10,
+        phase: PhaseDict.KINGDOM,
+        elcalaMal: false,
+        minionsMax: 10,
+        darkAvengersThreatIni: 0,
+        darkAvengersThreatMax: 10,
+        ironPatriotLife: 10,
+        ironPatriotMaxLife: 10,
+        exposedThreatIni: 0,
+        exposedThreatMax: 10,
       };
 
       const result = parseData(mockServiceData);
 
-      expect(result.phase).toBe(PhaseDict.SHIP_FALL);
+      expect(result.phase).toBe(PhaseDict.KINGDOM);
       expect(result.tables).toHaveLength(1);
       expect(result.superLife).toBe(100);
-      expect(result.ship).toBe(100);
-      expect(result.spiderWomanTotal).toBe(100);
       expect(result.superPlan).toBe(0);
-      expect(result.enemy).toBe(100);
-      expect(result.exposed).toBe(0);
+      expect(result.exposed).toBe(0); // (sumExposed: 0) / 10 * 100 = 0%
       expect(result.end).toBeInstanceOf(Date);
     });
 
@@ -132,13 +122,14 @@ describe('Parsers', () => {
         tables: [],
         end: 1704067200000,
         phase: PhaseDict.INIT,
-        superLifeMax: 10,
-        superPlanIni: 0,
-        superPlanMax: 10,
-        spiderWomanMax: 10,
-        shipMax: 15,
-        enemyInit: 10,
-        exposedMax: 10,
+        elcalaMal: false,
+        minionsMax: 10,
+        darkAvengersThreatIni: 0,
+        darkAvengersThreatMax: 10,
+        ironPatriotLife: 10,
+        ironPatriotMaxLife: 10,
+        exposedThreatIni: 0,
+        exposedThreatMax: 10,
       };
 
       const result = parseData(mockServiceData);
@@ -154,66 +145,30 @@ describe('Parsers', () => {
             players: [],
             expert: false,
             saved: false,
-            completeVeranke: false,
-            spiderWoman: 2,
-            superDamage: 3,
-            superThreat: 4,
-            ship: 5,
-            enemy: 2,
+            ironPatriotDamage: 3,
             exposed: 3,
+            minions: 0,
+            darkAvengersThreat: 4,
+            exposedThreat: 0,
           },
         ],
         end: 1704067200000,
-        phase: PhaseDict.SHIP_FALL,
-        superLifeMax: 10,
-        superPlanIni: 5,
-        superPlanMax: 20,
-        spiderWomanMax: 10,
-        shipMax: 15,
-        enemyInit: 10,
-        exposedMax: 10,
+        phase: PhaseDict.KINGDOM,
+        elcalaMal: false,
+        minionsMax: 10,
+        darkAvengersThreatIni: 5,
+        darkAvengersThreatMax: 20,
+        ironPatriotLife: 10,
+        ironPatriotMaxLife: 10,
+        exposedThreatIni: 0,
+        exposedThreatMax: 10,
       };
 
       const result = parseData(mockServiceData);
 
       expect(result.superLife).toBe(70);
-      expect(result.superPlan).toBe(45);
-      expect(result.spiderWomanTotal).toBe(80);
-      expect(result.ship).toBeCloseTo(66.67, 1);
-      expect(result.enemy).toBe(80);
-      expect(result.exposed).toBe(30);
-    });
-
-    it('should calculate spiderWomanOwn when currentTable is provided', () => {
-      const mockServiceData = {
-        tables: [
-          {
-            players: [],
-            expert: false,
-            saved: false,
-            completeVeranke: false,
-            spiderWoman: 3,
-            superDamage: 0,
-            superThreat: 0,
-            ship: 0,
-            enemy: 0,
-            exposed: 0,
-          },
-        ],
-        end: 1704067200000,
-        phase: PhaseDict.SHIP_FALL,
-        superLifeMax: 10,
-        superPlanIni: 0,
-        superPlanMax: 10,
-        spiderWomanMax: 10,
-        shipMax: 15,
-        enemyInit: 10,
-        exposedMax: 10,
-      };
-
-      const result = parseData(mockServiceData, 0);
-
-      expect(result.spiderWomanOwn).toBe(70);
+      expect(result.superPlan).toBe(45); // (darkAvengersThreatIni: 5 + sumDarkAvengersThreat: 4) / 20 * 100 = 45%
+      expect(result.exposed).toBe(30); // (sumExposed: 3) / 10 * 100 = 30%
     });
 
     it('should handle multiple tables correctly', () => {
@@ -223,47 +178,41 @@ describe('Parsers', () => {
             players: [],
             expert: false,
             saved: false,
-            completeVeranke: false,
-            spiderWoman: 2,
-            superDamage: 1,
-            superThreat: 2,
-            ship: 3,
-            enemy: 1,
+            ironPatriotDamage: 1,
             exposed: 2,
+            minions: 0,
+            darkAvengersThreat: 2,
+            exposedThreat: 0,
           },
           {
             players: [],
             expert: true,
             saved: true,
-            completeVeranke: true,
-            spiderWoman: 4,
-            superDamage: 2,
-            superThreat: 1,
-            ship: 2,
-            enemy: 3,
+            ironPatriotDamage: 2,
             exposed: 1,
+            minions: 0,
+            darkAvengersThreat: 1,
+            exposedThreat: 0,
           },
         ],
         end: 1704067200000,
-        phase: PhaseDict.ENEMY,
-        superLifeMax: 10,
-        superPlanIni: 5,
-        superPlanMax: 20,
-        spiderWomanMax: 10,
-        shipMax: 15,
-        enemyInit: 10,
-        exposedMax: 10,
+        phase: PhaseDict.EXPOSED,
+        elcalaMal: false,
+        minionsMax: 10,
+        darkAvengersThreatIni: 0,
+        darkAvengersThreatMax: 10,
+        ironPatriotLife: 10,
+        ironPatriotMaxLife: 10,
+        exposedThreatIni: 0,
+        exposedThreatMax: 10,
       };
 
       const result = parseData(mockServiceData);
 
       expect(result.tables).toHaveLength(2);
-      expect(result.superLife).toBe(70);
-      expect(result.superPlan).toBe(40);
-      expect(result.spiderWomanTotal).toBe(40);
-      expect(result.ship).toBeCloseTo(66.67, 1);
-      expect(result.enemy).toBe(60);
-      expect(result.exposed).toBe(30);
+      expect(result.superLife).toBe(70); // (10 - 3) / 10 = 70%
+      expect(result.superPlan).toBe(30); // (darkAvengersThreatIni: 0 + sumDarkAvengersThreat: 3) / 10 * 100 = 30%
+      expect(result.exposed).toBe(30); // (sumExposed: 3) / 10 * 100 = 30%
     });
   });
 });

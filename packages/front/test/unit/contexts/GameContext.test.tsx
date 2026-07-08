@@ -13,9 +13,7 @@ describe('GameContext', () => {
     phase: 'INIT',
     superLife: 0,
     superPlan: 0,
-    spiderWomanTotal: 0,
-    ship: 0,
-    enemy: 0,
+    ironPatriotDamageTotal: 0,
     exposed: 0,
   };
 

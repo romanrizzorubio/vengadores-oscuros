@@ -28,15 +28,8 @@ const initialData: Data = {
   superLifeValue: 0,
   superPlan: 0,
   superPlanValue: 0,
-  spiderWomanTotal: 0,
-  spiderWomanTotalValue: 0,
-  ship: 0,
-  shipValue: 0,
-  enemy: 0,
-  enemyValue: 0,
   exposed: 0,
   exposedValue: 0,
-  exposedMax: 0,
   elcalaMal: [],
   minions: 0,
   minionsValue: 0,
@@ -44,6 +37,12 @@ const initialData: Data = {
   darkAvengersThreat: 0,
   darkAvengersThreatValue: 0,
   darkAvengersThreatMax: 0,
+  ironPatriotLife: 0,
+  ironPatriotLifeValue: 0,
+  ironPatriotMaxLifeValue: 0,
+  exposedThreat: 0,
+  exposedThreatValue: 0,
+  exposedThreatMax: 0,
 };
 
 const GameContext = createContext<GameContextValue | undefined>(undefined);

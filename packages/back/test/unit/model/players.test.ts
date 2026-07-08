@@ -8,14 +8,15 @@ describe("players", () => {
       const data: GameData = {
         tables: [],
         phase: "planning",
-        spiderWomanMax: 10,
-        superLifeMax: 10,
-        superPlanIni: 0,
-        superPlanMax: 10,
-        shipMax: 10,
-        enemyInit: 10,
-        exposedMax: 10,
-        end: 0
+        end: 0,
+        elcalaMal: [],
+        minionsMax: 0,
+        darkAvengersThreatIni: 0,
+        darkAvengersThreatMax: 10,
+        ironPatriotLife: 10,
+        ironPatriotMaxLife: 10,
+        exposedThreatIni: 0,
+        exposedThreatMax: 10
       };
 
       expect(getNumPlayers(data)).toEqual({
@@ -31,36 +32,33 @@ describe("players", () => {
             players: [{}, {}, {}] as any[],
             saved: false,
             expert: false,
-            spiderWoman: 0,
-            superDamage: 0,
-            superThreat: 0,
-            ship: 0,
-            completeVeranke: false,
-            enemy: 0,
-            exposed: 0
+            ironPatriotDamage: 0,
+            exposed: 0,
+            minions: 0,
+            darkAvengersThreat: 0,
+            exposedThreat: 0
           },
           {
             players: [{}, {}] as any[],
             saved: false,
             expert: false,
-            spiderWoman: 0,
-            superDamage: 0,
-            superThreat: 0,
-            ship: 0,
-            completeVeranke: false,
-            enemy: 0,
-            exposed: 0
+            ironPatriotDamage: 0,
+            exposed: 0,
+            minions: 0,
+            darkAvengersThreat: 0,
+            exposedThreat: 0
           }
         ],
         phase: "planning",
-        spiderWomanMax: 10,
-        superLifeMax: 10,
-        superPlanIni: 0,
-        superPlanMax: 10,
-        shipMax: 10,
-        enemyInit: 10,
-        exposedMax: 10,
-        end: 0
+        end: 0,
+        elcalaMal: [],
+        minionsMax: 0,
+        darkAvengersThreatIni: 0,
+        darkAvengersThreatMax: 10,
+        ironPatriotLife: 10,
+        ironPatriotMaxLife: 10,
+        exposedThreatIni: 0,
+        exposedThreatMax: 10
       };
 
       expect(getNumPlayers(data)).toEqual({
@@ -76,36 +74,33 @@ describe("players", () => {
             players: [{}, {}] as any[],
             saved: false,
             expert: true,
-            spiderWoman: 0,
-            superDamage: 0,
-            superThreat: 0,
-            ship: 0,
-            completeVeranke: false,
-            enemy: 0,
-            exposed: 0
+            ironPatriotDamage: 0,
+            exposed: 0,
+            minions: 0,
+            darkAvengersThreat: 0,
+            exposedThreat: 0
           },
           {
             players: [{}, {}, {}] as any[],
             saved: false,
             expert: true,
-            spiderWoman: 0,
-            superDamage: 0,
-            superThreat: 0,
-            ship: 0,
-            completeVeranke: false,
-            enemy: 0,
-            exposed: 0
+            ironPatriotDamage: 0,
+            exposed: 0,
+            minions: 0,
+            darkAvengersThreat: 0,
+            exposedThreat: 0
           }
         ],
         phase: "planning",
-        spiderWomanMax: 10,
-        superLifeMax: 10,
-        superPlanIni: 0,
-        superPlanMax: 10,
-        shipMax: 10,
-        enemyInit: 10,
-        exposedMax: 10,
-        end: 0
+        end: 0,
+        elcalaMal: [],
+        minionsMax: 0,
+        darkAvengersThreatIni: 0,
+        darkAvengersThreatMax: 10,
+        ironPatriotLife: 10,
+        ironPatriotMaxLife: 10,
+        exposedThreatIni: 0,
+        exposedThreatMax: 10
       };
 
       expect(getNumPlayers(data)).toEqual({
@@ -121,48 +116,43 @@ describe("players", () => {
             players: [{}, {}] as any[],
             saved: false,
             expert: false,
-            spiderWoman: 0,
-            superDamage: 0,
-            superThreat: 0,
-            ship: 0,
-            completeVeranke: false,
-            enemy: 0,
-            exposed: 0
+            ironPatriotDamage: 0,
+            exposed: 0,
+            minions: 0,
+            darkAvengersThreat: 0,
+            exposedThreat: 0
           },
           {
             players: [{}, {}, {}] as any[],
             saved: false,
             expert: true,
-            spiderWoman: 0,
-            superDamage: 0,
-            superThreat: 0,
-            ship: 0,
-            completeVeranke: false,
-            enemy: 0,
-            exposed: 0
+            ironPatriotDamage: 0,
+            exposed: 0,
+            minions: 0,
+            darkAvengersThreat: 0,
+            exposedThreat: 0
           },
           {
             players: [{}] as any[],
             saved: false,
             expert: false,
-            spiderWoman: 0,
-            superDamage: 0,
-            superThreat: 0,
-            ship: 0,
-            completeVeranke: false,
-            enemy: 0,
-            exposed: 0
+            ironPatriotDamage: 0,
+            exposed: 0,
+            minions: 0,
+            darkAvengersThreat: 0,
+            exposedThreat: 0
           }
         ],
         phase: "planning",
-        spiderWomanMax: 10,
-        superLifeMax: 10,
-        superPlanIni: 0,
-        superPlanMax: 10,
-        shipMax: 10,
-        enemyInit: 10,
-        exposedMax: 10,
-        end: 0
+        end: 0,
+        elcalaMal: [],
+        minionsMax: 0,
+        darkAvengersThreatIni: 0,
+        darkAvengersThreatMax: 10,
+        ironPatriotLife: 10,
+        ironPatriotMaxLife: 10,
+        exposedThreatIni: 0,
+        exposedThreatMax: 10
       };
 
       expect(getNumPlayers(data)).toEqual({
