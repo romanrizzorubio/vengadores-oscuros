@@ -1,5 +1,5 @@
-import { Phase } from "./dicts";
-import { TableData } from "./TableData";
+import { Phase } from './dicts';
+import { TableData } from './TableData';
 
 export type ElcalaMalData = {
   table: number;

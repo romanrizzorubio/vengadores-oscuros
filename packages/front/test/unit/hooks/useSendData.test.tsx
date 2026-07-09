@@ -99,8 +99,6 @@ describe('useSendData', () => {
     expect(returnValue).toEqual(mockData);
   });
 
-
-
   it('should return false and log error on failure', async () => {
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
     const error = new Error('Service error');
@@ -114,7 +112,10 @@ describe('useSendData', () => {
     });
 
     expect(returnValue).toBe(false);
-    expect(consoleErrorSpy).toHaveBeenCalledWith('Error al cargar los datos', error);
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      'Error al cargar los datos',
+      error,
+    );
 
     consoleErrorSpy.mockRestore();
   });

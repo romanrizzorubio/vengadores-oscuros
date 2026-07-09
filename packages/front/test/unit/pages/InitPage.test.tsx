@@ -25,7 +25,7 @@ const renderWithProviders = () => {
       <BrowserRouter>
         <InitPage />
       </BrowserRouter>
-    </ThemeProvider>
+    </ThemeProvider>,
   );
 };
 

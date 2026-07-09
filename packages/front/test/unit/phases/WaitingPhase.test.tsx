@@ -11,6 +11,8 @@ const renderWithTheme = (component: React.ReactElement) => {
 describe('WaitingPhase', () => {
   it('should render the waiting message', () => {
     renderWithTheme(<WaitingPhase />);
-    expect(screen.getByText('Esperando que se inicie la partida...')).toBeInTheDocument();
+    expect(
+      screen.getByText('Esperando que se inicie la partida...'),
+    ).toBeInTheDocument();
   });
 });

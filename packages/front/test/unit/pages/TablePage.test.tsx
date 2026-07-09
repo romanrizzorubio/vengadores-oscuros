@@ -66,7 +66,6 @@ jest.mock('../../../src/hooks/useSuper', () => ({
   }),
 }));
 
-
 const renderWithProviders = (phase: Phase, currentTable: number = -1) => {
   (useGameContext as jest.Mock).mockReturnValue({
     data: {
@@ -80,7 +79,7 @@ const renderWithProviders = (phase: Phase, currentTable: number = -1) => {
   return render(
     <ThemeProvider theme={theme}>
       <TablePage />
-    </ThemeProvider>
+    </ThemeProvider>,
   );
 };
 
@@ -112,7 +111,9 @@ describe('TablePage Component', () => {
 
   it('should render WaitingPhase when phase is INIT', () => {
     renderWithProviders(PhaseDict.INIT);
-    expect(screen.getByText(/Esperando que se inicie la partida/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Esperando que se inicie la partida/i),
+    ).toBeInTheDocument();
   });
 
   it('should render CreateTablePhase when phase is TABLES', () => {

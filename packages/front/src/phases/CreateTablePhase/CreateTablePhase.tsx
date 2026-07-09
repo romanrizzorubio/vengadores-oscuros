@@ -34,7 +34,12 @@ export const CreateTablePhase = () => {
         </>
       ) : (
         <>
-          <Checkbox label="Experto" checked={expert} size={SizeDict.M} onChange={changeExpert} />
+          <Checkbox
+            label="Experto"
+            checked={expert}
+            size={SizeDict.M}
+            onChange={changeExpert}
+          />
           <Players>
             <CreatePlayer
               name="Jugador 1"
@@ -67,7 +72,11 @@ export const CreateTablePhase = () => {
               />
             )}
           </Players>
-          <Button label="Iniciar" onClick={createTable} disabled={players.length === 0} />
+          <Button
+            label="Iniciar"
+            onClick={createTable}
+            disabled={players.length === 0}
+          />
         </>
       )}
     </Wrapper>

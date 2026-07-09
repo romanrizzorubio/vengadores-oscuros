@@ -1,10 +1,10 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
-import { advanceGame } from "../../../src/services/advanceGame";
-import { resetGameState, updateGameState } from "../../../src/store/gameStore";
-import { PhaseDict } from "../../../src/types/dicts";
-import * as socket from "../../../src/sockets/socket";
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { advanceGame } from '../../../src/services/advanceGame';
+import { resetGameState, updateGameState } from '../../../src/store/gameStore';
+import { PhaseDict } from '../../../src/types/dicts';
+import * as socket from '../../../src/sockets/socket';
 
-vi.mock("../../../src/sockets/socket", async (importOriginal) => {
+vi.mock('../../../src/sockets/socket', async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,
@@ -13,17 +13,14 @@ vi.mock("../../../src/sockets/socket", async (importOriginal) => {
   };
 });
 
-describe("advanceGame", () => {
+describe('advanceGame', () => {
   beforeEach(() => {
     resetGameState();
     vi.clearAllMocks();
   });
 
-  it("should not change phase for INIT and TABLES", () => {
-    const phases = [
-      PhaseDict.INIT,
-      PhaseDict.TABLES,
-    ];
+  it('should not change phase for INIT and TABLES', () => {
+    const phases = [PhaseDict.INIT, PhaseDict.TABLES];
 
     phases.forEach((phase) => {
       resetGameState();
@@ -36,7 +33,7 @@ describe("advanceGame", () => {
     });
   });
 
-  it("should advance from KINGDOM_DEFEATED to EXPOSED", () => {
+  it('should advance from KINGDOM_DEFEATED to EXPOSED', () => {
     updateGameState((data) => {
       data.phase = PhaseDict.KINGDOM_DEFEATED;
     });
@@ -45,13 +42,13 @@ describe("advanceGame", () => {
     expect(result.phase).toBe(PhaseDict.EXPOSED);
   });
 
-  it("should advance from EXPOSED to CAPTAIN_LOSE if plan is completed", () => {
+  it('should advance from EXPOSED to CAPTAIN_LOSE if plan is completed', () => {
     updateGameState((data) => {
       data.phase = PhaseDict.EXPOSED;
       data.exposedThreatMax = 20;
       data.tables = [
         { exposed: 12, players: [] } as any,
-        { exposed: 12, players: [] } as any
+        { exposed: 12, players: [] } as any,
       ];
     });
 
@@ -59,14 +56,14 @@ describe("advanceGame", () => {
     expect(result.phase).toBe(PhaseDict.CAPTAIN_LOSE);
   });
 
-  it("should advance from EXPOSED to CAPTAIN_WIN if iron patriot is defeated", () => {
+  it('should advance from EXPOSED to CAPTAIN_WIN if iron patriot is defeated', () => {
     updateGameState((data) => {
       data.phase = PhaseDict.EXPOSED;
       data.ironPatriotLife = 0;
       data.exposedThreatMax = 30;
       data.tables = [
         { exposed: 10, players: [] } as any,
-        { exposed: 10, players: [] } as any
+        { exposed: 10, players: [] } as any,
       ];
     });
 
@@ -74,7 +71,7 @@ describe("advanceGame", () => {
     expect(result.phase).toBe(PhaseDict.CAPTAIN_WIN);
   });
 
-  it("should call broadcastGame", () => {
+  it('should call broadcastGame', () => {
     updateGameState((data) => {
       data.phase = PhaseDict.KINGDOM_DEFEATED;
     });

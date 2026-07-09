@@ -44,7 +44,11 @@ export const Progress = ({
       <Bar $percentage={percentage} $status={status} />
       <Content $compact={compact}>
         <Value>
-          {value !== undefined ? (maxValue !== undefined ? `${value} / ${maxValue}` : value) : percentage}
+          {value !== undefined
+            ? maxValue !== undefined
+              ? `${value} / ${maxValue}`
+              : value
+            : percentage}
           {label && ` (${label})`}
         </Value>
       </Content>

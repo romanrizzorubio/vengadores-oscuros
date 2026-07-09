@@ -1,4 +1,6 @@
-export const theme = {
+import type { DefaultTheme } from 'styled-components';
+
+export const theme: DefaultTheme = {
   colors: {
     aspects: {
       basic: '#bfbfbf',
@@ -57,5 +59,3 @@ export const theme = {
     },
   },
 };
-
-export type AppTheme = typeof theme;

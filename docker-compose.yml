@@ -5,7 +5,7 @@ services:
       dockerfile: packages/back/Dockerfile
     container_name: vengadores-backend
     ports:
-      - "4000:4000"
+      - '4000:4000'
     environment:
       - NODE_ENV=production
       - PORT=4000
@@ -19,7 +19,7 @@ services:
       dockerfile: packages/front/Dockerfile
     container_name: vengadores-frontend
     ports:
-      - "80:80"
+      - '80:80'
     depends_on:
       - backend
     restart: unless-stopped

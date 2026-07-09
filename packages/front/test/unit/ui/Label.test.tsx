@@ -29,7 +29,9 @@ describe('Label', () => {
   });
 
   it('should render with different sizes', () => {
-    const { rerender } = renderWithTheme(<Label label="Small" size={SizeDict.S} />);
+    const { rerender } = renderWithTheme(
+      <Label label="Small" size={SizeDict.S} />,
+    );
     expect(screen.getByText('Small')).toBeInTheDocument();
 
     rerender(

@@ -1,6 +1,6 @@
-import { updateGameState } from "../store/gameStore";
-import { broadcastGame } from "../sockets/socket";
-import type { GameData } from "../types/GameData";
+import { updateGameState } from '../store/gameStore';
+import { broadcastGame } from '../sockets/socket';
+import type { GameData } from '../types/GameData';
 
 const ELCALA_MAL_LIFE_PER_TABLE = 9;
 

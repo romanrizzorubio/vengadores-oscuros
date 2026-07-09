@@ -2,7 +2,10 @@ import { useCallback } from 'react';
 import { Panel } from '../Panel/Panel';
 import { PanelTypeDict, SizeDict } from '../../types/Dicts';
 import { ElcalaMalData } from '../../types/Data';
-import { addElcalaMalService, updateElcalaMalLifeService } from '../../data/services/elcalaMal';
+import {
+  addElcalaMalService,
+  updateElcalaMalLifeService,
+} from '../../data/services/elcalaMal';
 import { getTableText } from '../../utils/utils';
 import {
   Wrapper,
@@ -26,7 +29,10 @@ export type ElcalaMalProps = {
   onlyDefeated?: boolean;
 };
 
-export const ElcalaMal = ({ readOnly = false, onlyDefeated = false }: ElcalaMalProps) => {
+export const ElcalaMal = ({
+  readOnly = false,
+  onlyDefeated = false,
+}: ElcalaMalProps) => {
   const { data, setData, currentTable } = useGameContext();
 
   const handleAddElcalaMal = useCallback(async () => {
@@ -46,7 +52,10 @@ export const ElcalaMal = ({ readOnly = false, onlyDefeated = false }: ElcalaMalP
     (elcala: ElcalaMalData) => async (delta: number) => {
       try {
         const newLife = elcala.life + delta;
-        const updatedData = await updateElcalaMalLifeService(elcala.table, newLife);
+        const updatedData = await updateElcalaMalLifeService(
+          elcala.table,
+          newLife,
+        );
         if (updatedData) {
           setData(updatedData);
         }
@@ -57,7 +66,9 @@ export const ElcalaMal = ({ readOnly = false, onlyDefeated = false }: ElcalaMalP
     [setData],
   );
 
-  const hasElcalaInCurrentTable = data.elcalaMal.some((e) => e.table === currentTable);
+  const hasElcalaInCurrentTable = data.elcalaMal.some(
+    (e) => e.table === currentTable,
+  );
 
   // HomePage: mostrar todos los Elcala Mal ordenados por mesa en horizontal
   if (readOnly) {
@@ -76,7 +87,9 @@ export const ElcalaMal = ({ readOnly = false, onlyDefeated = false }: ElcalaMalP
             if (elcala.defeated) {
               return (
                 <CompactWrapper key={elcala.table} $fixedWidth $defeated>
-                  <CompactTitle $defeated>{tableText} - Elcala Mal derrotado</CompactTitle>
+                  <CompactTitle $defeated>
+                    {tableText} - Elcala Mal derrotado
+                  </CompactTitle>
                 </CompactWrapper>
               );
             }
@@ -123,7 +136,11 @@ export const ElcalaMal = ({ readOnly = false, onlyDefeated = false }: ElcalaMalP
     if (!onlyDefeated && !hasElcalaInCurrentTable && currentTable >= 0) {
       return (
         <Wrapper>
-          <Button label="Llega Elcala Mal" onClick={handleAddElcalaMal} size={SizeDict.L} />
+          <Button
+            label="Llega Elcala Mal"
+            onClick={handleAddElcalaMal}
+            size={SizeDict.L}
+          />
         </Wrapper>
       );
     }
@@ -133,17 +150,29 @@ export const ElcalaMal = ({ readOnly = false, onlyDefeated = false }: ElcalaMalP
   return (
     <Wrapper>
       {!onlyDefeated && !hasElcalaInCurrentTable && currentTable >= 0 && (
-        <Button label="Llega Elcala Mal" onClick={handleAddElcalaMal} size={SizeDict.L} />
+        <Button
+          label="Llega Elcala Mal"
+          onClick={handleAddElcalaMal}
+          size={SizeDict.L}
+        />
       )}
       <ListWrapper>
         {filteredElcalas.map((elcala) => {
           const isOwnTable = elcala.table === currentTable;
-          const tableText = isOwnTable ? 'Mesa propia' : getTableText(elcala.table);
+          const tableText = isOwnTable
+            ? 'Mesa propia'
+            : getTableText(elcala.table);
 
           if (elcala.defeated) {
             return (
-              <CompactWrapper key={elcala.table} $highlighted={isOwnTable} $defeated>
-                <CompactTitle $defeated>{tableText} - Elcala Mal derrotado</CompactTitle>
+              <CompactWrapper
+                key={elcala.table}
+                $highlighted={isOwnTable}
+                $defeated
+              >
+                <CompactTitle $defeated>
+                  {tableText} - Elcala Mal derrotado
+                </CompactTitle>
               </CompactWrapper>
             );
           }
@@ -164,7 +193,10 @@ export const ElcalaMal = ({ readOnly = false, onlyDefeated = false }: ElcalaMalP
                 />
               </CompactProgressWrapper>
               <CompactControlsWrapper>
-                <Controls maxValue={elcala.maxLife} onChange={handleLifeChange(elcala)} />
+                <Controls
+                  maxValue={elcala.maxLife}
+                  onChange={handleLifeChange(elcala)}
+                />
               </CompactControlsWrapper>
             </CompactWrapper>
           );

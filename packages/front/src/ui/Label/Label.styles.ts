@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
 import { Size, SizeDict } from '../../types/Dicts';
 
 export const Wrapper = styled.div`
@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const StyledLabel = styled.label<{ $size: Size }>`
   color: ${({ theme }) => theme.colors.text.secondary};
   text-align: left;
-  font-size: ${({ $size, theme }) => {
+  font-size: ${({ $size, theme }: { $size: Size; theme: DefaultTheme }) => {
     const sizes: Record<Size, string> = {
       [SizeDict.S]: theme.typography.sizes.M,
       [SizeDict.M]: theme.typography.sizes.L,
@@ -27,7 +27,7 @@ export const StyledInput = styled.input<{ $size: Size }>`
   color: ${({ theme }) => theme.colors.text.primary};
   border: none;
   padding: 0.5rem;
-  font-size: ${({ $size, theme }) => {
+  font-size: ${({ $size, theme }: { $size: Size; theme: DefaultTheme }) => {
     const sizes: Record<Size, string> = {
       [SizeDict.S]: theme.typography.sizes.M,
       [SizeDict.M]: theme.typography.sizes.L,

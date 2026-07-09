@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
 import { Size, SizeDict } from '../../types/Dicts';
 
 export const StyledButton = styled.button<{ $size: Size; disabled: boolean }>`
@@ -16,7 +16,7 @@ export const StyledButton = styled.button<{ $size: Size; disabled: boolean }>`
   border: none;
   cursor: pointer;
   padding: ${({ $size }) => ($size === SizeDict.S ? '0.5rem' : '1rem')};
-  font-size: ${({ $size, theme }) => {
+  font-size: ${({ $size, theme }: { $size: Size; theme: DefaultTheme }) => {
     const sizes: Record<Size, string> = {
       [SizeDict.S]: theme.typography.sizes.M,
       [SizeDict.M]: theme.typography.sizes.L,

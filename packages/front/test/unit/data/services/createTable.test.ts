@@ -21,8 +21,8 @@ describe('createTableService', () => {
   };
 
   const mockPlayers = [
-    { name: 'Player 1', hero: 'Hero 1' },
-    { name: 'Player 2', hero: 'Hero 2' },
+    { hero: { value: 'hero-1', label: 'Hero 1' } },
+    { hero: { value: 'hero-2', label: 'Hero 2' } },
   ];
 
   beforeEach(() => {
@@ -77,6 +77,8 @@ describe('createTableService', () => {
     const error = new Error('Failed to create table');
     (post as jest.Mock).mockRejectedValueOnce(error);
 
-    await expect(createTableService(1, mockPlayers, true)).rejects.toThrow('Failed to create table');
+    await expect(createTableService(1, mockPlayers, true)).rejects.toThrow(
+      'Failed to create table',
+    );
   });
 });

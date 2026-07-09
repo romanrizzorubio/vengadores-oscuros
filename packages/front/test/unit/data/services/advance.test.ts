@@ -16,7 +16,7 @@ describe('advanceService', () => {
     ironPatriotMaxLife: 10,
     exposedThreatIni: 0,
     exposedThreatMax: 10,
-    currentTable: 0
+    currentTable: 0,
   };
 
   beforeEach(() => {

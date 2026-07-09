@@ -39,7 +39,7 @@ describe('Timer Component', () => {
   it('should not render when end is null', () => {
     jest.spyOn(useTimerHook, 'useTimer').mockReturnValue({
       timer: '00:00',
-      end: null,
+      end: undefined,
     });
 
     const { container } = renderWithTheme(<Timer />);
@@ -60,7 +60,7 @@ describe('Timer Component', () => {
     const { rerender } = render(
       <ThemeProvider theme={theme}>
         <Timer />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     jest.spyOn(useTimerHook, 'useTimer').mockReturnValue({
@@ -71,7 +71,7 @@ describe('Timer Component', () => {
     rerender(
       <ThemeProvider theme={theme}>
         <Timer />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     expect(screen.getByText('10:00')).toBeInTheDocument();

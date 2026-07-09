@@ -1,9 +1,19 @@
-import { InputHTMLAttributes, useCallback, useId, useState, useEffect, ChangeEvent } from 'react';
+import {
+  InputHTMLAttributes,
+  useCallback,
+  useId,
+  useState,
+  useEffect,
+  ChangeEvent,
+} from 'react';
 import { Size, SizeDict } from '../../types/Dicts';
 import { StyledInput, Wrapper } from './Checkbox.styles';
 import { Label } from '../Label/Label';
 
-export type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
+export type CheckboxProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'onChange'
+> & {
   label?: string;
   size?: Size;
   onChange?: (value: boolean) => void;
@@ -25,7 +35,7 @@ export const Checkbox = ({
     (e: ChangeEvent<HTMLInputElement>) => {
       setChecked(e.target.checked);
       console.log('checkbox', e.target.checked);
-      onChange && onChange(e.target.checked);
+      onChange?.(e.target.checked);
     },
     [setChecked, onChange],
   );

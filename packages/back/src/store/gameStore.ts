@@ -1,5 +1,5 @@
-import type { GameData } from "../types/GameData";
-import { PhaseDict } from "../types/dicts";
+import type { GameData } from '../types/GameData';
+import { PhaseDict } from '../types/dicts';
 
 const INITIAL: GameData = {
   tables: [],
@@ -12,11 +12,11 @@ const INITIAL: GameData = {
   ironPatriotLife: 0,
   ironPatriotMaxLife: 0,
   exposedThreatIni: 0,
-  exposedThreatMax: 0
+  exposedThreatMax: 0,
 };
 
 let gameState: GameData = {
-  ...INITIAL
+  ...INITIAL,
 };
 
 export function getGameState(): GameData {
@@ -37,7 +37,7 @@ export function resetGameState(): GameData {
   gameState = {
     ...INITIAL,
     tables: [],
-    elcalaMal: []
+    elcalaMal: [],
   };
 
   return gameState;

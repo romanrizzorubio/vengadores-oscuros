@@ -10,7 +10,12 @@ export type CreatePlayerProps = {
   onChangePlayer: (player: Player) => void;
 };
 
-export const CreatePlayer = ({ name, player, heroes, onChangePlayer }: CreatePlayerProps) => {
+export const CreatePlayer = ({
+  name,
+  player,
+  heroes,
+  onChangePlayer,
+}: CreatePlayerProps) => {
   const heroesOptions: SelectOptionProps[] = useMemo(
     () =>
       heroes.map(({ label, value }) => ({
@@ -26,13 +31,20 @@ export const CreatePlayer = ({ name, player, heroes, onChangePlayer }: CreatePla
     (value: string) => {
       onChangePlayer({
         ...player,
-        hero: heroes.find(({ value: heroValue }) => heroValue === value) as Option,
+        hero: heroes.find(
+          ({ value: heroValue }) => heroValue === value,
+        ) as Option,
       });
     },
     [onChangePlayer, player, heroes],
   );
 
   return (
-    <Select label={name} value={hero?.value} options={heroesOptions} onChange={handleChangeHero} />
+    <Select
+      label={name}
+      value={hero?.value}
+      options={heroesOptions}
+      onChange={handleChangeHero}
+    />
   );
 };

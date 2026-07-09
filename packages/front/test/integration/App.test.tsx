@@ -30,7 +30,7 @@ describe('App Integration Tests', () => {
     render(
       <MemoryRouter>
         <AppRouter />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     expect(document.body).toBeInTheDocument();
   });
@@ -39,7 +39,7 @@ describe('App Integration Tests', () => {
     render(
       <MemoryRouter>
         <AppRouter />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     // Wait for initial data load
@@ -53,7 +53,7 @@ describe('App Integration Tests', () => {
     render(
       <MemoryRouter>
         <AppRouter />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     // Verify router is initialized
     expect(window.location.pathname).toBeDefined();

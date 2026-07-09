@@ -5,10 +5,16 @@ import { DataService } from '../../types/Data';
 
 export const addElcalaMalService = async (table: number) => {
   const data: DataService = await post(endpoints.elcalaMalAdd, { table });
-  return parseData(data, table);
+  return parseData(data);
 };
 
-export const updateElcalaMalLifeService = async (table: number, life: number) => {
-  const data: DataService = await post(endpoints.elcalaMalLife, { table, value: life });
-  return parseData(data, table);
+export const updateElcalaMalLifeService = async (
+  table: number,
+  life: number,
+) => {
+  const data: DataService = await post(endpoints.elcalaMalLife, {
+    table,
+    value: life,
+  });
+  return parseData(data);
 };

@@ -20,7 +20,12 @@ export const InitPhase = () => {
 
   return (
     <Wrapper>
-      <Input type="time" label="Hora de finalización" value={timeValue} onChange={changeEnd} />
+      <Input
+        type="time"
+        label="Hora de finalización"
+        value={timeValue}
+        onChange={changeEnd}
+      />
       <Button label="Iniciar" onClick={handleStart} />
     </Wrapper>
   );

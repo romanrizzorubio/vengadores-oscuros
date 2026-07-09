@@ -87,8 +87,6 @@ describe('useTimer', () => {
     });
   });
 
-
-
   it('should format minutes and seconds with leading zeros', () => {
     const futureDate = new Date();
     futureDate.setHours(futureDate.getHours() + 1);
@@ -109,7 +107,7 @@ describe('useTimer', () => {
 
   it('should clear interval on unmount', () => {
     const clearIntervalSpy = jest.spyOn(window, 'clearInterval');
-    
+
     (useGameContext as jest.Mock).mockReturnValue({
       data: {
         end: new Date(),

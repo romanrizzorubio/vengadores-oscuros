@@ -4,7 +4,10 @@ import { ThemeProvider } from 'styled-components';
 import { ElcalaMal } from '../../../src/components/ElcalaMal/ElcalaMal';
 import { theme } from '../../../src/styles/theme';
 import { useGameContext } from '../../../src/contexts/GameContext';
-import { addElcalaMalService, updateElcalaMalLifeService } from '../../../src/data/services/elcalaMal';
+import {
+  addElcalaMalService,
+  updateElcalaMalLifeService,
+} from '../../../src/data/services/elcalaMal';
 import { PhaseDict } from '../../../src/types/Dicts';
 
 jest.mock('../../../src/contexts/GameContext');
@@ -41,7 +44,7 @@ describe('ElcalaMal', () => {
       render(
         <ThemeProvider theme={theme}>
           <ElcalaMal readOnly={false} />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       expect(screen.getByText('Llega Elcala Mal')).toBeInTheDocument();
@@ -57,7 +60,7 @@ describe('ElcalaMal', () => {
       render(
         <ThemeProvider theme={theme}>
           <ElcalaMal readOnly={false} />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       const button = screen.getByText('Llega Elcala Mal');
@@ -73,7 +76,7 @@ describe('ElcalaMal', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
           <ElcalaMal readOnly={true} />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       expect(container.firstChild).toBeNull();
@@ -96,7 +99,7 @@ describe('ElcalaMal', () => {
       render(
         <ThemeProvider theme={theme}>
           <ElcalaMal readOnly={true} />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       expect(screen.getByText('20/27')).toBeInTheDocument();
@@ -107,7 +110,7 @@ describe('ElcalaMal', () => {
       render(
         <ThemeProvider theme={theme}>
           <ElcalaMal readOnly={false} />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       // Controls component renders buttons
@@ -120,12 +123,14 @@ describe('ElcalaMal', () => {
         ...mockGameData,
         elcalaMal: [{ table: 0, life: 19, maxLife: 27, defeated: false }],
       };
-      (updateElcalaMalLifeService as jest.Mock).mockResolvedValue(mockUpdatedData);
+      (updateElcalaMalLifeService as jest.Mock).mockResolvedValue(
+        mockUpdatedData,
+      );
 
       render(
         <ThemeProvider theme={theme}>
           <ElcalaMal readOnly={false} />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       // Simulate clicking a -1 button (would be in Controls component)
@@ -152,17 +157,19 @@ describe('ElcalaMal', () => {
       render(
         <ThemeProvider theme={theme}>
           <ElcalaMal readOnly={true} />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
-      expect(screen.getByText('Mesa 1 - Elcala Mal derrotado')).toBeInTheDocument();
+      expect(
+        screen.getByText('Mesa 1 - Elcala Mal derrotado'),
+      ).toBeInTheDocument();
     });
 
     it('should not render panel or controls when defeated', () => {
       render(
         <ThemeProvider theme={theme}>
           <ElcalaMal readOnly={false} />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       expect(screen.queryByText('0/27')).not.toBeInTheDocument();
@@ -189,24 +196,28 @@ describe('ElcalaMal', () => {
       render(
         <ThemeProvider theme={theme}>
           <ElcalaMal readOnly={true} />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       expect(screen.getByText('Mesa 1')).toBeInTheDocument();
       expect(screen.getByText('Mesa 2')).toBeInTheDocument();
-      expect(screen.getByText('Mesa 3 - Elcala Mal derrotado')).toBeInTheDocument();
+      expect(
+        screen.getByText('Mesa 3 - Elcala Mal derrotado'),
+      ).toBeInTheDocument();
     });
 
     it('should only render current table Elcala Mal when not readonly', () => {
       render(
         <ThemeProvider theme={theme}>
           <ElcalaMal readOnly={false} />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       expect(screen.getByText('Mesa 1')).toBeInTheDocument();
       expect(screen.queryByText('Mesa 2')).not.toBeInTheDocument();
-      expect(screen.queryByText('Mesa 3 - Elcala Mal derrotado')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('Mesa 3 - Elcala Mal derrotado'),
+      ).not.toBeInTheDocument();
     });
   });
 });

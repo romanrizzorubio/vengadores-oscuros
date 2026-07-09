@@ -1,13 +1,18 @@
-import { describe, it, expect } from "vitest";
-import { getDamage, getThreat, isDefeated, isCompleted } from "../../../src/model/darkAvengers";
-import { GameData } from "../../../src/types/GameData";
+import { describe, it, expect } from 'vitest';
+import {
+  getDamage,
+  getThreat,
+  isDefeated,
+  isCompleted,
+} from '../../../src/model/darkAvengers';
+import { GameData } from '../../../src/types/GameData';
 
-describe("darkAvengers", () => {
-  describe("getDamage", () => {
-    it("should return 0 when there are no tables", () => {
+describe('darkAvengers', () => {
+  describe('getDamage', () => {
+    it('should return 0 when there are no tables', () => {
       const data: GameData = {
         tables: [],
-        phase: "planning",
+        phase: 'planning',
         end: 0,
         elcalaMal: [],
         minionsMax: 0,
@@ -16,13 +21,13 @@ describe("darkAvengers", () => {
         ironPatriotLife: 10,
         ironPatriotMaxLife: 10,
         exposedThreatIni: 0,
-        exposedThreatMax: 10
+        exposedThreatMax: 10,
       };
 
       expect(getDamage(data)).toBe(0);
     });
 
-    it("should return the sum of ironPatriotDamage from all tables", () => {
+    it('should return the sum of ironPatriotDamage from all tables', () => {
       const data: GameData = {
         tables: [
           {
@@ -33,7 +38,7 @@ describe("darkAvengers", () => {
             exposed: 0,
             minions: 0,
             darkAvengersThreat: 0,
-            exposedThreat: 0
+            exposedThreat: 0,
           },
           {
             players: [],
@@ -43,7 +48,7 @@ describe("darkAvengers", () => {
             exposed: 0,
             minions: 0,
             darkAvengersThreat: 0,
-            exposedThreat: 0
+            exposedThreat: 0,
           },
           {
             players: [],
@@ -53,10 +58,10 @@ describe("darkAvengers", () => {
             exposed: 0,
             minions: 0,
             darkAvengersThreat: 0,
-            exposedThreat: 0
-          }
+            exposedThreat: 0,
+          },
         ],
-        phase: "planning",
+        phase: 'planning',
         end: 0,
         elcalaMal: [],
         minionsMax: 0,
@@ -65,18 +70,18 @@ describe("darkAvengers", () => {
         ironPatriotLife: 10,
         ironPatriotMaxLife: 10,
         exposedThreatIni: 0,
-        exposedThreatMax: 10
+        exposedThreatMax: 10,
       };
 
       expect(getDamage(data)).toBe(10);
     });
   });
 
-  describe("getThreat", () => {
-    it("should return darkAvengersThreatIni when there are no tables", () => {
+  describe('getThreat', () => {
+    it('should return darkAvengersThreatIni when there are no tables', () => {
       const data: GameData = {
         tables: [],
-        phase: "planning",
+        phase: 'planning',
         end: 0,
         elcalaMal: [],
         minionsMax: 0,
@@ -85,13 +90,13 @@ describe("darkAvengers", () => {
         ironPatriotLife: 10,
         ironPatriotMaxLife: 10,
         exposedThreatIni: 0,
-        exposedThreatMax: 10
+        exposedThreatMax: 10,
       };
 
       expect(getThreat(data)).toBe(5);
     });
 
-    it("should return darkAvengersThreatIni plus sum of darkAvengersThreat from all tables", () => {
+    it('should return darkAvengersThreatIni plus sum of darkAvengersThreat from all tables', () => {
       const data: GameData = {
         tables: [
           {
@@ -102,7 +107,7 @@ describe("darkAvengers", () => {
             exposed: 0,
             minions: 0,
             darkAvengersThreat: 2,
-            exposedThreat: 0
+            exposedThreat: 0,
           },
           {
             players: [],
@@ -112,10 +117,10 @@ describe("darkAvengers", () => {
             exposed: 0,
             minions: 0,
             darkAvengersThreat: 3,
-            exposedThreat: 0
-          }
+            exposedThreat: 0,
+          },
         ],
-        phase: "planning",
+        phase: 'planning',
         end: 0,
         elcalaMal: [],
         minionsMax: 0,
@@ -124,15 +129,15 @@ describe("darkAvengers", () => {
         ironPatriotLife: 10,
         ironPatriotMaxLife: 10,
         exposedThreatIni: 0,
-        exposedThreatMax: 10
+        exposedThreatMax: 10,
       };
 
       expect(getThreat(data)).toBe(10); // 5 + 2 + 3
     });
   });
 
-  describe("isDefeated", () => {
-    it("should return false when damage is less than ironPatriotMaxLife", () => {
+  describe('isDefeated', () => {
+    it('should return false when damage is less than ironPatriotMaxLife', () => {
       const data: GameData = {
         tables: [
           {
@@ -143,10 +148,10 @@ describe("darkAvengers", () => {
             exposed: 0,
             minions: 0,
             darkAvengersThreat: 0,
-            exposedThreat: 0
-          }
+            exposedThreat: 0,
+          },
         ],
-        phase: "planning",
+        phase: 'planning',
         end: 0,
         elcalaMal: [],
         minionsMax: 0,
@@ -155,13 +160,13 @@ describe("darkAvengers", () => {
         ironPatriotLife: 10,
         ironPatriotMaxLife: 10,
         exposedThreatIni: 0,
-        exposedThreatMax: 10
+        exposedThreatMax: 10,
       };
 
       expect(isDefeated(data)).toBe(false);
     });
 
-    it("should return true when damage equals ironPatriotMaxLife", () => {
+    it('should return true when damage equals ironPatriotMaxLife', () => {
       const data: GameData = {
         tables: [
           {
@@ -172,10 +177,10 @@ describe("darkAvengers", () => {
             exposed: 0,
             minions: 0,
             darkAvengersThreat: 0,
-            exposedThreat: 0
-          }
+            exposedThreat: 0,
+          },
         ],
-        phase: "planning",
+        phase: 'planning',
         end: 0,
         elcalaMal: [],
         minionsMax: 0,
@@ -184,13 +189,13 @@ describe("darkAvengers", () => {
         ironPatriotLife: 10,
         ironPatriotMaxLife: 10,
         exposedThreatIni: 0,
-        exposedThreatMax: 10
+        exposedThreatMax: 10,
       };
 
       expect(isDefeated(data)).toBe(true);
     });
 
-    it("should return true when damage exceeds ironPatriotMaxLife", () => {
+    it('should return true when damage exceeds ironPatriotMaxLife', () => {
       const data: GameData = {
         tables: [
           {
@@ -201,10 +206,10 @@ describe("darkAvengers", () => {
             exposed: 0,
             minions: 0,
             darkAvengersThreat: 0,
-            exposedThreat: 0
-          }
+            exposedThreat: 0,
+          },
         ],
-        phase: "planning",
+        phase: 'planning',
         end: 0,
         elcalaMal: [],
         minionsMax: 0,
@@ -213,15 +218,15 @@ describe("darkAvengers", () => {
         ironPatriotLife: 10,
         ironPatriotMaxLife: 10,
         exposedThreatIni: 0,
-        exposedThreatMax: 10
+        exposedThreatMax: 10,
       };
 
       expect(isDefeated(data)).toBe(true);
     });
   });
 
-  describe("isCompleted", () => {
-    it("should return false when threat is less than darkAvengersThreatMax", () => {
+  describe('isCompleted', () => {
+    it('should return false when threat is less than darkAvengersThreatMax', () => {
       const data: GameData = {
         tables: [
           {
@@ -232,10 +237,10 @@ describe("darkAvengers", () => {
             exposed: 0,
             minions: 0,
             darkAvengersThreat: 3,
-            exposedThreat: 0
-          }
+            exposedThreat: 0,
+          },
         ],
-        phase: "planning",
+        phase: 'planning',
         end: 0,
         elcalaMal: [],
         minionsMax: 0,
@@ -244,13 +249,13 @@ describe("darkAvengers", () => {
         ironPatriotLife: 10,
         ironPatriotMaxLife: 10,
         exposedThreatIni: 0,
-        exposedThreatMax: 10
+        exposedThreatMax: 10,
       };
 
       expect(isCompleted(data)).toBe(false); // 2 + 3 = 5 < 10
     });
 
-    it("should return true when threat equals darkAvengersThreatMax", () => {
+    it('should return true when threat equals darkAvengersThreatMax', () => {
       const data: GameData = {
         tables: [
           {
@@ -261,10 +266,10 @@ describe("darkAvengers", () => {
             exposed: 0,
             minions: 0,
             darkAvengersThreat: 8,
-            exposedThreat: 0
-          }
+            exposedThreat: 0,
+          },
         ],
-        phase: "planning",
+        phase: 'planning',
         end: 0,
         elcalaMal: [],
         minionsMax: 0,
@@ -273,13 +278,13 @@ describe("darkAvengers", () => {
         ironPatriotLife: 10,
         ironPatriotMaxLife: 10,
         exposedThreatIni: 0,
-        exposedThreatMax: 10
+        exposedThreatMax: 10,
       };
 
       expect(isCompleted(data)).toBe(true); // 2 + 8 = 10
     });
 
-    it("should return true when threat exceeds darkAvengersThreatMax", () => {
+    it('should return true when threat exceeds darkAvengersThreatMax', () => {
       const data: GameData = {
         tables: [
           {
@@ -290,10 +295,10 @@ describe("darkAvengers", () => {
             exposed: 0,
             minions: 0,
             darkAvengersThreat: 10,
-            exposedThreat: 0
-          }
+            exposedThreat: 0,
+          },
         ],
-        phase: "planning",
+        phase: 'planning',
         end: 0,
         elcalaMal: [],
         minionsMax: 0,
@@ -302,7 +307,7 @@ describe("darkAvengers", () => {
         ironPatriotLife: 10,
         ironPatriotMaxLife: 10,
         exposedThreatIni: 0,
-        exposedThreatMax: 10
+        exposedThreatMax: 10,
       };
 
       expect(isCompleted(data)).toBe(true); // 2 + 10 = 12 > 10

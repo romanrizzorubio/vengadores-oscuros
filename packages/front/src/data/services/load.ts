@@ -6,5 +6,5 @@ import { DataService } from '../../types/Data';
 export const loadService = async (currentTable: number) => {
   const data: DataService = await get(endpoints.data);
 
-  return parseData(data, currentTable);
+  return parseData(data);
 };

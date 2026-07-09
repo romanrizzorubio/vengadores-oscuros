@@ -9,7 +9,10 @@ export type TablePlayersData = {
   hero: string;
 };
 
-export type TablePlayersProps = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
+export type TablePlayersProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'onChange'
+> & {
   currentTable: number;
   expert?: boolean;
   hideName?: boolean;

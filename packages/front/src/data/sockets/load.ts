@@ -35,7 +35,7 @@ export const loadSocket = ({
   });
 
   socket.on(endpoints.socket, (data: DataService) => {
-    handleData(parseData(data, currentTable));
+    handleData(parseData(data));
   });
 
   socket.on('disconnect', (reason) => {

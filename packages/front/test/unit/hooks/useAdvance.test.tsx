@@ -50,7 +50,10 @@ describe('useAdvance', () => {
 
     expect(mockSendAdvance).toHaveBeenCalledTimes(1);
     expect(returnValue).toBe(false);
-    expect(consoleErrorSpy).toHaveBeenCalledWith('Error al cargar los datos', error);
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      'Error al cargar los datos',
+      error,
+    );
 
     consoleErrorSpy.mockRestore();
   });

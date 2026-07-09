@@ -12,9 +12,9 @@ const renderWithTheme = (component: React.ReactElement) => {
 
 describe('TablePlayers Component', () => {
   const mockPlayers: Player[] = [
-    { hero: { label: 'Iron Man', value: 'iron-man' }, life: 20, plan: 0 },
-    { hero: { label: 'Spider-Man', value: 'spider-man' }, life: 18, plan: 2 },
-    { hero: { label: 'Captain America', value: 'captain-america' }, life: 15, plan: 3 },
+    { hero: { label: 'Iron Man', value: 'iron-man' } },
+    { hero: { label: 'Spider-Man', value: 'spider-man' } },
+    { hero: { label: 'Captain America', value: 'captain-america' } },
   ];
 
   it('should render table with player heroes', () => {
@@ -40,17 +40,23 @@ describe('TablePlayers Component', () => {
   });
 
   it('should hide table name when hideName is true', () => {
-    renderWithTheme(<TablePlayers currentTable={0} players={mockPlayers} hideName={true} />);
+    renderWithTheme(
+      <TablePlayers currentTable={0} players={mockPlayers} hideName={true} />,
+    );
     expect(screen.queryByText('Mesa 1')).not.toBeInTheDocument();
   });
 
   it('should show "Normal" subtitle when expert is false', () => {
-    renderWithTheme(<TablePlayers currentTable={0} players={mockPlayers} expert={false} />);
+    renderWithTheme(
+      <TablePlayers currentTable={0} players={mockPlayers} expert={false} />,
+    );
     expect(screen.getByText('Normal')).toBeInTheDocument();
   });
 
   it('should show "Experto" subtitle when expert is true', () => {
-    renderWithTheme(<TablePlayers currentTable={0} players={mockPlayers} expert={true} />);
+    renderWithTheme(
+      <TablePlayers currentTable={0} players={mockPlayers} expert={true} />,
+    );
     expect(screen.getByText('Experto')).toBeInTheDocument();
   });
 
@@ -62,14 +68,14 @@ describe('TablePlayers Component', () => {
 
   it('should render table with custom size', () => {
     renderWithTheme(
-      <TablePlayers currentTable={0} players={mockPlayers} size={SizeDict.S} />
+      <TablePlayers currentTable={0} players={mockPlayers} size={SizeDict.S} />,
     );
     expect(screen.getByText('Iron Man')).toBeInTheDocument();
   });
 
   it('should render correct number of players', () => {
     const { container } = renderWithTheme(
-      <TablePlayers currentTable={0} players={mockPlayers} />
+      <TablePlayers currentTable={0} players={mockPlayers} />,
     );
     const rows = container.querySelectorAll('tbody tr');
     expect(rows).toHaveLength(mockPlayers.length);
@@ -77,18 +83,16 @@ describe('TablePlayers Component', () => {
 
   it('should update when players prop changes', () => {
     const { rerender } = renderWithTheme(
-      <TablePlayers currentTable={0} players={mockPlayers} />
+      <TablePlayers currentTable={0} players={mockPlayers} />,
     );
     expect(screen.getByText('Iron Man')).toBeInTheDocument();
 
-    const newPlayers: Player[] = [
-      { hero: { label: 'Thor', value: 'thor' }, life: 25, plan: 1 },
-    ];
+    const newPlayers: Player[] = [{ hero: { label: 'Thor', value: 'thor' } }];
 
     rerender(
       <ThemeProvider theme={theme}>
         <TablePlayers currentTable={0} players={newPlayers} />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     expect(screen.queryByText('Iron Man')).not.toBeInTheDocument();

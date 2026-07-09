@@ -1,20 +1,20 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach } from 'vitest';
 import {
   getGameState,
   setGameState,
   updateGameState,
-  resetGameState
-} from "../../../src/store/gameStore";
-import { PhaseDict } from "../../../src/types/dicts";
-import type { GameData } from "../../../src/types/GameData";
+  resetGameState,
+} from '../../../src/store/gameStore';
+import { PhaseDict } from '../../../src/types/dicts';
+import type { GameData } from '../../../src/types/GameData';
 
-describe("gameStore", () => {
+describe('gameStore', () => {
   beforeEach(() => {
     resetGameState();
   });
 
-  describe("getGameState", () => {
-    it("should return the current game state", () => {
+  describe('getGameState', () => {
+    it('should return the current game state', () => {
       const state = getGameState();
       expect(state).toBeDefined();
       expect(state.phase).toBe(PhaseDict.INIT);
@@ -22,8 +22,8 @@ describe("gameStore", () => {
     });
   });
 
-  describe("setGameState", () => {
-    it("should set a new game state", () => {
+  describe('setGameState', () => {
+    it('should set a new game state', () => {
       const newState: GameData = {
         tables: [],
         phase: PhaseDict.TABLES,
@@ -35,7 +35,7 @@ describe("gameStore", () => {
         ironPatriotLife: 10,
         ironPatriotMaxLife: 10,
         exposedThreatIni: 0,
-        exposedThreatMax: 10
+        exposedThreatMax: 10,
       };
 
       const result = setGameState(newState);
@@ -44,8 +44,8 @@ describe("gameStore", () => {
     });
   });
 
-  describe("updateGameState", () => {
-    it("should update the game state using an updater function", () => {
+  describe('updateGameState', () => {
+    it('should update the game state using an updater function', () => {
       const initialState = getGameState();
       expect(initialState.phase).toBe(PhaseDict.INIT);
 
@@ -59,7 +59,7 @@ describe("gameStore", () => {
       expect(updatedState.ironPatriotMaxLife).toBe(20);
     });
 
-    it("should mutate the state directly", () => {
+    it('should mutate the state directly', () => {
       updateGameState((state) => {
         state.tables = [{ id: 1 } as any];
       });
@@ -69,8 +69,8 @@ describe("gameStore", () => {
     });
   });
 
-  describe("resetGameState", () => {
-    it("should reset the game state to initial values", () => {
+  describe('resetGameState', () => {
+    it('should reset the game state to initial values', () => {
       // First modify the state
       updateGameState((state) => {
         state.phase = PhaseDict.TABLES;

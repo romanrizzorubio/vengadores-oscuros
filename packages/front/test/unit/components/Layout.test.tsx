@@ -18,7 +18,7 @@ describe('Layout Component', () => {
             <Route path="/" element={<Layout />} />
           </Routes>
         </BrowserRouter>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
     expect(document.querySelector('main')).toBeInTheDocument();
   });
@@ -35,7 +35,7 @@ describe('Layout Component', () => {
             </Route>
           </Routes>
         </BrowserRouter>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     expect(screen.getByText('Test Child Content')).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe('Layout Component', () => {
             <Route path="/" element={<Layout />} />
           </Routes>
         </BrowserRouter>
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     const container = document.querySelector('div');

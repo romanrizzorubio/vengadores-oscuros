@@ -19,8 +19,6 @@ describe('CreatePlayer Component', () => {
 
   const mockPlayer: Player = {
     hero: mockHeroes[0],
-    life: 20,
-    plan: 0,
   };
 
   const mockOnChangePlayer = jest.fn();
@@ -36,7 +34,7 @@ describe('CreatePlayer Component', () => {
         player={mockPlayer}
         heroes={mockHeroes}
         onChangePlayer={mockOnChangePlayer}
-      />
+      />,
     );
     expect(screen.getByText('Jugador 1')).toBeInTheDocument();
   });
@@ -48,7 +46,7 @@ describe('CreatePlayer Component', () => {
         player={mockPlayer}
         heroes={mockHeroes}
         onChangePlayer={mockOnChangePlayer}
-      />
+      />,
     );
     const select = screen.getByRole('combobox');
     expect(select).toHaveValue('iron-man');
@@ -61,7 +59,7 @@ describe('CreatePlayer Component', () => {
         player={mockPlayer}
         heroes={mockHeroes}
         onChangePlayer={mockOnChangePlayer}
-      />
+      />,
     );
 
     const select = screen.getByRole('combobox');
@@ -80,16 +78,22 @@ describe('CreatePlayer Component', () => {
         player={mockPlayer}
         heroes={mockHeroes}
         onChangePlayer={mockOnChangePlayer}
-      />
+      />,
     );
 
     const options = screen.getAllByRole('option');
     expect(options).toHaveLength(mockHeroes.length + 1); // +1 for empty option
 
     // Check options by their labels
-    const ironManOption = options.find(opt => opt.getAttribute('label') === 'Iron Man');
-    const spiderManOption = options.find(opt => opt.getAttribute('label') === 'Spider-Man');
-    const captainAmericaOption = options.find(opt => opt.getAttribute('label') === 'Captain America');
+    const ironManOption = options.find(
+      (opt) => opt.getAttribute('label') === 'Iron Man',
+    );
+    const spiderManOption = options.find(
+      (opt) => opt.getAttribute('label') === 'Spider-Man',
+    );
+    const captainAmericaOption = options.find(
+      (opt) => opt.getAttribute('label') === 'Captain America',
+    );
 
     expect(ironManOption).toBeInTheDocument();
     expect(spiderManOption).toBeInTheDocument();
@@ -103,7 +107,7 @@ describe('CreatePlayer Component', () => {
         player={mockPlayer}
         heroes={mockHeroes}
         onChangePlayer={mockOnChangePlayer}
-      />
+      />,
     );
 
     let select = screen.getByRole('combobox');
@@ -118,7 +122,7 @@ describe('CreatePlayer Component', () => {
         player={newPlayer}
         heroes={mockHeroes}
         onChangePlayer={mockOnChangePlayer}
-      />
+      />,
     );
 
     select = screen.getByRole('combobox');

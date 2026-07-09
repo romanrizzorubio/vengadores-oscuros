@@ -4,7 +4,7 @@ Monorepo para el proyecto Vengadores Oscuros, conteniendo backend y frontend.
 
 ## Estructura del proyecto
 
-```
+````
 vengadores-oscuros/
 ├── packages/
 │   ├── back/          # Backend (Express + Socket.IO)
@@ -29,7 +29,7 @@ Desde la raíz del proyecto:
 
 ```bash
 npm install
-```
+````
 
 Esto instalará todas las dependencias de todos los packages del monorepo.
 
@@ -149,6 +149,7 @@ npm run docker:down
 ```
 
 **Puertos en producción:**
+
 - Frontend: `http://localhost:80`
 - Backend: `http://localhost:4000`
 
@@ -163,6 +164,7 @@ docker-compose -f docker-compose.dev.yml down
 ```
 
 **Puertos en desarrollo:**
+
 - Frontend: `http://localhost:3000`
 - Backend: `http://localhost:4000`
 
@@ -181,6 +183,7 @@ El monorepo comparte configuraciones comunes en la raíz:
 Backend construido con Express y Socket.IO.
 
 **Tecnologías:**
+
 - Express 5
 - Socket.IO
 - TypeScript
@@ -189,6 +192,7 @@ Backend construido con Express y Socket.IO.
 - Supertest (API testing)
 
 **Comandos específicos** (desde `packages/back/`):
+
 ```bash
 npm run dev              # Desarrollo con hot-reload
 npm run build            # Compilar TypeScript
@@ -202,6 +206,7 @@ npm run test:coverage    # Tests con cobertura
 ```
 
 **Estructura de tests:**
+
 - `test/unit/` - Tests unitarios organizados por carpetas (model, services, sockets, store)
 - `test/integration/` - Tests de integración de rutas y API
 
@@ -210,6 +215,7 @@ npm run test:coverage    # Tests con cobertura
 Frontend construido con React.
 
 **Tecnologías:**
+
 - React 18
 - React Router DOM
 - Socket.IO Client
@@ -217,6 +223,7 @@ Frontend construido con React.
 - Jest + Testing Library
 
 **Comandos específicos** (desde `packages/front/`):
+
 ```bash
 npm run start            # Desarrollo (puerto 3000)
 npm run build            # Build para producción
@@ -228,6 +235,7 @@ npm run test:coverage    # Tests con cobertura
 ```
 
 **Estructura de tests:**
+
 - `test/unit/` - Tests unitarios de componentes, hooks y utilidades
 - `test/integration/` - Tests de integración de flujos de usuario
 
@@ -236,20 +244,24 @@ npm run test:coverage    # Tests con cobertura
 Tests end-to-end que verifican el funcionamiento completo de la aplicación, probando la integración real entre frontend y backend.
 
 **Tecnologías:**
+
 - Playwright - Framework de testing E2E
 
 **Tests incluidos:**
+
 - `game-initialization.spec.ts` - Inicialización del juego, API backend, obtención de datos y reset
 - `websocket-connection.spec.ts` - Conexiones WebSocket, actualizaciones en tiempo real y reconexión
 - `game-flow.spec.ts` - Flujo completo del juego, operaciones de tabla, avance de fases y finalización
 
 **Características:**
+
 - Levanta automáticamente backend (puerto 4000) y frontend (puerto 3000)
 - Ejecuta tests contra ambos servicios simultáneamente
 - Verifica integración completa de WebSockets
 - Prueba flujos de usuario reales
 
 **Comandos** (desde raíz):
+
 ```bash
 npm run test:e2e        # Ejecutar tests E2E (graba video solo en fallos)
 npm run test:e2e:video  # Ejecutar tests E2E grabando video de todas las ejecuciones
@@ -269,6 +281,7 @@ El proyecto incluye un sistema de prompts en la carpeta `prompts/` para facilita
 3. **Generar el test:** Proporciona el archivo markdown completado a Claude Code para que genere automáticamente el test de Playwright correspondiente
 
 El formato de prompt está diseñado para tests multi-pestaña, permitiendo especificar:
+
 - Precondiciones y configuración inicial
 - Acciones simultáneas o secuenciales en diferentes pestañas
 - Sincronización entre pestañas mediante WebSockets
@@ -287,6 +300,7 @@ npm run docker:up
 ### Manual
 
 1. Construir ambos proyectos:
+
 ```bash
 npm run build
 ```
@@ -295,6 +309,7 @@ npm run build
 3. El frontend generará archivos en `packages/front/build/`
 
 4. Iniciar backend:
+
 ```bash
 npm run start:back
 ```
@@ -306,12 +321,14 @@ npm run start:back
 Crear archivos `.env` en cada package según sea necesario:
 
 **Backend** (`packages/back/.env`):
+
 ```env
 PORT=4000
 NODE_ENV=production
 ```
 
 **Frontend** (`packages/front/.env`):
+
 ```env
 REACT_APP_API_URL=http://localhost:4000
 ```

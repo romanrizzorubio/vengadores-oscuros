@@ -8,35 +8,46 @@ export const parseOptions = (options: OptionService[]): Option[] =>
     label: name,
   }));
 
-export const parseTable = (table: TableService, currentTable: number): Table => ({
-  currentTable,
+export const parseTable = (table: TableService): Table => ({
   players: table.players,
   expert: table.expert,
   saved: table.saved,
   exposed: table.exposed,
 });
 
-export const parseData = (
-  {
-    end,
-    tables,
-    phase,
-    elcalaMal,
-    minionsMax,
-    darkAvengersThreatIni,
-    darkAvengersThreatMax,
-    ironPatriotLife,
-    ironPatriotMaxLife,
-    exposedThreatIni,
-    exposedThreatMax,
-  }: DataService,
-  currentTable?: number,
-): Data => {
-  const sumIronPatriotDamage = tables.reduce((acc, table) => (table ? acc + table.ironPatriotDamage : acc), 0);
-  const sumExposed = tables.reduce((acc, table) => (table ? acc + table.exposed : acc), 0);
-  const sumMinions = tables.reduce((acc, table) => (table ? acc + table.minions : acc), 0);
-  const sumDarkAvengersThreat = tables.reduce((acc, table) => (table ? acc + table.darkAvengersThreat : acc), 0);
-  const sumExposedThreat = tables.reduce((acc, table) => (table ? acc + table.exposedThreat : acc), 0);
+export const parseData = ({
+  end,
+  tables,
+  phase,
+  elcalaMal,
+  minionsMax,
+  darkAvengersThreatIni,
+  darkAvengersThreatMax,
+  ironPatriotLife,
+  ironPatriotMaxLife,
+  exposedThreatIni,
+  exposedThreatMax,
+}: DataService): Data => {
+  const sumIronPatriotDamage = tables.reduce(
+    (acc, table) => (table ? acc + table.ironPatriotDamage : acc),
+    0,
+  );
+  const sumExposed = tables.reduce(
+    (acc, table) => (table ? acc + table.exposed : acc),
+    0,
+  );
+  const sumMinions = tables.reduce(
+    (acc, table) => (table ? acc + table.minions : acc),
+    0,
+  );
+  const sumDarkAvengersThreat = tables.reduce(
+    (acc, table) => (table ? acc + table.darkAvengersThreat : acc),
+    0,
+  );
+  const sumExposedThreat = tables.reduce(
+    (acc, table) => (table ? acc + table.exposedThreat : acc),
+    0,
+  );
 
   const superLife = ironPatriotMaxLife - sumIronPatriotDamage;
   const superPlan = darkAvengersThreatIni + sumDarkAvengersThreat;
@@ -46,7 +57,7 @@ export const parseData = (
   const exposedThreat = exposedThreatIni + sumExposedThreat;
 
   return {
-    tables: tables.map((table, index) => (table ? parseTable(table, index) : undefined)),
+    tables: tables.map((table) => (table ? parseTable(table) : undefined)),
     end: new Date(end),
     phase,
     superLife: (superLife * 100) / ironPatriotMaxLife,
@@ -62,10 +73,12 @@ export const parseData = (
     darkAvengersThreat: (darkAvengersThreat * 100) / darkAvengersThreatMax,
     darkAvengersThreatValue: darkAvengersThreat,
     darkAvengersThreatMax,
-    ironPatriotLife: ironPatriotMaxLife > 0 ? (ironPatriotLife * 100) / ironPatriotMaxLife : 0,
+    ironPatriotLife:
+      ironPatriotMaxLife > 0 ? (ironPatriotLife * 100) / ironPatriotMaxLife : 0,
     ironPatriotLifeValue: ironPatriotLife,
     ironPatriotMaxLifeValue: ironPatriotMaxLife,
-    exposedThreat: exposedThreatMax > 0 ? (exposedThreat * 100) / exposedThreatMax : 0,
+    exposedThreat:
+      exposedThreatMax > 0 ? (exposedThreat * 100) / exposedThreatMax : 0,
     exposedThreatValue: exposedThreat,
     exposedThreatMax,
   };

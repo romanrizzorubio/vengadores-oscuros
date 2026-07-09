@@ -12,7 +12,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "dev": "npm run start",
     "build": "react-scripts build",
     "test": "jest --watchAll=false",

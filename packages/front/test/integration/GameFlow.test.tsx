@@ -3,6 +3,7 @@ import { render, waitFor } from '@testing-library/react';
 import { GameProvider, useGameContext } from '../../src/contexts/GameContext';
 import { loadService } from '../../src/data/services/load';
 import { loadSocket } from '../../src/data/sockets/load';
+import { Phase } from '../../src/types/Dicts';
 
 jest.mock('../../src/data/services/load');
 jest.mock('../../src/data/sockets/load');
@@ -20,19 +21,36 @@ describe('Game Flow Integration Tests', () => {
   const mockGameData = {
     tables: [
       {
-        id: 1,
-        name: 'Table 1',
+        currentTable: 0,
         players: [
-          { id: 1, name: 'Player 1', life: 10 },
-          { id: 2, name: 'Player 2', life: 8 },
+          { hero: { value: '1', label: 'Player 1' } },
+          { hero: { value: '2', label: 'Player 2' } },
         ],
+        saved: false,
+        expert: false,
+        exposed: 3,
       },
     ],
-    phase: 'PLAYING',
+    phase: 2 as Phase,
     superLife: 15,
+    superLifeValue: 15,
     superPlan: 10,
-    ironPatriotDamageTotal: 5,
+    superPlanValue: 10,
     exposed: 3,
+    exposedValue: 3,
+    elcalaMal: [],
+    minions: 0,
+    minionsValue: 0,
+    minionsMax: 10,
+    darkAvengersThreat: 0,
+    darkAvengersThreatValue: 0,
+    darkAvengersThreatMax: 10,
+    ironPatriotLife: 100,
+    ironPatriotLifeValue: 100,
+    ironPatriotMaxLifeValue: 100,
+    exposedThreat: 0,
+    exposedThreatValue: 0,
+    exposedThreatMax: 10,
   };
 
   beforeEach(() => {
@@ -51,7 +69,7 @@ describe('Game Flow Integration Tests', () => {
     const { getByTestId } = render(
       <GameProvider>
         <TestComponent />
-      </GameProvider>
+      </GameProvider>,
     );
 
     await waitFor(() => {
@@ -87,11 +105,11 @@ describe('Game Flow Integration Tests', () => {
     const { getByTestId } = render(
       <GameProvider>
         <TestComponent />
-      </GameProvider>
+      </GameProvider>,
     );
 
     await waitFor(() => {
-      expect(getByTestId('phase')).toHaveTextContent('PLAYING');
+      expect(getByTestId('phase')).toHaveTextContent('2');
       expect(getByTestId('exposed')).toHaveTextContent('3');
     });
   });
@@ -113,7 +131,7 @@ describe('Game Flow Integration Tests', () => {
     const { getByTestId } = render(
       <GameProvider>
         <TestComponent />
-      </GameProvider>
+      </GameProvider>,
     );
 
     await waitFor(() => {
@@ -131,7 +149,7 @@ describe('Game Flow Integration Tests', () => {
       React.useEffect(() => {
         setCurrentTable(2);
         setTimeout(() => {
-          setData({ ...data, phase: 'INIT' });
+          setData({ ...data, phase: 0 });
         }, 100);
       }, [setCurrentTable, setData, data]);
 
@@ -141,14 +159,14 @@ describe('Game Flow Integration Tests', () => {
     const { getByTestId } = render(
       <GameProvider>
         <TestComponent />
-      </GameProvider>
+      </GameProvider>,
     );
 
     await waitFor(
       () => {
         expect(getByTestId('table')).toHaveTextContent('-1');
       },
-      { timeout: 3000 }
+      { timeout: 3000 },
     );
   });
 
@@ -164,7 +182,7 @@ describe('Game Flow Integration Tests', () => {
     const { unmount } = render(
       <GameProvider>
         <TestComponent />
-      </GameProvider>
+      </GameProvider>,
     );
 
     await waitFor(() => {

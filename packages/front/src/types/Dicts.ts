@@ -5,7 +5,7 @@ export const PhaseDict = {
   KINGDOM_DEFEATED: 3,
   EXPOSED: 4,
   CAPTAIN_LOSE: 5,
-  CAPTAIN_WIN: 6
+  CAPTAIN_WIN: 6,
 } as const;
 export type Phase = (typeof PhaseDict)[keyof typeof PhaseDict];
 

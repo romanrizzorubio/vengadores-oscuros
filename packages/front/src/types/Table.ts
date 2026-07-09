@@ -14,7 +14,6 @@ export type TableService = {
 };
 
 export type Table = {
-  currentTable: number;
   players: Player[];
   saved: boolean;
   expert: boolean;

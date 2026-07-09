@@ -9,5 +9,5 @@ export const exposedThreatService = async (value: number, table: number) => {
     table,
   });
 
-  return parseData(data, table);
+  return parseData(data);
 };

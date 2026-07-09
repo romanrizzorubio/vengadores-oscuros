@@ -1,10 +1,10 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
-import { resetGame } from "../../src/services/resetGame";
-import { updateGameState, getGameState } from "../../src/store/gameStore";
-import { PhaseDict } from "../../src/types/dicts";
-import * as socket from "../../src/sockets/socket";
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { resetGame } from '../../src/services/resetGame';
+import { updateGameState, getGameState } from '../../src/store/gameStore';
+import { PhaseDict } from '../../src/types/dicts';
+import * as socket from '../../src/sockets/socket';
 
-vi.mock("../../src/sockets/socket", async (importOriginal) => {
+vi.mock('../../src/sockets/socket', async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,
@@ -13,12 +13,12 @@ vi.mock("../../src/sockets/socket", async (importOriginal) => {
   };
 });
 
-describe("resetGame", () => {
+describe('resetGame', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it("should reset game state to initial values", () => {
+  it('should reset game state to initial values', () => {
     // Modify state first
     updateGameState((data) => {
       data.phase = PhaseDict.TABLES;
@@ -34,12 +34,12 @@ describe("resetGame", () => {
     expect(result.tables).toEqual([]);
   });
 
-  it("should call broadcastGame after reset", () => {
+  it('should call broadcastGame after reset', () => {
     resetGame();
     expect(socket.broadcastGame).toHaveBeenCalledTimes(1);
   });
 
-  it("should return the reset state", () => {
+  it('should return the reset state', () => {
     const result = resetGame();
     const currentState = getGameState();
 

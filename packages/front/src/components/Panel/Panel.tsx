@@ -56,7 +56,11 @@ export const Panel = ({
         {progress &&
           (progress instanceof Array ? (
             progress.map((p, index) => (
-              <Progress key={`progress-${index}`} {...p} hasBackground={hasBackground} />
+              <Progress
+                key={`progress-${index}`}
+                {...p}
+                hasBackground={hasBackground}
+              />
             ))
           ) : (
             <Progress {...progress} hasBackground={hasBackground} />

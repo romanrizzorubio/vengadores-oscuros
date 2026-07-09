@@ -1,7 +1,7 @@
-import { PhaseDict } from "../types/dicts";
-import { updateGameState, getGameState } from "../store/gameStore";
-import { broadcastGame } from "../sockets/socket";
-import type { GameData } from "../types/GameData";
+import { PhaseDict } from '../types/dicts';
+import { updateGameState, getGameState } from '../store/gameStore';
+import { broadcastGame } from '../sockets/socket';
+import type { GameData } from '../types/GameData';
 
 const getThreat = (data: GameData) =>
   data.tables.reduce((acc, table) => acc + table.exposed, 0);
@@ -13,7 +13,7 @@ const isExposedCompleted = (data: GameData) => {
 
 export function advanceGame(): GameData {
   const currentPhase = getGameState().phase;
-  console.log("advanceGame called. Current phase:", currentPhase);
+  console.log('advanceGame called. Current phase:', currentPhase);
   const state = updateGameState((data) => {
     if (data.phase === PhaseDict.KINGDOM_DEFEATED) {
       data.phase = PhaseDict.EXPOSED;
@@ -24,15 +24,15 @@ export function advanceGame(): GameData {
         data.phase = PhaseDict.CAPTAIN_WIN;
       }
     } else {
-      console.log("No transition defined for phase:", data.phase);
+      console.log('No transition defined for phase:', data.phase);
     }
   });
 
   if (state.phase === currentPhase) {
-    console.warn("Phase did not change after advanceGame call");
+    console.warn('Phase did not change after advanceGame call');
   }
 
-  console.log("advanceGame finished. New phase:", state.phase);
+  console.log('advanceGame finished. New phase:', state.phase);
   broadcastGame();
   return state;
 }

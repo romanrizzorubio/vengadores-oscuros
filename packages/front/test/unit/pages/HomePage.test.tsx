@@ -62,7 +62,6 @@ jest.mock('../../../src/hooks/useSuper', () => ({
   }),
 }));
 
-
 const renderWithProviders = (phase: Phase) => {
   (useGameContext as jest.Mock).mockReturnValue({
     data: {
@@ -76,7 +75,7 @@ const renderWithProviders = (phase: Phase) => {
   return render(
     <ThemeProvider theme={theme}>
       <HomePage />
-    </ThemeProvider>
+    </ThemeProvider>,
   );
 };
 

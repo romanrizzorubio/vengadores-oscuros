@@ -1,6 +1,9 @@
 import React from 'react';
 import { renderHook, waitFor } from '@testing-library/react';
-import { GameProvider, useGameContext } from '../../../src/contexts/GameContext';
+import {
+  GameProvider,
+  useGameContext,
+} from '../../../src/contexts/GameContext';
 import { loadService } from '../../../src/data/services/load';
 import { loadSocket } from '../../../src/data/sockets/load';
 
@@ -83,7 +86,7 @@ describe('GameContext', () => {
     await waitFor(() => {
       expect(consoleErrorSpy).toHaveBeenCalledWith(
         'Error al cargar los datos',
-        expect.any(Error)
+        expect.any(Error),
       );
     });
 

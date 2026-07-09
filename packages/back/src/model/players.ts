@@ -1,4 +1,4 @@
-import { GameData } from "../types/GameData";
+import { GameData } from '../types/GameData';
 
 export const getNumPlayers = (data: GameData) =>
   data.tables.reduce(
@@ -6,17 +6,17 @@ export const getNumPlayers = (data: GameData) =>
       if (table.expert) {
         return {
           ...acc,
-          expert: acc.expert + table.players.length
+          expert: acc.expert + table.players.length,
         };
       }
 
       return {
         ...acc,
-        normal: acc.normal + table.players.length
+        normal: acc.normal + table.players.length,
       };
     },
     {
       normal: 0,
-      expert: 0
-    }
+      expert: 0,
+    },
   );

@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { StatusBar, StatusBarDict } from '../../types/Dicts';
 
-export const Container = styled.div<{ $hasBackground?: boolean; $compact?: boolean }>`
+export const Container = styled.div<{
+  $hasBackground?: boolean;
+  $compact?: boolean;
+}>`
   position: relative;
   width: 100%;
   min-height: ${({ $compact }) => ($compact ? '1.5rem' : '3rem')};

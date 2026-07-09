@@ -1,6 +1,15 @@
-import { test, expect, type BrowserContext, type Locator, type Page } from '@playwright/test';
+import {
+  test,
+  expect,
+  type BrowserContext,
+  type Locator,
+  type Page,
+} from '@playwright/test';
 
-import { closeContextsAndHandleVideos, newRecordedContext } from './support/video-context';
+import {
+  closeContextsAndHandleVideos,
+  newRecordedContext,
+} from './support/video-context';
 
 test.describe('Test E2E: Los valores de la vida del Súper Skrull se generan correctamente', () => {
   test('Flujo completo con 2 mesas (Normal y Experto) y 4 jugadores cada una', async ({
@@ -18,9 +27,14 @@ test.describe('Test E2E: Los valores de la vida del Súper Skrull se generan cor
       const host = await contextHost.newPage();
       const p1 = await contextP1.newPage();
       const p2 = await contextP2.newPage();
-      const clickAndWaitForPost = async (page: Page, button: Locator, endpoint: string) => {
+      const clickAndWaitForPost = async (
+        page: Page,
+        button: Locator,
+        endpoint: string,
+      ) => {
         const response = page.waitForResponse(
-          (res) => res.url().endsWith(endpoint) && res.request().method() === 'POST',
+          (res) =>
+            res.url().endsWith(endpoint) && res.request().method() === 'POST',
         );
 
         await button.click();
@@ -32,10 +46,18 @@ test.describe('Test E2E: Los valores de la vida del Súper Skrull se generan cor
 
           for (const stylesheet of Array.from(document.styleSheets)) {
             for (const rule of Array.from(stylesheet.cssRules)) {
-              if (!(rule instanceof CSSStyleRule) || !rule.style.width.endsWith('%')) continue;
+              if (
+                !(rule instanceof CSSStyleRule) ||
+                !rule.style.width.endsWith('%')
+              )
+                continue;
 
               const selector = rule.selectorText;
-              if (classNames.some((className) => selector.includes(`.${className}`))) {
+              if (
+                classNames.some((className) =>
+                  selector.includes(`.${className}`),
+                )
+              ) {
                 return parseFloat(rule.style.width);
               }
             }
@@ -72,8 +94,12 @@ test.describe('Test E2E: Los valores de la vida del Súper Skrull se generan cor
       await host.getByRole('button', { name: 'Iniciar' }).click();
 
       // Verificar: Se ve el reloj corriendo, el botón "Iniciar" deshabilitado y ya no existe el Input
-      await expect(host.getByRole('heading', { name: /-?\d+:\d{2}:\d{2}/ })).toBeVisible();
-      await expect(host.getByRole('button', { name: 'Iniciar' })).toBeDisabled();
+      await expect(
+        host.getByRole('heading', { name: /-?\d+:\d{2}:\d{2}/ }),
+      ).toBeVisible();
+      await expect(
+        host.getByRole('button', { name: 'Iniciar' }),
+      ).toBeDisabled();
       await expect(host.getByLabel('Hora de finalización')).not.toBeVisible();
 
       // Pestaña 2 (Jugador 1): Navegar a /table
@@ -131,21 +157,35 @@ test.describe('Test E2E: Los valores de la vida del Súper Skrull se generan cor
 
       // Verificar en todas las pestañas que se ve el panel con barra llena
       const progressHost = host.getByText('Vida');
-      await expect.poll(() => getProgressPercentage(progressHost)).toBeGreaterThan(99);
+      await expect
+        .poll(() => getProgressPercentage(progressHost))
+        .toBeGreaterThan(99);
 
       const progressP1 = p1.getByText('Vida');
       const lifePanelP1 = progressP1.locator('xpath=../..');
-      await expect.poll(() => getProgressPercentage(progressP1)).toBeGreaterThan(99);
+      await expect
+        .poll(() => getProgressPercentage(progressP1))
+        .toBeGreaterThan(99);
 
       const progressP2 = p2.getByText('Vida');
       const lifePanelP2 = progressP2.locator('xpath=../..');
-      await expect.poll(() => getProgressPercentage(progressP2)).toBeGreaterThan(99);
+      await expect
+        .poll(() => getProgressPercentage(progressP2))
+        .toBeGreaterThan(99);
 
       // Verificar botones en P1 y P2
-      await expect(lifePanelP1.getByRole('button', { name: '-10', exact: true })).toBeVisible();
-      await expect(lifePanelP1.getByRole('button', { name: '+10', exact: true })).toBeVisible();
-      await expect(lifePanelP2.getByRole('button', { name: '-5', exact: true })).toBeVisible();
-      await expect(lifePanelP2.getByRole('button', { name: '-1', exact: true })).toBeVisible();
+      await expect(
+        lifePanelP1.getByRole('button', { name: '-10', exact: true }),
+      ).toBeVisible();
+      await expect(
+        lifePanelP1.getByRole('button', { name: '+10', exact: true }),
+      ).toBeVisible();
+      await expect(
+        lifePanelP2.getByRole('button', { name: '-5', exact: true }),
+      ).toBeVisible();
+      await expect(
+        lifePanelP2.getByRole('button', { name: '-1', exact: true }),
+      ).toBeVisible();
 
       // --- PASO 3: Interactuar con el Súper Skrull ---
 
@@ -156,7 +196,9 @@ test.describe('Test E2E: Los valores de la vida del Súper Skrull se generan cor
         '/super-life',
       );
       // Verificar: Sigue entera (100%)
-      await expect.poll(() => getProgressPercentage(progressP1)).toBeGreaterThan(99);
+      await expect
+        .poll(() => getProgressPercentage(progressP1))
+        .toBeGreaterThan(99);
 
       // Acción: Click -10 diez veces
       for (let i = 0; i < 10; i++) {
@@ -172,8 +214,12 @@ test.describe('Test E2E: Los valores de la vida del Súper Skrull se generan cor
       expect(widthP1).toBeLessThan(99);
 
       // Verificar sincronización
-      await expect.poll(() => getProgressPercentage(progressHost)).toBeCloseTo(widthP1, 2);
-      await expect.poll(() => getProgressPercentage(progressP2)).toBeCloseTo(widthP1, 2);
+      await expect
+        .poll(() => getProgressPercentage(progressHost))
+        .toBeCloseTo(widthP1, 2);
+      await expect
+        .poll(() => getProgressPercentage(progressP2))
+        .toBeCloseTo(widthP1, 2);
 
       // Pestaña 3 (Jugador 2): -1 x2, -5, -1
       await clickAndWaitForPost(
@@ -198,10 +244,14 @@ test.describe('Test E2E: Los valores de la vida del Súper Skrull se generan cor
       );
 
       // Verificar: Se muestra imagen del Súper Skrull derrotado (o el mensaje)
-      await expect(p2.getByText('El Súper Skrull ha perdido la batalla')).toBeVisible();
+      await expect(
+        p2.getByText('El Súper Skrull ha perdido la batalla'),
+      ).toBeVisible();
 
       // Pestaña 1 (Host): Verificar derrota y botón Avanzar
-      await expect(host.getByText('El Súper Skrull ha perdido la batalla')).toBeVisible();
+      await expect(
+        host.getByText('El Súper Skrull ha perdido la batalla'),
+      ).toBeVisible();
       await expect(host.getByRole('button', { name: 'Avanzar' })).toBeVisible();
     } catch (error) {
       keepVideos = true;

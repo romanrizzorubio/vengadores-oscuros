@@ -17,7 +17,11 @@ export const SetTable = () => {
         min={1}
         onChange={changeTable}
       />
-      <Button label="Iniciar" onClick={saveTable} disabled={table === undefined || table <= 0} />
+      <Button
+        label="Iniciar"
+        onClick={saveTable}
+        disabled={table === undefined || table <= 0}
+      />
     </Wrapper>
   );
 };

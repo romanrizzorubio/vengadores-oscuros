@@ -11,18 +11,22 @@ const renderWithTheme = (component: React.ReactElement) => {
 
 describe('Panel Component', () => {
   it('should render with correct panel type', () => {
-    const { container } = renderWithTheme(<Panel type={PanelTypeDict.SUPER} />);
+    const { container } = renderWithTheme(
+      <Panel type={PanelTypeDict.OSBORN} />,
+    );
     const img = container.querySelector('img');
     expect(img).toBeInTheDocument();
   });
 
   it('should render message when msg prop is provided', () => {
-    renderWithTheme(<Panel type={PanelTypeDict.SUPER} msg="Test Message" />);
+    renderWithTheme(<Panel type={PanelTypeDict.OSBORN} msg="Test Message" />);
     expect(screen.getByText('Test Message')).toBeInTheDocument();
   });
 
   it('should not render message when msg prop is not provided', () => {
-    const { container } = renderWithTheme(<Panel type={PanelTypeDict.SUPER} />);
+    const { container } = renderWithTheme(
+      <Panel type={PanelTypeDict.OSBORN} />,
+    );
     const text = container.querySelector('p');
     expect(text).not.toBeInTheDocument();
   });
@@ -30,9 +34,9 @@ describe('Panel Component', () => {
   it('should render single progress bar', () => {
     renderWithTheme(
       <Panel
-        type={PanelTypeDict.SUPER}
+        type={PanelTypeDict.OSBORN}
         progress={{ percentage: 50, label: 'Life' }}
-      />
+      />,
     );
     expect(screen.getByText(/Life/)).toBeInTheDocument();
   });
@@ -40,12 +44,12 @@ describe('Panel Component', () => {
   it('should render multiple progress bars', () => {
     renderWithTheme(
       <Panel
-        type={PanelTypeDict.SUPER}
+        type={PanelTypeDict.OSBORN}
         progress={[
           { percentage: 50, label: 'Life' },
           { percentage: 30, label: 'Plan' },
         ]}
-      />
+      />,
     );
     expect(screen.getByText(/Life/)).toBeInTheDocument();
     expect(screen.getByText(/Plan/)).toBeInTheDocument();
@@ -55,9 +59,9 @@ describe('Panel Component', () => {
     const mockOnChange = jest.fn();
     renderWithTheme(
       <Panel
-        type={PanelTypeDict.SUPER}
+        type={PanelTypeDict.OSBORN}
         controls={{ maxValue: 10, onChange: mockOnChange }}
-      />
+      />,
     );
     expect(screen.getByText('+10')).toBeInTheDocument();
     expect(screen.getByText('-10')).toBeInTheDocument();
@@ -67,9 +71,9 @@ describe('Panel Component', () => {
     const mockOnClick = jest.fn();
     renderWithTheme(
       <Panel
-        type={PanelTypeDict.SUPER}
+        type={PanelTypeDict.OSBORN}
         buttons={{ label: 'Test Button', onClick: mockOnClick }}
-      />
+      />,
     );
     expect(screen.getByText('Test Button')).toBeInTheDocument();
   });
@@ -79,12 +83,12 @@ describe('Panel Component', () => {
     const mockOnClick2 = jest.fn();
     renderWithTheme(
       <Panel
-        type={PanelTypeDict.SUPER}
+        type={PanelTypeDict.OSBORN}
         buttons={[
           { label: 'Button 1', onClick: mockOnClick1 },
           { label: 'Button 2', onClick: mockOnClick2 },
         ]}
-      />
+      />,
     );
     expect(screen.getByText('Button 1')).toBeInTheDocument();
     expect(screen.getByText('Button 2')).toBeInTheDocument();
@@ -94,17 +98,19 @@ describe('Panel Component', () => {
     const mockOnClick = jest.fn();
     renderWithTheme(
       <Panel
-        type={PanelTypeDict.SUPER}
+        type={PanelTypeDict.OSBORN}
         buttons={{ label: 'Test Button', onClick: mockOnClick }}
         disabled={true}
-      />
+      />,
     );
     const button = screen.getByText('Test Button');
     expect(button).toBeDisabled();
   });
 
   it('should disable image when disabled prop is true', () => {
-    const { container } = renderWithTheme(<Panel type={PanelTypeDict.SUPER} disabled={true} />);
+    const { container } = renderWithTheme(
+      <Panel type={PanelTypeDict.OSBORN} disabled={true} />,
+    );
     const img = container.querySelector('img');
     expect(img).toHaveAttribute('disabled');
   });
@@ -113,23 +119,25 @@ describe('Panel Component', () => {
     const mockOnClick = jest.fn();
     renderWithTheme(
       <Panel
-        type={PanelTypeDict.SUPER}
+        type={PanelTypeDict.OSBORN}
         buttons={{ label: 'Click Me', onClick: mockOnClick }}
-      />
+      />,
     );
     fireEvent.click(screen.getByText('Click Me'));
     expect(mockOnClick).toHaveBeenCalled();
   });
 
   it('should render different panel types correctly', () => {
-    const { rerender, container } = renderWithTheme(<Panel type={PanelTypeDict.SUPER} />);
+    const { rerender, container } = renderWithTheme(
+      <Panel type={PanelTypeDict.OSBORN} />,
+    );
     let img = container.querySelector('img');
     expect(img).toHaveAttribute('src');
 
     rerender(
       <ThemeProvider theme={theme}>
-        <Panel type={PanelTypeDict.VERANKE} />
-      </ThemeProvider>
+        <Panel type={PanelTypeDict.ELCALA_MAL} />
+      </ThemeProvider>,
     );
     img = container.querySelector('img');
     expect(img).toHaveAttribute('src');

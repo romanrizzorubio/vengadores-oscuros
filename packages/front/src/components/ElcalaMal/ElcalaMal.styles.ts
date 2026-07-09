@@ -20,7 +20,11 @@ export const Heading = styled.h3`
   text-align: center;
 `;
 
-export const CompactWrapper = styled.div<{ $highlighted?: boolean; $fixedWidth?: boolean; $defeated?: boolean }>`
+export const CompactWrapper = styled.div<{
+  $highlighted?: boolean;
+  $fixedWidth?: boolean;
+  $defeated?: boolean;
+}>`
   display: ${({ $defeated }) => ($defeated ? 'flex' : 'grid')};
   justify-content: ${({ $defeated }) => ($defeated ? 'center' : 'normal')};
   align-items: ${({ $defeated }) => ($defeated ? 'center' : 'normal')};
@@ -31,7 +35,9 @@ export const CompactWrapper = styled.div<{ $highlighted?: boolean; $fixedWidth?:
   border-radius: ${({ theme }) => theme.borderRadius.m};
   background-color: rgba(255, 255, 255, 0.05);
   border: ${({ theme, $highlighted }) =>
-    $highlighted ? `3px solid ${theme.colors.text.secondary}` : `1px solid ${theme.colors.text.secondary}`};
+    $highlighted
+      ? `3px solid ${theme.colors.text.secondary}`
+      : `1px solid ${theme.colors.text.secondary}`};
   width: ${({ $fixedWidth }) => ($fixedWidth ? '300px' : 'auto')};
   flex-shrink: 0;
   min-height: ${({ $defeated }) => ($defeated ? '100px' : 'auto')};

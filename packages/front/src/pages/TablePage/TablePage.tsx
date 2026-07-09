@@ -21,10 +21,7 @@ const TablePage = () => {
 
   const tableText = useMemo(() => getTableText(currentTable), [currentTable]);
 
-  const showElcalaMals = useMemo(
-    () => [PhaseDict.KINGDOM, PhaseDict.KINGDOM_DEFEATED].some((p) => p === phase),
-    [phase],
-  );
+  const showElcalaMals = useMemo(() => phase === PhaseDict.KINGDOM, [phase]);
 
   return (
     <Wrapper>
@@ -39,7 +36,9 @@ const TablePage = () => {
             {phase === PhaseDict.INIT && <WaitingPhase />}
             {phase === PhaseDict.TABLES && <CreateTablePhase />}
             {phase === PhaseDict.KINGDOM && <KingdomPhase />}
-            {phase === PhaseDict.KINGDOM_DEFEATED && <KingdomDefeatedPhase readOnly />}
+            {phase === PhaseDict.KINGDOM_DEFEATED && (
+              <KingdomDefeatedPhase readOnly />
+            )}
             {phase === PhaseDict.EXPOSED && <ExposedPhase />}
             {phase === PhaseDict.CAPTAIN_LOSE && <CaptainPhase />}
             {phase === PhaseDict.CAPTAIN_WIN && <CaptainPhase hasWin />}

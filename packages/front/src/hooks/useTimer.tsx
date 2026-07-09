@@ -19,7 +19,8 @@ export const useTimer = () => {
       setNow(new Date());
     }, 1000);
 
-    return () => (interval.current ? window.clearInterval(interval.current) : undefined);
+    return () =>
+      interval.current ? window.clearInterval(interval.current) : undefined;
   }, []);
 
   useEffect(() => {

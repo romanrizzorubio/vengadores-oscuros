@@ -13,7 +13,10 @@ import { Label } from '../Label/Label';
 
 export type SelectOptionProps = OptionHTMLAttributes<HTMLOptionElement>;
 
-export type SelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'onChange'> & {
+export type SelectProps = Omit<
+  SelectHTMLAttributes<HTMLSelectElement>,
+  'onChange'
+> & {
   label?: string;
   options: SelectOptionProps[];
   size?: Size;
@@ -36,7 +39,7 @@ export const Select = ({
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
       setValue(e.target.value);
-      onChange && onChange(e.target.value);
+      onChange?.(e.target.value);
     },
     [setValue, onChange],
   );

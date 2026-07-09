@@ -2,7 +2,10 @@ import { StyledButton } from './Button.styles';
 import { ButtonHTMLAttributes, useCallback, useMemo } from 'react';
 import { Size, SizeDict } from '../../types/Dicts';
 
-export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> & {
+export type ButtonProps = Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'onChange'
+> & {
   onChange?: (value: number) => void;
   onClick?: () => void;
   value?: number;
@@ -19,8 +22,8 @@ export const Button = ({
   onClick,
 }: ButtonProps) => {
   const handleClick = useCallback(() => {
-    onChange && value !== undefined && onChange(value);
-    onClick && onClick();
+    value !== undefined && onChange?.(value);
+    onClick?.();
   }, [value, onChange, onClick]);
 
   const text = useMemo(() => {
@@ -40,7 +43,12 @@ export const Button = ({
   }, [label, value]);
 
   return (
-    <StyledButton type="button" disabled={disabled} onClick={handleClick} $size={size}>
+    <StyledButton
+      type="button"
+      disabled={disabled}
+      onClick={handleClick}
+      $size={size}
+    >
       {text}
     </StyledButton>
   );

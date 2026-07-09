@@ -75,8 +75,6 @@ describe('Services Integration Tests', () => {
             expert: false,
             saved: false,
             ironPatriotDamage: 0,
-            ironPatriotDamage: 0,
-            darkAvengersThreat: 0,
             exposed: 0,
             uatu: false,
             aron: false,

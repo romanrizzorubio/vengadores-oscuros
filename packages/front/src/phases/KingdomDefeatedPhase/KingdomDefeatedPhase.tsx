@@ -7,7 +7,9 @@ export type KingdomDefeatedPhaseProps = {
   readOnly?: boolean;
 };
 
-export const KingdomDefeatedPhase = ({ readOnly = false }: KingdomDefeatedPhaseProps) => {
+export const KingdomDefeatedPhase = ({
+  readOnly = false,
+}: KingdomDefeatedPhaseProps) => {
   const { advance } = useAdvance();
 
   return (

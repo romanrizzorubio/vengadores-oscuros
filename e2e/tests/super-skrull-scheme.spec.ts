@@ -1,13 +1,26 @@
-import { expect, test, type BrowserContext, type Locator, type Page } from '@playwright/test';
+import {
+  expect,
+  test,
+  type BrowserContext,
+  type Locator,
+  type Page,
+} from '@playwright/test';
 
-import { closeContextsAndHandleVideos, newRecordedContext } from './support/video-context';
+import {
+  closeContextsAndHandleVideos,
+  newRecordedContext,
+} from './support/video-context';
 
 const baseURL = 'http://localhost:3000';
 const apiURL = 'http://localhost:4000';
 const initialThreatPercentage = 100 / 7;
 const threatAfterFourDecrementsPercentage = (4 / 56) * 100;
 
-async function clickAndWaitForPost(page: Page, control: Locator, endpoint: string) {
+async function clickAndWaitForPost(
+  page: Page,
+  control: Locator,
+  endpoint: string,
+) {
   await Promise.all([
     page.waitForResponse(
       (response) =>
@@ -53,7 +66,9 @@ async function getProgressPercentage(progress: Locator) {
     if (!parent) return 0;
 
     const width = Number.parseFloat(window.getComputedStyle(element).width);
-    const parentWidth = Number.parseFloat(window.getComputedStyle(parent).width);
+    const parentWidth = Number.parseFloat(
+      window.getComputedStyle(parent).width,
+    );
 
     return parentWidth > 0 ? (width / parentWidth) * 100 : 0;
   });
@@ -65,7 +80,12 @@ async function selectHeroes(page: Page, heroes: string[]) {
   }
 }
 
-async function createTable(page: Page, tableNumber: string, heroes: string[], expert = false) {
+async function createTable(
+  page: Page,
+  tableNumber: string,
+  heroes: string[],
+  expert = false,
+) {
   await page.goto(`${baseURL}/table`);
   await page.getByLabel('Mesa').fill(tableNumber);
   await page.getByLabel('Mesa').blur();
@@ -76,12 +96,18 @@ async function createTable(page: Page, tableNumber: string, heroes: string[], ex
   }
 
   await selectHeroes(page, heroes);
-  await clickAndWaitForPost(page, page.getByRole('button', { name: 'Iniciar' }), '/init-table');
+  await clickAndWaitForPost(
+    page,
+    page.getByRole('button', { name: 'Iniciar' }),
+    '/init-table',
+  );
 }
 
 async function expectThreatControls(panel: Locator) {
   for (const label of ['-10', '-5', '-1', '+1', '+5', '+10']) {
-    await expect(panel.getByRole('button', { name: label, exact: true })).toBeVisible();
+    await expect(
+      panel.getByRole('button', { name: label, exact: true }),
+    ).toBeVisible();
   }
 }
 
@@ -98,8 +124,16 @@ test.describe('Test E2E: Los valores del plan del Súper Skrull genera correctam
 
     try {
       const contextHost = await newRecordedContext(browser, testInfo, contexts);
-      const contextTableOne = await newRecordedContext(browser, testInfo, contexts);
-      const contextTableTwo = await newRecordedContext(browser, testInfo, contexts);
+      const contextTableOne = await newRecordedContext(
+        browser,
+        testInfo,
+        contexts,
+      );
+      const contextTableTwo = await newRecordedContext(
+        browser,
+        testInfo,
+        contexts,
+      );
 
       const host = await contextHost.newPage();
       const tableOne = await contextTableOne.newPage();
@@ -107,13 +141,26 @@ test.describe('Test E2E: Los valores del plan del Súper Skrull genera correctam
 
       await host.goto(`${baseURL}/`);
       await fillFutureEndTime(host);
-      await clickAndWaitForPost(host, host.getByRole('button', { name: 'Iniciar' }), '/init');
+      await clickAndWaitForPost(
+        host,
+        host.getByRole('button', { name: 'Iniciar' }),
+        '/init',
+      );
 
-      await expect(host.getByRole('heading', { name: /-?\d+:\d{2}:\d{2}/ })).toBeVisible();
-      await expect(host.getByRole('button', { name: 'Iniciar' })).toBeDisabled();
+      await expect(
+        host.getByRole('heading', { name: /-?\d+:\d{2}:\d{2}/ }),
+      ).toBeVisible();
+      await expect(
+        host.getByRole('button', { name: 'Iniciar' }),
+      ).toBeDisabled();
       await expect(host.getByLabel('Hora de finalización')).not.toBeVisible();
 
-      await createTable(tableOne, '1', ['Cable', 'Daredevil', 'Gamora', 'Iron Man']);
+      await createTable(tableOne, '1', [
+        'Cable',
+        'Daredevil',
+        'Gamora',
+        'Iron Man',
+      ]);
       for (const hero of ['Cable', 'Daredevil', 'Gamora', 'Iron Man']) {
         await expect(tableOne.locator('table')).toContainText(hero);
       }
@@ -121,7 +168,12 @@ test.describe('Test E2E: Los valores del plan del Súper Skrull genera correctam
       await createTable(
         tableTwo,
         '2',
-        ['Ojo de Halcón', 'Hombre Hormiga', 'Mujer Invisible', 'Rondador Nocturno'],
+        [
+          'Ojo de Halcón',
+          'Hombre Hormiga',
+          'Mujer Invisible',
+          'Rondador Nocturno',
+        ],
         true,
       );
 
@@ -150,14 +202,19 @@ test.describe('Test E2E: Los valores del plan del Súper Skrull genera correctam
           .toBeCloseTo(initialThreatPercentage, 0);
       }
 
-      await expect(host.getByRole('button', { name: '-10', exact: true })).not.toBeVisible();
+      await expect(
+        host.getByRole('button', { name: '-10', exact: true }),
+      ).not.toBeVisible();
       await expectThreatControls(superPlanPanel(tableOne));
       await expectThreatControls(superPlanPanel(tableTwo));
 
       for (let i = 0; i < 4; i++) {
         await clickAndWaitForPost(
           tableOne,
-          superPlanPanel(tableOne).getByRole('button', { name: '-1', exact: true }),
+          superPlanPanel(tableOne).getByRole('button', {
+            name: '-1',
+            exact: true,
+          }),
           '/super-plan',
         );
       }
@@ -165,7 +222,9 @@ test.describe('Test E2E: Los valores del plan del Súper Skrull genera correctam
       await expect
         .poll(() => getProgressPercentage(superPlanProgress(tableOne)))
         .toBeCloseTo(threatAfterFourDecrementsPercentage, 0);
-      const threatAfterDecrements = await getProgressPercentage(superPlanProgress(tableOne));
+      const threatAfterDecrements = await getProgressPercentage(
+        superPlanProgress(tableOne),
+      );
       await expect
         .poll(() => getProgressPercentage(superPlanProgress(host)))
         .toBeCloseTo(threatAfterDecrements, 1);
@@ -176,20 +235,30 @@ test.describe('Test E2E: Los valores del plan del Súper Skrull genera correctam
       for (let i = 0; i < 5; i++) {
         await clickAndWaitForPost(
           tableTwo,
-          superPlanPanel(tableTwo).getByRole('button', { name: '+10', exact: true }),
+          superPlanPanel(tableTwo).getByRole('button', {
+            name: '+10',
+            exact: true,
+          }),
           '/super-plan',
         );
       }
 
       await clickAndWaitForPost(
         tableTwo,
-        superPlanPanel(tableTwo).getByRole('button', { name: '+5', exact: true }),
+        superPlanPanel(tableTwo).getByRole('button', {
+          name: '+5',
+          exact: true,
+        }),
         '/super-plan',
       );
 
       // La UI real expresa la victoria del Súper Skrull como "ha logrado sus planes".
-      await expect(tableTwo.getByText('El Súper Skrull ha logrado sus planes')).toBeVisible();
-      await expect(host.getByText('El Súper Skrull ha logrado sus planes')).toBeVisible();
+      await expect(
+        tableTwo.getByText('El Súper Skrull ha logrado sus planes'),
+      ).toBeVisible();
+      await expect(
+        host.getByText('El Súper Skrull ha logrado sus planes'),
+      ).toBeVisible();
       await expect(host.getByRole('button', { name: 'Avanzar' })).toBeVisible();
     } catch (error) {
       keepVideos = true;

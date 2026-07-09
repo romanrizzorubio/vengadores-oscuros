@@ -88,7 +88,10 @@ describe('useSuper', () => {
     });
 
     expect(returnValue).toBe(false);
-    expect(consoleErrorSpy).toHaveBeenCalledWith('Error al cargar los datos', error);
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      'Error al cargar los datos',
+      error,
+    );
 
     consoleErrorSpy.mockRestore();
   });
@@ -122,7 +125,10 @@ describe('useSuper', () => {
     });
 
     expect(returnValue).toBe(false);
-    expect(consoleErrorSpy).toHaveBeenCalledWith('Error al cargar los datos', error);
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      'Error al cargar los datos',
+      error,
+    );
 
     consoleErrorSpy.mockRestore();
   });

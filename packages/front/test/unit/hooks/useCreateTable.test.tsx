@@ -69,7 +69,7 @@ describe('useCreateTable', () => {
       expect(result.current.heroes).toHaveLength(2);
     });
 
-    const newPlayer = { name: 'New Player', hero: 2 };
+    const newPlayer = { hero: { value: '2', label: 'Iron Man' } };
 
     act(() => {
       result.current.changePlayer(0)(newPlayer);
@@ -117,7 +117,9 @@ describe('useCreateTable', () => {
 
   it('should handle create table error', async () => {
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
-    (createTableService as jest.Mock).mockRejectedValue(new Error('Create error'));
+    (createTableService as jest.Mock).mockRejectedValue(
+      new Error('Create error'),
+    );
 
     const { result } = renderHook(() => useCreateTable());
 
@@ -127,7 +129,10 @@ describe('useCreateTable', () => {
     });
 
     expect(returnValue).toBe(false);
-    expect(consoleErrorSpy).toHaveBeenCalledWith('Error al crear la mesa', expect.any(Error));
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      'Error al crear la mesa',
+      expect.any(Error),
+    );
 
     consoleErrorSpy.mockRestore();
   });
@@ -142,13 +147,17 @@ describe('useCreateTable', () => {
       returnValue = await result.current.editTable();
     });
 
-    expect(resetTableService).toHaveBeenCalledWith(mockGameContext.currentTable);
+    expect(resetTableService).toHaveBeenCalledWith(
+      mockGameContext.currentTable,
+    );
     expect(returnValue).toBe(true);
   });
 
   it('should handle edit table error', async () => {
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
-    (resetTableService as jest.Mock).mockRejectedValue(new Error('Reset error'));
+    (resetTableService as jest.Mock).mockRejectedValue(
+      new Error('Reset error'),
+    );
 
     const { result } = renderHook(() => useCreateTable());
 
@@ -158,7 +167,10 @@ describe('useCreateTable', () => {
     });
 
     expect(returnValue).toBe(false);
-    expect(consoleErrorSpy).toHaveBeenCalledWith('Error al reiniciar la mesa', expect.any(Error));
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      'Error al reiniciar la mesa',
+      expect.any(Error),
+    );
 
     consoleErrorSpy.mockRestore();
   });

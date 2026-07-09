@@ -5,7 +5,7 @@ services:
       dockerfile: packages/back/Dockerfile.dev
     container_name: vengadores-backend-dev
     ports:
-      - "4000:4000"
+      - '4000:4000'
     environment:
       - NODE_ENV=development
       - PORT=4000
@@ -23,7 +23,7 @@ services:
       dockerfile: packages/front/Dockerfile.dev
     container_name: vengadores-frontend-dev
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - NODE_ENV=development
       - REACT_APP_API_URL=http://localhost:4000

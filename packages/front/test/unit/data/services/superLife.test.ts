@@ -5,16 +5,18 @@ jest.mock('../../../../src/data/core/api');
 
 describe('superLifeService', () => {
   const mockDataService = {
-    tables: [{
-      players: [],
-      expert: false,
-      saved: false,
-      ironPatriotDamage: 0,
-      darkAvengersThreat: 0,
-      exposed: 0,
-      minions: 0,
-      exposedThreat: 0,
-    }],
+    tables: [
+      {
+        players: [],
+        expert: false,
+        saved: false,
+        ironPatriotDamage: 0,
+        darkAvengersThreat: 0,
+        exposed: 0,
+        minions: 0,
+        exposedThreat: 0,
+      },
+    ],
     end: '2024-01-01T00:00:00.000Z',
     phase: 'PLAYING',
     elcalaMal: false,

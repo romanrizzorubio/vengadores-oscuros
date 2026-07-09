@@ -29,7 +29,11 @@ export const ExposedPhase = ({ readOnly = false }: ExposedPhaseProps) => {
           maxValue: ironPatriotMaxLife,
           label: 'Vida',
         }}
-        controls={readOnly ? undefined : { onChange: changeIronPatriotLife, maxValue: ironPatriotMaxLife }}
+        controls={
+          readOnly
+            ? undefined
+            : { onChange: changeIronPatriotLife, maxValue: ironPatriotMaxLife }
+        }
         hasBackground={readOnly}
       />
       <Panel
@@ -40,7 +44,11 @@ export const ExposedPhase = ({ readOnly = false }: ExposedPhaseProps) => {
           maxValue: exposedThreatMax,
           label: 'Amenaza',
         }}
-        controls={readOnly ? undefined : { onChange: changeExposedThreat, maxValue: exposedThreatMax }}
+        controls={
+          readOnly
+            ? undefined
+            : { onChange: changeExposedThreat, maxValue: exposedThreatMax }
+        }
         hasBackground={readOnly}
       />
     </Wrapper>

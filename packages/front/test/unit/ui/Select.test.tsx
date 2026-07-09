@@ -31,7 +31,7 @@ describe('Select', () => {
     renderWithTheme(<Select options={mockOptions} />);
     const select = screen.getByRole('combobox');
     const options = select.querySelectorAll('option');
-    
+
     expect(options).toHaveLength(4); // 3 options + 1 empty
     expect(options[0]).toHaveValue('');
     expect(options[1]).toHaveValue('1');
@@ -51,7 +51,9 @@ describe('Select', () => {
   });
 
   it('should update value when prop changes', () => {
-    const { rerender } = renderWithTheme(<Select options={mockOptions} value="1" />);
+    const { rerender } = renderWithTheme(
+      <Select options={mockOptions} value="1" />,
+    );
     expect(screen.getByRole('combobox')).toHaveValue('1');
 
     rerender(
@@ -66,18 +68,22 @@ describe('Select', () => {
     renderWithTheme(<Select options={[]} />);
     const select = screen.getByRole('combobox');
     const options = select.querySelectorAll('option');
-    
+
     expect(options).toHaveLength(1); // Only empty option
   });
 
   it('should use custom id when provided', () => {
-    renderWithTheme(<Select id="custom-id" label="Test" options={mockOptions} />);
+    renderWithTheme(
+      <Select id="custom-id" label="Test" options={mockOptions} />,
+    );
     const select = screen.getByRole('combobox');
     expect(select).toHaveAttribute('id', 'custom-id');
   });
 
   it('should render with different sizes', () => {
-    const { rerender } = renderWithTheme(<Select options={mockOptions} size={SizeDict.S} />);
+    const { rerender } = renderWithTheme(
+      <Select options={mockOptions} size={SizeDict.S} />,
+    );
     expect(screen.getByRole('combobox')).toBeInTheDocument();
 
     rerender(
@@ -109,7 +115,7 @@ describe('Select', () => {
     renderWithTheme(<Select options={optionsWithAttributes} />);
     const select = screen.getByRole('combobox');
     const options = select.querySelectorAll('option');
-    
+
     expect(options[1]).toBeDisabled();
     expect(options[2]).not.toBeDisabled();
   });

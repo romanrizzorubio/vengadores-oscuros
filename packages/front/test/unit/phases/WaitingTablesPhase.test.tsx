@@ -9,7 +9,9 @@ import { theme } from '../../../src/styles/theme';
 jest.mock('../../../src/hooks/useInit');
 jest.mock('../../../src/contexts/GameContext');
 jest.mock('../../../src/components/TablePlayers/TablePlayers', () => ({
-  TablePlayers: ({ currentTable }: { currentTable: number }) => <div>Table {currentTable}</div>,
+  TablePlayers: ({ currentTable }: { currentTable: number }) => (
+    <div>Table {currentTable}</div>
+  ),
 }));
 
 const renderWithTheme = (component: React.ReactElement) => {
@@ -48,9 +50,7 @@ describe('WaitingTablesPhase', () => {
   it('should enable Iniciar button when tables are present', () => {
     (useGameContext as jest.Mock).mockReturnValue({
       data: {
-        tables: [
-          { players: [{ hero: 'IronMan' }], expert: false },
-        ],
+        tables: [{ players: [{ hero: 'IronMan' }], expert: false }],
       },
     });
 
@@ -62,9 +62,7 @@ describe('WaitingTablesPhase', () => {
   it('should call startTables when Iniciar button is clicked', () => {
     (useGameContext as jest.Mock).mockReturnValue({
       data: {
-        tables: [
-          { players: [{ hero: 'IronMan' }], expert: false },
-        ],
+        tables: [{ players: [{ hero: 'IronMan' }], expert: false }],
       },
     });
 

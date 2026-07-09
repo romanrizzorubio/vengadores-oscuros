@@ -34,7 +34,9 @@ describe('Input', () => {
     });
 
     it('should update value when prop changes', () => {
-      const { rerender } = renderWithTheme(<Input type="text" value="initial" />);
+      const { rerender } = renderWithTheme(
+        <Input type="text" value="initial" />,
+      );
       expect(screen.getByRole('textbox')).toHaveValue('initial');
 
       rerender(
@@ -129,7 +131,9 @@ describe('Input', () => {
     });
 
     it('should render with different sizes', () => {
-      const { rerender } = renderWithTheme(<Input type="text" size={SizeDict.S} />);
+      const { rerender } = renderWithTheme(
+        <Input type="text" size={SizeDict.S} />,
+      );
       expect(screen.getByRole('textbox')).toBeInTheDocument();
 
       rerender(

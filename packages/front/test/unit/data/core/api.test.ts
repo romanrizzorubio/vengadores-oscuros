@@ -1,4 +1,8 @@
-import { get, post, createSocketConnection } from '../../../../src/data/core/api';
+import {
+  get,
+  post,
+  createSocketConnection,
+} from '../../../../src/data/core/api';
 import { io } from 'socket.io-client';
 
 jest.mock('socket.io-client');
@@ -10,11 +14,11 @@ describe('API Core', () => {
 
   beforeAll(() => {
     delete (window as any).location;
-    window.location = { ...originalLocation, hostname: 'localhost' };
+    (window as any).location = { ...originalLocation, hostname: 'localhost' };
   });
 
   afterAll(() => {
-    window.location = originalLocation;
+    (window as any).location = originalLocation;
   });
 
   beforeEach(() => {
@@ -30,17 +34,22 @@ describe('API Core', () => {
 
       const result = await get('/test-endpoint');
 
-      expect(global.fetch).toHaveBeenCalledWith('http://localhost:4000/test-endpoint', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
+      expect(global.fetch).toHaveBeenCalledWith(
+        'http://localhost:4000/test-endpoint',
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
-      });
+      );
       expect(result).toEqual(mockResponse);
     });
 
     it('should handle errors in GET requests', async () => {
-      (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
+      (global.fetch as jest.Mock).mockRejectedValueOnce(
+        new Error('Network error'),
+      );
 
       await expect(get('/test-endpoint')).rejects.toThrow('Network error');
     });
@@ -55,13 +64,16 @@ describe('API Core', () => {
 
       const result = await post('/test-endpoint');
 
-      expect(global.fetch).toHaveBeenCalledWith('http://localhost:4000/test-endpoint', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      expect(global.fetch).toHaveBeenCalledWith(
+        'http://localhost:4000/test-endpoint',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({}),
         },
-        body: JSON.stringify({}),
-      });
+      );
       expect(result).toEqual(mockResponse);
     });
 
@@ -74,20 +86,27 @@ describe('API Core', () => {
 
       const result = await post('/test-endpoint', requestBody);
 
-      expect(global.fetch).toHaveBeenCalledWith('http://localhost:4000/test-endpoint', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      expect(global.fetch).toHaveBeenCalledWith(
+        'http://localhost:4000/test-endpoint',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody),
         },
-        body: JSON.stringify(requestBody),
-      });
+      );
       expect(result).toEqual(mockResponse);
     });
 
     it('should handle errors in POST requests', async () => {
-      (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Server error'));
+      (global.fetch as jest.Mock).mockRejectedValueOnce(
+        new Error('Server error'),
+      );
 
-      await expect(post('/test-endpoint', { data: 'test' })).rejects.toThrow('Server error');
+      await expect(post('/test-endpoint', { data: 'test' })).rejects.toThrow(
+        'Server error',
+      );
     });
   });
 

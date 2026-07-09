@@ -24,12 +24,12 @@ export const useSendData = () => {
 
   const sendAdvance = useCallback(async () => {
     try {
-      return await advanceService(currentTable);
+      return await advanceService();
     } catch (error) {
       console.error('Error al cargar los datos', error);
       return false;
     }
-  }, [currentTable]);
+  }, []);
 
   const sendSuperLife = useCallback(
     async (value: number) => {

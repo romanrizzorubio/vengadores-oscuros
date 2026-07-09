@@ -6,7 +6,11 @@ import { Socket } from 'socket.io-client';
 jest.mock('../../../../src/data/core/api');
 
 describe('loadSocket', () => {
-  let mockSocket: any;
+  let mockSocket: {
+    id: string;
+    on: jest.Mock;
+    disconnect: jest.Mock;
+  };
   let socketRef: MutableRefObject<Socket | null>;
   let openingRef: MutableRefObject<boolean>;
   let handleData: jest.Mock;
@@ -46,7 +50,7 @@ describe('loadSocket', () => {
   });
 
   it('should not create socket if socketRef already has a socket', () => {
-    socketRef.current = { id: 'existing-socket' } as any;
+    socketRef.current = { id: 'existing-socket' } as Socket;
 
     const params: UseLoadSocket = {
       socketRef,
@@ -103,7 +107,7 @@ describe('loadSocket', () => {
     loadSocket(params);
 
     const connectHandler = mockSocket.on.mock.calls.find(
-      (call: any) => call[0] === 'connect'
+      (call: [string, ...unknown[]]) => call[0] === 'connect',
     )[1];
     connectHandler();
 
@@ -121,7 +125,10 @@ describe('loadSocket', () => {
 
     loadSocket(params);
 
-    expect(mockSocket.on).toHaveBeenCalledWith('game:update', expect.any(Function));
+    expect(mockSocket.on).toHaveBeenCalledWith(
+      'game:update',
+      expect.any(Function),
+    );
   });
 
   it('should handle game:update events with parsed data', () => {
@@ -136,20 +143,22 @@ describe('loadSocket', () => {
     loadSocket(params);
 
     const gameUpdateHandler = mockSocket.on.mock.calls.find(
-      (call: any) => call[0] === 'game:update'
+      (call: [string, ...unknown[]]) => call[0] === 'game:update',
     )[1];
 
     const mockDataService = {
-      tables: [{
-      players: [],
-      expert: false,
-      saved: false,
-      ironPatriotDamage: 0,
-      darkAvengersThreat: 0,
-      exposed: 0,
-      minions: 0,
-      exposedThreat: 0,
-    }],
+      tables: [
+        {
+          players: [],
+          expert: false,
+          saved: false,
+          ironPatriotDamage: 0,
+          darkAvengersThreat: 0,
+          exposed: 0,
+          minions: 0,
+          exposedThreat: 0,
+        },
+      ],
       end: '2024-01-01T00:00:00.000Z',
       phase: 'PLAYING',
       elcalaMal: false,
@@ -185,7 +194,10 @@ describe('loadSocket', () => {
 
     loadSocket(params);
 
-    expect(mockSocket.on).toHaveBeenCalledWith('disconnect', expect.any(Function));
+    expect(mockSocket.on).toHaveBeenCalledWith(
+      'disconnect',
+      expect.any(Function),
+    );
   });
 
   it('should clean up on disconnect', () => {
@@ -200,7 +212,7 @@ describe('loadSocket', () => {
     loadSocket(params);
 
     const disconnectHandler = mockSocket.on.mock.calls.find(
-      (call: any) => call[0] === 'disconnect'
+      (call: [string, ...unknown[]]) => call[0] === 'disconnect',
     )[1];
     disconnectHandler('transport close');
 
@@ -219,7 +231,10 @@ describe('loadSocket', () => {
 
     loadSocket(params);
 
-    expect(mockSocket.on).toHaveBeenCalledWith('connect_error', expect.any(Function));
+    expect(mockSocket.on).toHaveBeenCalledWith(
+      'connect_error',
+      expect.any(Function),
+    );
   });
 
   it('should handle connect errors', () => {
@@ -234,7 +249,7 @@ describe('loadSocket', () => {
     loadSocket(params);
 
     const connectErrorHandler = mockSocket.on.mock.calls.find(
-      (call: any) => call[0] === 'connect_error'
+      (call: [string, ...unknown[]]) => call[0] === 'connect_error',
     )[1];
 
     const error = new Error('Connection failed');
@@ -289,10 +304,10 @@ describe('loadSocket', () => {
     loadSocket(params);
 
     // Simulate a different socket in the ref
-    socketRef.current = { id: 'different-socket' } as any;
+    socketRef.current = { id: 'different-socket' } as Socket;
 
     const disconnectHandler = mockSocket.on.mock.calls.find(
-      (call: any) => call[0] === 'disconnect'
+      (call: [string, ...unknown[]]) => call[0] === 'disconnect',
     )[1];
     disconnectHandler('transport close');
 

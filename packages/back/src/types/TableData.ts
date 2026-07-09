@@ -1,4 +1,4 @@
-import { PlayerData } from "./PlayerData";
+import { PlayerData } from './PlayerData';
 
 export type TableData = {
   players: PlayerData[];

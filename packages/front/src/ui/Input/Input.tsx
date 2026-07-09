@@ -1,9 +1,19 @@
-import { InputHTMLAttributes, useCallback, useId, FocusEvent, useState, useEffect } from 'react';
+import {
+  InputHTMLAttributes,
+  useCallback,
+  useId,
+  FocusEvent,
+  useState,
+  useEffect,
+} from 'react';
 import { Size, SizeDict } from '../../types/Dicts';
 import { StyledInput, Wrapper } from './Input.styles';
 import { Label } from '../Label/Label';
 
-type InputBase = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type'> & {
+type InputBase = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'onChange' | 'type'
+> & {
   label?: string;
   size?: Size;
 };
@@ -55,16 +65,16 @@ export const Input = ({
         time.setHours(parseInt(hours));
         time.setMinutes(parseInt(minutes));
         newValue = time;
-        onChange && onChange(newValue);
+        onChange?.(newValue);
       } else if (type === 'number') {
         const newValue = parseInt(e.target.value);
         if (isNaN(newValue)) {
-          onChange && onChange(undefined);
+          onChange?.(undefined);
         } else {
-          onChange && onChange(newValue);
+          onChange?.(newValue);
         }
       } else {
-        onChange && onChange(newValue);
+        onChange?.(newValue);
       }
     },
     [onChange, type],

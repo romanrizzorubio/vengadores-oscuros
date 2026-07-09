@@ -10,13 +10,14 @@ module.exports = {
     for (const route of routes) {
       if (route.props?.element) {
         if (route.props.children) {
-          const childElements = React.Children.map(route.props.children, child =>
-            child?.props?.element || null
+          const childElements = React.Children.map(
+            route.props.children,
+            (child) => child?.props?.element || null,
           ).filter(Boolean);
           return React.createElement(
             OutletContext.Provider,
             { value: childElements },
-            route.props.element
+            route.props.element,
           );
         }
         return route.props.element;
@@ -25,8 +26,10 @@ module.exports = {
     return null;
   },
   Route: ({ element }) => element || null,
-  Link: ({ to, children, ...props }) => React.createElement('a', { href: to, ...props }, children),
-  NavLink: ({ to, children, ...props }) => React.createElement('a', { href: to, ...props }, children),
+  Link: ({ to, children, ...props }) =>
+    React.createElement('a', { href: to, ...props }, children),
+  NavLink: ({ to, children, ...props }) =>
+    React.createElement('a', { href: to, ...props }, children),
   Outlet: () => {
     const context = React.useContext(OutletContext);
     return context || null;

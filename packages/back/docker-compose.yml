@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
   app:
     image: nodeimage
@@ -6,7 +6,7 @@ services:
     build: ./
     restart: always
     ports:
-      - "4000:4000"
+      - '4000:4000'
     environment:
       - HOST=0.0.0.0
       - PORT=4000

@@ -21,10 +21,7 @@ const HomePage = () => {
 
   const showElcalaMals = useMemo(
     () =>
-      [
-        PhaseDict.KINGDOM,
-        PhaseDict.KINGDOM_DEFEATED,
-      ].some((p) => p === phase),
+      [PhaseDict.KINGDOM, PhaseDict.KINGDOM_DEFEATED].some((p) => p === phase),
     [phase],
   );
 

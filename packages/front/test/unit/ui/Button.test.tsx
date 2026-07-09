@@ -53,7 +53,9 @@ describe('Button', () => {
   it('should call both onChange and onClick when clicked', () => {
     const mockOnChange = jest.fn();
     const mockOnClick = jest.fn();
-    renderWithTheme(<Button value={7} onChange={mockOnChange} onClick={mockOnClick} />);
+    renderWithTheme(
+      <Button value={7} onChange={mockOnChange} onClick={mockOnClick} />,
+    );
 
     fireEvent.click(screen.getByText('+7'));
 
@@ -79,7 +81,12 @@ describe('Button', () => {
     const mockOnChange = jest.fn();
     const mockOnClick = jest.fn();
     renderWithTheme(
-      <Button value={5} onChange={mockOnChange} onClick={mockOnClick} disabled />,
+      <Button
+        value={5}
+        onChange={mockOnChange}
+        onClick={mockOnClick}
+        disabled
+      />,
     );
 
     fireEvent.click(screen.getByText('+5'));
@@ -89,7 +96,9 @@ describe('Button', () => {
   });
 
   it('should render with different sizes', () => {
-    const { rerender } = renderWithTheme(<Button label="Small" size={SizeDict.S} />);
+    const { rerender } = renderWithTheme(
+      <Button label="Small" size={SizeDict.S} />,
+    );
     expect(screen.getByText('Small')).toBeInTheDocument();
 
     rerender(

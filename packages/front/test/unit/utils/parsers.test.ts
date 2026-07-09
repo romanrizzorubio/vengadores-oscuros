@@ -1,4 +1,8 @@
-import { parseData, parseOptions, parseTable } from '../../../src/utils/parsers';
+import {
+  parseData,
+  parseOptions,
+  parseTable,
+} from '../../../src/utils/parsers';
 import { PhaseDict } from '../../../src/types/Dicts';
 
 describe('Parsers', () => {
@@ -43,12 +47,13 @@ describe('Parsers', () => {
         minions: 0,
         darkAvengersThreat: 0,
         exposedThreat: 0,
+        uatu: false,
+        aron: false,
       };
 
-      const result = parseTable(tableService, 1);
+      const result = parseTable(tableService);
 
       expect(result).toEqual({
-        currentTable: 1,
         players: [{ hero: { value: '1', label: 'Hero' } }],
         expert: true,
         saved: false,
@@ -66,12 +71,13 @@ describe('Parsers', () => {
         minions: 0,
         darkAvengersThreat: 0,
         exposedThreat: 0,
+        uatu: false,
+        aron: false,
       };
 
-      const result = parseTable(tableService, 0);
+      const result = parseTable(tableService);
 
       expect(result).toEqual({
-        currentTable: 0,
         players: [],
         expert: false,
         saved: true,
@@ -93,11 +99,14 @@ describe('Parsers', () => {
             minions: 0,
             darkAvengersThreat: 0,
             exposedThreat: 0,
+            uatu: false,
+            aron: false,
           },
         ],
+        currentTable: 0,
         end: 1704067200000,
         phase: PhaseDict.KINGDOM,
-        elcalaMal: false,
+        elcalaMal: [],
         minionsMax: 10,
         darkAvengersThreatIni: 0,
         darkAvengersThreatMax: 10,
@@ -120,9 +129,10 @@ describe('Parsers', () => {
     it('should handle empty tables', () => {
       const mockServiceData = {
         tables: [],
+        currentTable: -1,
         end: 1704067200000,
         phase: PhaseDict.INIT,
-        elcalaMal: false,
+        elcalaMal: [],
         minionsMax: 10,
         darkAvengersThreatIni: 0,
         darkAvengersThreatMax: 10,
@@ -150,11 +160,14 @@ describe('Parsers', () => {
             minions: 0,
             darkAvengersThreat: 4,
             exposedThreat: 0,
+            uatu: false,
+            aron: false,
           },
         ],
+        currentTable: 0,
         end: 1704067200000,
         phase: PhaseDict.KINGDOM,
-        elcalaMal: false,
+        elcalaMal: [],
         minionsMax: 10,
         darkAvengersThreatIni: 5,
         darkAvengersThreatMax: 20,
@@ -183,6 +196,8 @@ describe('Parsers', () => {
             minions: 0,
             darkAvengersThreat: 2,
             exposedThreat: 0,
+            uatu: false,
+            aron: false,
           },
           {
             players: [],
@@ -193,11 +208,14 @@ describe('Parsers', () => {
             minions: 0,
             darkAvengersThreat: 1,
             exposedThreat: 0,
+            uatu: false,
+            aron: false,
           },
         ],
+        currentTable: 0,
         end: 1704067200000,
         phase: PhaseDict.EXPOSED,
-        elcalaMal: false,
+        elcalaMal: [],
         minionsMax: 10,
         darkAvengersThreatIni: 0,
         darkAvengersThreatMax: 10,

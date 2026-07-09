@@ -36,23 +36,32 @@ describe('Table', () => {
 
   it('should render table with name', () => {
     renderWithTheme(
-      <Table name="Test Table" subtitle="Subtitle" fields={mockFields} data={mockData} />,
+      <Table
+        name="Test Table"
+        subtitle="Subtitle"
+        fields={mockFields}
+        data={mockData}
+      />,
     );
     expect(screen.getByText('Test Table')).toBeInTheDocument();
     expect(screen.getByText('Subtitle')).toBeInTheDocument();
   });
 
   it('should render all headers', () => {
-    renderWithTheme(<Table subtitle="Test" fields={mockFields} data={mockData} />);
-    
+    renderWithTheme(
+      <Table subtitle="Test" fields={mockFields} data={mockData} />,
+    );
+
     expect(screen.getByText('Name')).toBeInTheDocument();
     expect(screen.getByText('Age')).toBeInTheDocument();
     expect(screen.getByText('City')).toBeInTheDocument();
   });
 
   it('should render all data rows', () => {
-    renderWithTheme(<Table subtitle="Test" fields={mockFields} data={mockData} />);
-    
+    renderWithTheme(
+      <Table subtitle="Test" fields={mockFields} data={mockData} />,
+    );
+
     expect(screen.getByText('John')).toBeInTheDocument();
     expect(screen.getByText('30')).toBeInTheDocument();
     expect(screen.getByText('New York')).toBeInTheDocument();
@@ -62,8 +71,10 @@ describe('Table', () => {
   });
 
   it('should render empty table when no data', () => {
-    renderWithTheme(<Table subtitle="Empty Table" fields={mockFields} data={[]} />);
-    
+    renderWithTheme(
+      <Table subtitle="Empty Table" fields={mockFields} data={[]} />,
+    );
+
     expect(screen.getByText('Empty Table')).toBeInTheDocument();
     expect(screen.getByText('Name')).toBeInTheDocument();
     expect(screen.queryByText('John')).not.toBeInTheDocument();
@@ -71,35 +82,56 @@ describe('Table', () => {
 
   it('should render with different sizes', () => {
     const { rerender } = renderWithTheme(
-      <Table subtitle="Test" fields={mockFields} data={mockData} size={SizeDict.S} />,
+      <Table
+        subtitle="Test"
+        fields={mockFields}
+        data={mockData}
+        size={SizeDict.S}
+      />,
     );
     expect(screen.getByText('Test')).toBeInTheDocument();
 
     rerender(
       <ThemeProvider theme={theme}>
-        <Table subtitle="Test" fields={mockFields} data={mockData} size={SizeDict.M} />
+        <Table
+          subtitle="Test"
+          fields={mockFields}
+          data={mockData}
+          size={SizeDict.M}
+        />
       </ThemeProvider>,
     );
     expect(screen.getByText('Test')).toBeInTheDocument();
 
     rerender(
       <ThemeProvider theme={theme}>
-        <Table subtitle="Test" fields={mockFields} data={mockData} size={SizeDict.L} />
+        <Table
+          subtitle="Test"
+          fields={mockFields}
+          data={mockData}
+          size={SizeDict.L}
+        />
       </ThemeProvider>,
     );
     expect(screen.getByText('Test')).toBeInTheDocument();
   });
 
   it('should use default size when not specified', () => {
-    renderWithTheme(<Table subtitle="Test" fields={mockFields} data={mockData} />);
+    renderWithTheme(
+      <Table subtitle="Test" fields={mockFields} data={mockData} />,
+    );
     expect(screen.getByText('Test')).toBeInTheDocument();
   });
 
   it('should handle single field', () => {
-    const singleField = [{ header: 'Name', valueKey: 'name' as keyof TestData }];
-    
-    renderWithTheme(<Table subtitle="Single" fields={singleField} data={mockData} />);
-    
+    const singleField = [
+      { header: 'Name', valueKey: 'name' as keyof TestData },
+    ];
+
+    renderWithTheme(
+      <Table subtitle="Single" fields={singleField} data={mockData} />,
+    );
+
     expect(screen.getByText('Name')).toBeInTheDocument();
     expect(screen.getByText('John')).toBeInTheDocument();
     expect(screen.getByText('Jane')).toBeInTheDocument();
@@ -108,9 +140,11 @@ describe('Table', () => {
 
   it('should handle single row', () => {
     const singleRow = [mockData[0]];
-    
-    renderWithTheme(<Table subtitle="Single Row" fields={mockFields} data={singleRow} />);
-    
+
+    renderWithTheme(
+      <Table subtitle="Single Row" fields={mockFields} data={singleRow} />,
+    );
+
     expect(screen.getByText('John')).toBeInTheDocument();
     expect(screen.queryByText('Jane')).not.toBeInTheDocument();
   });
@@ -119,7 +153,7 @@ describe('Table', () => {
     const { container } = renderWithTheme(
       <Table subtitle="Test" fields={mockFields} data={mockData} />,
     );
-    
+
     expect(screen.getByText('Test')).toBeInTheDocument();
     const headings = container.querySelectorAll('h1, h2, h3, h4, h5, h6');
     expect(headings.length).toBeGreaterThanOrEqual(1);

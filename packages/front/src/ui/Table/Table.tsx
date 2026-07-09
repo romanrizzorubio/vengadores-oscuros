@@ -23,7 +23,13 @@ export type TableProps<T> = {
   size?: Size;
 };
 
-export const Table = <T,>({ name, subtitle, fields, data, size = SizeDict.L }: TableProps<T>) => {
+export const Table = <T,>({
+  name,
+  subtitle,
+  fields,
+  data,
+  size = SizeDict.L,
+}: TableProps<T>) => {
   return (
     <Wrapper>
       {name && <Heading $size={size}>{name}</Heading>}
